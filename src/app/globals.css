@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  /* Duolingo-inspired light theme with yellow primary */
+  --color-background: #FFFFFF;
+  --color-surface: #F7F7F7;
+  --color-surface-hover: #F0F0F0;
+  --color-border: #E5E5E5;
+  --color-border-strong: #D4D4D4;
+  --color-text-primary: #4B4B4B;
+  --color-text-secondary: #777777;
+  --color-text-muted: #AFAFAF;
+  --color-foreground: #4B4B4B;
+
+  /* Brand colors */
+  --color-primary: #FFC800;
+  --color-primary-shadow: #E0B000;
+  --color-correct: #58CC02;
+  --color-correct-shadow: #46A302;
+  --color-incorrect: #FF4B4B;
+  --color-incorrect-shadow: #D63F3F;
+  --color-selected: #1CB0F6;
+  --color-selected-shadow: #0891C7;
+  --color-xp: #FF9600;
+  --color-streak: #FF9600;
+
+  /* Feedback backgrounds */
+  --color-correct-bg: #D7FFB8;
+  --color-incorrect-bg: #FFF0F0;
+  --color-selected-bg: #DDF4FF;
+
+  --font-sans: var(--font-nunito), 'Nunito', sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
 }
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 3px;
+}
+
+/* Zone accent colors via data attributes */
+[data-zone="the-vault"] { --zone-accent: #1CB0F6; }
+[data-zone="the-reading-room"] { --zone-accent: #CE82FF; }
+[data-zone="the-gatekeepers"] { --zone-accent: #FF9600; }
+[data-zone="the-classified-wing"] { --zone-accent: #FF4B4B; }
+[data-zone="the-sealed-chamber"] { --zone-accent: #FF4B4B; }
+[data-zone="the-border"] { --zone-accent: #58CC02; }
+[data-zone="the-agencies"] { --zone-accent: #1CB0F6; }

@@ -1,0 +1,32 @@
+import { MPEPSection } from "@/types";
+
+export const MPEP_SECTION_150: MPEPSection[] = [
+  {
+    id: "mpep-150-00",
+    number: "150",
+    title: "DOE and NASA Property Rights — Overview",
+    content:
+      "This section addresses the procedures by which the United States Patent and Trademark Office (USPTO) cooperates with the Department of Energy (DOE) and the National Aeronautics and Space Administration (NASA) regarding inventions that may be subject to government property rights. Under federal law, both DOE and NASA have the authority to claim title to inventions made by contractors performing work under government contracts. The statutory bases for these authorities are 42 U.S.C. 2182 (the Atomic Energy Act) for DOE and 51 U.S.C. 20135 (the National Aeronautics and Space Act) for NASA. When either agency identifies a patent application that may involve an invention made under a government contract, the USPTO initiates a notification process to determine the government's rights. This process involves sending a letter to the applicant requiring a response within a specified deadline. The applicant must file a statement establishing their rights in the invention. Failure to respond may result in the application being regarded as abandoned. These procedures ensure that the government's interests in publicly funded inventions are properly identified and addressed during the patent examination process, while also providing applicants with an opportunity to establish and retain their own rights where appropriate.",
+  },
+  {
+    id: "mpep-150-01",
+    number: "150.01",
+    title: "Department of Energy (DOE) Authority — 42 USC 2182",
+    content:
+      "The Department of Energy derives its authority over contractor inventions from 42 U.S.C. 2182, which is part of the Atomic Energy Act. This statute provides that any invention or discovery useful in the production or utilization of special nuclear material or atomic energy, made or conceived under any contract with the Atomic Energy Commission (now DOE), shall be subject to government property rights. Under this authority, DOE may claim title to patent applications covering inventions made under DOE contracts. The scope of DOE's authority extends to inventions related to nuclear energy, radioactive materials, nuclear reactor technology, isotope separation, and other subject matter falling within the Atomic Energy Act. When the USPTO identifies an application that may involve atomic energy subject matter developed under a DOE contract, it cooperates with DOE to initiate the notification process described in MPEP 150. The contractor is not without recourse: DOE may waive its rights to the invention in certain circumstances, particularly when the contractor can demonstrate that retaining rights would better serve the public interest through commercialization or further development. Waivers must be affirmatively requested by the contractor and are evaluated on a case-by-case basis. If DOE waives title, it typically retains a nonexclusive, irrevocable, royalty-free license to practice the invention.",
+  },
+  {
+    id: "mpep-150-02",
+    number: "150.02",
+    title: "National Aeronautics and Space Administration (NASA) Authority — 51 USC 20135",
+    content:
+      "NASA's authority over contractor inventions is established by 51 U.S.C. 20135, part of the National Aeronautics and Space Act. This statute provides that whenever any invention is made by any person in the performance of work under a contract with NASA, the NASA Administrator shall determine whether to acquire title to such invention on behalf of the United States. NASA's authority covers inventions related to aeronautics, space exploration, satellite technology, propulsion systems, life support systems, and other subject matter within NASA's mission. The determination of whether to claim title rests with the NASA Administrator, who evaluates factors including the nature of the invention, its relationship to the contract work, and the public interest. Similar to DOE, NASA may waive its rights to contractor inventions. Contractors may request a waiver by demonstrating that retention of rights would better promote the utilization of the invention through commercialization. NASA evaluates waiver requests considering factors such as the contractor's plans for commercialization, the potential public benefit, and the government's own needs for the technology. If a waiver is granted, NASA typically retains a nonexclusive, irrevocable, royalty-free license for government purposes. If no waiver is requested or if the waiver is denied, NASA may proceed to claim title, and the contractor may be required to assign the patent rights to the government. Applicants who disagree with NASA's rights determination may petition the agency to reconsider.",
+  },
+  {
+    id: "mpep-150-03",
+    number: "150.03",
+    title: "The 45-Day Letter and Response Process",
+    content:
+      "When DOE or NASA identifies a patent application with potential government interest, the USPTO sends a notification letter to the applicant, commonly referred to as the '45-day letter.' This letter informs the applicant that a government agency has identified the application as potentially involving an invention made under a government contract and instructs the applicant to file a statement establishing their rights within a specified deadline. The applicant must respond within 30 days from the date of the letter. It is important to note that despite the letter being called a '45-day letter,' the response deadline is 30 days, not 45 days. This statutory deadline may not be extendable through standard USPTO extension procedures under 37 CFR 1.136, because the deadline derives from statute rather than regulation. Failure to file a timely response may result in the application being regarded as abandoned. This abandonment is distinct from other forms of patent application abandonment and may present unique challenges for revival. If the applicant does respond timely, the statement is forwarded to the relevant agency for review. The agency then evaluates the statement and determines whether to assert its property rights, accept the applicant's position, or request additional information. If the applicant disagrees with the agency's determination, the applicant may petition the agency to reconsider the rights determination. Resolution of government property rights typically occurs before substantive examination of the patent application proceeds to completion.",
+  },
+];
