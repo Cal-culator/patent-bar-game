@@ -27,7 +27,7 @@ export const ZONES: Zone[] = [
     accentColor: "#8B5CF6", // purple
     icon: "📖",
     examWeight: "High",
-    locked: true,
+    locked: false,
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ export const ZONES: Zone[] = [
     accentColor: "#F59E0B", // amber
     icon: "🛡️",
     examWeight: "Medium",
-    locked: true,
+    locked: false,
   },
   {
     id: 4,
@@ -55,7 +55,7 @@ export const ZONES: Zone[] = [
     accentColor: "#EF4444", // red
     icon: "🔴",
     examWeight: "High",
-    locked: true,
+    locked: false,
   },
   {
     id: 5,
@@ -97,7 +97,7 @@ export const ZONES: Zone[] = [
     accentColor: "#0EA5E9", // sky blue
     icon: "🚀",
     examWeight: "Medium",
-    locked: true,
+    locked: false,
   },
 ];
 
