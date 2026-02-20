@@ -122,13 +122,13 @@ export default function ProceduralCascade({
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white rounded-2xl p-6 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] text-center"
+          className="bg-white rounded-2xl p-6 border border-[var(--color-border)] shadow-sm text-center"
         >
           <p className="text-2xl mb-2">
             {stepCorrectCount === totalSteps ? "🎯" : "📋"}
           </p>
           <h3 className="text-lg font-extrabold text-[var(--color-text-primary)] mb-1">{cascade.title}</h3>
-          <p className="text-sm font-semibold text-[var(--color-text-secondary)] mb-4">
+          <p className="text-base font-semibold text-[var(--color-text-secondary)] mb-4">
             Cascade Complete
           </p>
 
@@ -142,7 +142,7 @@ export default function ProceduralCascade({
             <span className="text-lg font-extrabold" data-testid="cascade-score">
               {stepCorrectCount}/{totalSteps}
             </span>
-            <span className="text-sm font-bold ml-1">correct</span>
+            <span className="text-base font-bold ml-1">correct</span>
           </div>
 
           <div className="flex gap-2 mb-4 justify-center">
@@ -162,7 +162,7 @@ export default function ProceduralCascade({
 
           <button
             onClick={handleNextCascade}
-            className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+            className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
           >
             {cascadeIndex < cascades.length - 1
               ? "Next Cascade"
@@ -178,12 +178,12 @@ export default function ProceduralCascade({
       {/* Progress */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">
             Cascade {cascadeIndex + 1} of {cascades.length} — Step{" "}
             {stepIndex + 1} of {totalSteps}
           </span>
         </div>
-        <div className="h-4 bg-[var(--color-border)] rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-[var(--color-primary)] rounded-full"
             animate={{ width: `${overallProgress}%` }}
@@ -194,7 +194,7 @@ export default function ProceduralCascade({
       {/* Cascade title */}
       <div className="mb-3">
         <span
-          className="text-xs font-extrabold uppercase tracking-wider"
+          className="text-sm font-extrabold uppercase tracking-wider"
           style={{ color: accentColor }}
         >
           {cascade.title}
@@ -202,12 +202,12 @@ export default function ProceduralCascade({
       </div>
 
       {/* Setup / fact pattern (persistent) */}
-      <div className="bg-white rounded-2xl p-4 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-4">
-        <p className="text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-1">
+      <div className="bg-white rounded-2xl p-4 border border-[var(--color-border)] shadow-sm mb-4">
+        <p className="text-sm font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-1">
           Fact Pattern
         </p>
         <p
-          className="text-sm text-[var(--color-text-primary)] leading-relaxed font-semibold"
+          className="text-base text-[var(--color-text-primary)] leading-relaxed font-semibold"
           data-testid="cascade-setup"
         >
           {cascade.setup}
@@ -242,8 +242,8 @@ export default function ProceduralCascade({
             </div>
 
             {/* Step stem */}
-            <div className="bg-white rounded-2xl p-4 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-4">
-              <p className="text-sm text-[var(--color-text-primary)] leading-relaxed font-bold">
+            <div className="bg-white rounded-2xl p-4 border border-[var(--color-border)] shadow-sm mb-4">
+              <p className="text-base text-[var(--color-text-primary)] leading-relaxed font-bold">
                 {step.stem}
               </p>
             </div>
@@ -255,18 +255,18 @@ export default function ProceduralCascade({
                 const isSelected = selectedAnswer === i;
                 const isCorrectOption = i === shuffledStepOpts.correctIndex;
 
-                let cardClass = "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] hover:bg-[var(--color-surface)] active:border-b-2 active:translate-y-[2px]";
+                let cardClass = "border border-[var(--color-border)] hover:bg-[var(--color-surface)] hover:shadow-sm transition-all";
 
                 if (answered) {
                   if (isCorrectOption) {
                     cardClass =
-                      "border-2 border-b-4 border-[var(--color-correct)] border-b-[var(--color-correct-shadow)] bg-[var(--color-correct-bg)]";
+                      "border-2 border-[var(--color-correct)] bg-[var(--color-correct-bg)]";
                   } else if (isSelected && !isCorrectOption) {
                     cardClass =
-                      "border-2 border-b-4 border-[var(--color-incorrect)] border-b-[var(--color-incorrect-shadow)] bg-[var(--color-incorrect-bg)]";
+                      "border-2 border-[var(--color-incorrect)] bg-[var(--color-incorrect-bg)]";
                   } else {
                     cardClass =
-                      "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border)] opacity-40";
+                      "border border-[var(--color-border)] opacity-40";
                   }
                 }
 
@@ -276,7 +276,7 @@ export default function ProceduralCascade({
                     onClick={() => handleSelectAnswer(i)}
                     disabled={answered}
                     data-testid={`option-${i}${isCorrectOption ? '-correct' : ''}`}
-                    className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-all ${cardClass}`}
+                    className={`w-full text-left p-3 rounded-xl text-base font-semibold transition-all ${cardClass}`}
                   >
                     <span className="text-[var(--color-text-muted)] mr-2 font-bold">
                       {letter})
@@ -294,7 +294,7 @@ export default function ProceduralCascade({
                 animate={{ opacity: 1, height: "auto" }}
               >
                 <div
-                  className={`rounded-2xl p-4 text-sm mb-3 ${
+                  className={`rounded-2xl p-4 text-base mb-3 ${
                     isCorrect
                       ? "bg-[var(--color-correct-bg)]"
                       : "bg-[var(--color-incorrect-bg)]"
@@ -303,14 +303,14 @@ export default function ProceduralCascade({
                   <p className={`font-extrabold mb-1 ${isCorrect ? "text-[var(--color-correct)]" : "text-[var(--color-incorrect)]"}`}>
                     {isCorrect ? "Correct!" : "Incorrect"}
                   </p>
-                  <p className="text-[var(--color-text-secondary)] text-xs font-semibold">
+                  <p className="text-[var(--color-text-secondary)] text-sm font-semibold">
                     {step.explanation}
                   </p>
                 </div>
 
                 <button
                   onClick={handleNext}
-                  className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                  className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
                 >
                   {stepIndex < totalSteps - 1
                     ? "Next Step"

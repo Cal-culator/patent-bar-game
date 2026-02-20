@@ -42,7 +42,7 @@ const PHASE_META: Record<Phase, { label: string; icon: string; description: stri
 
 function StarDisplay({ count }: { count: number }) {
   return (
-    <span className="text-xs">
+    <span className="text-sm">
       {[0, 1, 2].map((i) => (
         <span key={i} className={i < count ? "text-[var(--color-xp)]" : "text-[var(--color-text-muted)]"}>
           ★
@@ -70,49 +70,71 @@ export default function ZoneHub() {
     );
   }
 
+  const completedCount = zp?.phases.filter((p) => p.status === "completed").length ?? 0;
+  const totalPhaseCount = PHASE_ORDER.length;
+  const zoneProgressPct = Math.round((completedCount / totalPhaseCount) * 100);
+
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8" data-zone={zone.slug}>
+    <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-8" data-zone={zone.slug}>
       {/* Back link */}
       <Link
         href="/"
-        className="text-sm font-bold text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)] transition-colors mb-4 inline-block"
+        className="text-base font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)] transition-colors mb-4 inline-flex items-center gap-1"
       >
         &larr; Back to zones
       </Link>
 
-      {/* Zone Header */}
+      {/* Zone Header Banner */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-6"
+        className="rounded-2xl p-6 md:p-8 mb-8 text-white relative overflow-hidden"
+        style={{ background: `linear-gradient(135deg, ${zone.accentColor}, ${zone.accentColor}CC)` }}
       >
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-3xl">{zone.icon}</span>
-          <div>
-            <h1 className="text-2xl font-extrabold" style={{ color: zone.accentColor }}>
-              {zone.name}
-            </h1>
-            <p className="text-sm font-semibold text-[var(--color-text-secondary)]">
-              {zone.subtitle} — MPEP {zone.mpepSections.join(", ")}
-            </p>
+        <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-14 h-14 rounded-xl bg-white/15 flex items-center justify-center text-3xl">
+              {zone.icon}
+            </div>
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: "var(--font-baloo), 'Baloo 2', system-ui, sans-serif" }}>
+                {zone.name}
+              </h1>
+              <p className="text-white/80 text-sm font-medium">
+                {zone.subtitle} — MPEP {zone.mpepSections.join(", ")}
+              </p>
+            </div>
+          </div>
+          <p className="text-base text-white/80 mb-4">
+            {zone.description}
+          </p>
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-semibold bg-white/15 rounded-full px-3 py-1">
+              Exam Weight: {zone.examWeight}
+            </span>
+            <span className="text-sm font-semibold bg-white/15 rounded-full px-3 py-1">
+              {completedCount}/{totalPhaseCount} Phases
+            </span>
+          </div>
+          <div className="mt-3">
+            <div className="h-2 bg-white/20 rounded-full overflow-hidden max-w-xs">
+              <motion.div
+                className="h-full bg-white rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: `${zoneProgressPct}%` }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              />
+            </div>
           </div>
         </div>
-        <p className="text-sm font-semibold text-[var(--color-text-secondary)] mt-2">
-          {zone.description}
-        </p>
-        <span
-          className="inline-block mt-2 text-xs font-bold px-3 py-1 rounded-full"
-          style={{
-            backgroundColor: `${zone.accentColor}20`,
-            color: zone.accentColor,
-          }}
-        >
-          Exam Weight: {zone.examWeight}
-        </span>
       </motion.div>
 
       {/* Phase List */}
-      <div className="space-y-3">
+      <h2 className="text-base font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-3">
+        Learning Phases
+      </h2>
+      <div className="space-y-4">
         {PHASE_ORDER.map((phase, i) => {
           const meta = PHASE_META[phase];
           const pp = zp?.phases.find((p) => p.phase === phase);
@@ -189,39 +211,39 @@ function PhaseCard({
 
   return (
     <div
-      className={`rounded-2xl p-4 border-2 border-b-4 transition-all ${
+      className={`rounded-2xl p-5 border transition-all relative overflow-hidden ${
         isLocked
-          ? "bg-[var(--color-surface)] border-[var(--color-border)] border-b-[var(--color-border)] opacity-40 cursor-not-allowed"
+          ? "bg-[var(--color-surface)] border-[var(--color-border)] opacity-40 cursor-not-allowed"
           : isCompleted
-            ? "bg-white border-[var(--color-border)] border-b-[var(--color-border-strong)] hover:bg-[var(--color-surface)] cursor-pointer active:border-b-2 active:translate-y-[2px]"
-            : "bg-white border-[var(--color-border)] border-b-[var(--color-border-strong)] hover:bg-[var(--color-surface)] cursor-pointer active:border-b-2 active:translate-y-[2px]"
+            ? "bg-white border-[var(--color-border)] shadow-sm hover:shadow-md cursor-pointer"
+            : "bg-white border-[var(--color-border)] shadow-sm hover:shadow-md cursor-pointer"
       }`}
-      style={
-        isAvailable
-          ? { borderLeftWidth: "4px", borderLeftColor: "var(--color-primary)" }
-          : undefined
-      }
     >
+      {/* Colored left accent for available phase */}
+      {isAvailable && (
+        <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl" style={{ backgroundColor: accentColor }} />
+      )}
+      {isCompleted && (
+        <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl bg-[var(--color-correct)]" />
+      )}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center text-lg border-2 border-b-4"
+            className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
             style={{
               backgroundColor: isLocked ? "var(--color-surface)" : `${accentColor}15`,
-              borderColor: isLocked ? "var(--color-border)" : `${accentColor}40`,
-              borderBottomColor: isLocked ? "var(--color-border-strong)" : `${accentColor}60`,
             }}
           >
             {isLocked ? "🔒" : meta.icon}
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-[var(--color-text-muted)]">
+              <span className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wider">
                 Phase {phaseNumber}
               </span>
-              <h3 className="font-bold text-sm text-[var(--color-text-primary)]">{meta.label}</h3>
             </div>
-            <p className="text-xs font-semibold text-[var(--color-text-secondary)]">
+            <h3 className="font-bold text-base text-[var(--color-text-primary)]">{meta.label}</h3>
+            <p className="text-sm text-[var(--color-text-muted)]">
               {meta.description}
             </p>
           </div>
@@ -230,15 +252,15 @@ function PhaseCard({
           {isCompleted && (
             <>
               <StarDisplay count={stars} />
-              <div className="text-xs font-bold text-[var(--color-text-muted)] mt-0.5">
+              <div className="text-xs font-semibold text-[var(--color-text-muted)] mt-0.5">
                 Best: {bestScore}%
               </div>
             </>
           )}
           {isAvailable && (
             <span
-              className="text-xs font-bold"
-              style={{ color: "var(--color-primary)" }}
+              className="text-sm font-bold px-3 py-1.5 rounded-full"
+              style={{ backgroundColor: `${accentColor}15`, color: accentColor }}
             >
               Start &rarr;
             </span>

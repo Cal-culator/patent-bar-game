@@ -144,12 +144,12 @@ export default function SourceSorter({
       {/* Progress */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">
             Item {currentIndex + 1} of {items.length}
           </span>
           {!checked && (
             <span
-              className="text-xs font-mono font-bold"
+              className="text-sm font-mono font-bold"
               style={{
                 color: timeLeft <= 5 ? "var(--color-incorrect)" : accentColor,
               }}
@@ -158,7 +158,7 @@ export default function SourceSorter({
             </span>
           )}
         </div>
-        <div className="h-4 bg-[var(--color-border)] rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-[var(--color-primary)] rounded-full"
             animate={{ width: `${progress}%` }}
@@ -189,14 +189,14 @@ export default function SourceSorter({
           exit={{ opacity: 0, y: -20 }}
         >
           {/* Rule text */}
-          <div className="bg-white rounded-2xl p-4 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-4">
-            <p className="text-sm text-[var(--color-text-primary)] leading-relaxed italic font-semibold">
+          <div className="bg-white rounded-2xl p-4 border border-[var(--color-border)] shadow-sm mb-4">
+            <p className="text-base text-[var(--color-text-primary)] leading-relaxed italic font-semibold">
               &ldquo;{item.ruleText}&rdquo;
             </p>
           </div>
 
           {/* Instruction */}
-          <p className="text-xs font-bold text-[var(--color-text-muted)] mb-3 text-center">
+          <p className="text-sm font-bold text-[var(--color-text-muted)] mb-3 text-center">
             {checked
               ? ""
               : "Which type of legal source is this?"}
@@ -208,16 +208,16 @@ export default function SourceSorter({
               const isSelected = selected === bucket.value;
               const isCorrectBucket = item.correctSource === bucket.value;
 
-              let cardClass = "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)]";
+              let cardClass = "border border-[var(--color-border)]";
               let cardStyle: React.CSSProperties = {};
 
               if (checked) {
                 if (isCorrectBucket) {
-                  cardClass = "border-2 border-b-4 border-[var(--color-correct)] border-b-[var(--color-correct-shadow)] bg-[var(--color-correct-bg)]";
+                  cardClass = "border-2 border-[var(--color-correct)] bg-[var(--color-correct-bg)]";
                 } else if (isSelected && !isCorrectBucket) {
-                  cardClass = "border-2 border-b-4 border-[var(--color-incorrect)] border-b-[var(--color-incorrect-shadow)] bg-[var(--color-incorrect-bg)]";
+                  cardClass = "border-2 border-[var(--color-incorrect)] bg-[var(--color-incorrect-bg)]";
                 } else {
-                  cardClass = "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border)] opacity-40";
+                  cardClass = "border border-[var(--color-border)] opacity-40";
                 }
               }
 
@@ -226,11 +226,11 @@ export default function SourceSorter({
                   key={bucket.value}
                   onClick={() => handleBucketClick(bucket.value)}
                   disabled={checked}
-                  className={`flex flex-col items-center gap-1 py-4 rounded-xl transition-all active:border-b-2 active:translate-y-[2px] hover:bg-[var(--color-surface)] disabled:hover:bg-transparent ${cardClass}`}
+                  className={`flex flex-col items-center gap-1 py-4 rounded-xl transition-all hover:bg-[var(--color-surface)] hover:shadow-sm disabled:hover:bg-transparent ${cardClass}`}
                   style={cardStyle}
                 >
                   <span className="text-2xl">{bucket.icon}</span>
-                  <span className="text-xs font-bold text-[var(--color-text-secondary)]">
+                  <span className="text-sm font-bold text-[var(--color-text-secondary)]">
                     {bucket.label}
                   </span>
                 </button>
@@ -245,7 +245,7 @@ export default function SourceSorter({
               animate={{ opacity: 1, height: "auto" }}
             >
               <div
-                className={`rounded-2xl p-4 text-sm mb-3 ${
+                className={`rounded-2xl p-4 text-base mb-3 ${
                   isCorrect
                     ? "bg-[var(--color-correct-bg)]"
                     : "bg-[var(--color-incorrect-bg)]"
@@ -258,11 +258,11 @@ export default function SourceSorter({
                       ? "Correct!"
                       : "Not quite."}
                 </p>
-                <p className="text-[var(--color-text-secondary)] text-xs font-semibold">
+                <p className="text-[var(--color-text-secondary)] text-sm font-semibold">
                   {item.explanation}
                 </p>
                 <p
-                  className="text-xs font-mono font-bold mt-1"
+                  className="text-sm font-mono font-bold mt-1"
                   style={{ color: accentColor }}
                 >
                   {item.specificRef}
@@ -271,7 +271,7 @@ export default function SourceSorter({
 
               <button
                 onClick={handleNext}
-                className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
               >
                 {currentIndex < items.length - 1
                   ? "Next Item"

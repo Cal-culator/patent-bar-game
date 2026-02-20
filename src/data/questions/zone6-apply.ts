@@ -2,6 +2,8 @@ import {
   ScenarioQuestion,
   QuickFireQuestion,
   ProceduralCascadeData,
+  MatchingGameData,
+  TimelinePuzzleData,
 } from "@/types";
 
 // ============================================================
@@ -423,6 +425,272 @@ export const ZONE6_CASCADES: ProceduralCascadeData[] = [
         correctIndex: 1,
         explanation:
           "The key factor is whether the unauthorized filing was through error and without deceptive intent (37 CFR 5.25). If so, a retroactive license can be obtained. If the filing was knowing and intentional, the US patent bar under 35 USC 185 applies and criminal penalties under 35 USC 186 may follow.",
+      },
+    ],
+  },
+];
+
+// --- MATCHING GAMES (4) ---
+// Term-definition matching for key foreign filing license concepts
+
+export const ZONE6_MATCHING: MatchingGameData[] = [
+  {
+    id: "z6-match-1",
+    conceptId: "ffl-basic-rule",
+    zoneSlug: "the-border",
+    title: "Foreign Filing License Fundamentals",
+    instruction:
+      "Match each foreign filing license term with its correct definition.",
+    pairs: [
+      {
+        term: "35 USC 184",
+        definition:
+          "Statute requiring a license before filing abroad for inventions made in the US",
+      },
+      {
+        term: "6-month rule",
+        definition:
+          "Period after US filing during which a foreign filing license is required before filing abroad",
+      },
+      {
+        term: "Automatic petition",
+        definition:
+          "Filing a US application itself constitutes a petition for a foreign filing license under 37 CFR 5.12",
+      },
+      {
+        term: "Made in this country",
+        definition:
+          "The jurisdictional trigger for the foreign filing license requirement, regardless of inventor nationality",
+      },
+      {
+        term: "37 CFR 5.13",
+        definition:
+          "Regulation allowing a petition for a license to file abroad without first filing a US application",
+      },
+    ],
+  },
+  {
+    id: "z6-match-2",
+    conceptId: "ffl-penalties",
+    zoneSlug: "the-border",
+    title: "Penalties and Consequences",
+    instruction:
+      "Match each consequence or penalty with its correct statutory basis or description.",
+    pairs: [
+      {
+        term: "35 USC 185",
+        definition:
+          "Bars the grant of a US patent when a foreign filing was made without the required license",
+      },
+      {
+        term: "35 USC 186",
+        definition:
+          "Provides criminal penalties of up to $10,000 fine and/or 2 years imprisonment for willful violations",
+      },
+      {
+        term: "Patent bar under 185",
+        definition:
+          "Can be overcome by obtaining a retroactive license under 37 CFR 5.25",
+      },
+      {
+        term: "Criminal penalties",
+        definition:
+          "Apply to knowing and willful unauthorized foreign filing of inventions made in the US",
+      },
+      {
+        term: "Dual consequences",
+        definition:
+          "Both the patent bar and criminal penalties can apply simultaneously to the same violation",
+      },
+    ],
+  },
+  {
+    id: "z6-match-3",
+    conceptId: "ffl-retroactive-license",
+    zoneSlug: "the-border",
+    title: "Retroactive Licenses and Remediation",
+    instruction:
+      "Match each retroactive license concept with its correct description.",
+    pairs: [
+      {
+        term: "37 CFR 5.25",
+        definition:
+          "Regulation governing petitions for retroactive foreign filing licenses",
+      },
+      {
+        term: "Through error",
+        definition:
+          "Key requirement: the unauthorized filing must have been made by mistake, not intentionally",
+      },
+      {
+        term: "Without deceptive intent",
+        definition:
+          "Key requirement: the applicant must not have been trying to circumvent the licensing requirement",
+      },
+      {
+        term: "Verified statement",
+        definition:
+          "Document the applicant must submit explaining the circumstances of the unauthorized filing",
+      },
+      {
+        term: "Retroactive license effect",
+        definition:
+          "If granted, removes the bar of 35 USC 185 so a US patent may still be obtained",
+      },
+    ],
+  },
+  {
+    id: "z6-match-4",
+    conceptId: "ffl-secrecy-order",
+    zoneSlug: "the-border",
+    title: "Secrecy Orders and License Scope",
+    instruction:
+      "Match each secrecy order or license scope term with its correct description.",
+    pairs: [
+      {
+        term: "35 USC 181",
+        definition:
+          "Statute authorizing the imposition of secrecy orders on patent applications",
+      },
+      {
+        term: "Secrecy order effect",
+        definition:
+          "Bars all foreign filing regardless of whether a license was previously granted or 6 months have passed",
+      },
+      {
+        term: "License scope limitation",
+        definition:
+          "A foreign filing license covers only the subject matter of the application on which it was granted",
+      },
+      {
+        term: "New subject matter",
+        definition:
+          "Requires its own foreign filing license even if the original application already has one",
+      },
+      {
+        term: "Rescission of secrecy order",
+        definition:
+          "Must occur before the applicant is permitted to file the invention abroad",
+      },
+    ],
+  },
+];
+
+// --- TIMELINE PUZZLES (3) ---
+// Arrange events in correct chronological/procedural order
+
+export const ZONE6_TIMELINES: TimelinePuzzleData[] = [
+  {
+    id: "z6-timeline-1",
+    conceptId: "ffl-basic-rule",
+    zoneSlug: "the-border",
+    title: "Standard Foreign Filing License Process",
+    instruction:
+      "Arrange these steps in the correct order for obtaining and using a foreign filing license.",
+    events: [
+      {
+        id: "z6-tl1-evt-1",
+        label: "File US patent application",
+        description:
+          "The inventor files a US utility or provisional application, which automatically constitutes a petition for a foreign filing license under 37 CFR 5.12.",
+      },
+      {
+        id: "z6-tl1-evt-2",
+        label: "USPTO reviews for security concerns",
+        description:
+          "The USPTO screens the application for subject matter that may require a secrecy order under 35 USC 181 before granting a license.",
+      },
+      {
+        id: "z6-tl1-evt-3",
+        label: "Foreign filing license granted",
+        description:
+          "The USPTO grants the license, typically indicated on the filing receipt. The applicant may now file abroad on the licensed subject matter.",
+      },
+      {
+        id: "z6-tl1-evt-4",
+        label: "File corresponding foreign application",
+        description:
+          "With the license in hand, the applicant files patent applications in foreign countries, typically within the 12-month Paris Convention priority period.",
+      },
+    ],
+  },
+  {
+    id: "z6-timeline-2",
+    conceptId: "ffl-retroactive-license",
+    zoneSlug: "the-border",
+    title: "Retroactive License Remediation Process",
+    instruction:
+      "Arrange these steps in the correct order when an applicant discovers an unauthorized foreign filing.",
+    events: [
+      {
+        id: "z6-tl2-evt-1",
+        label: "Unauthorized foreign filing occurs",
+        description:
+          "An invention made in the US is filed in a foreign country without first obtaining a foreign filing license, violating 35 USC 184.",
+      },
+      {
+        id: "z6-tl2-evt-2",
+        label: "Error is discovered",
+        description:
+          "The applicant or attorney discovers that no foreign filing license was obtained before the foreign filing was made.",
+      },
+      {
+        id: "z6-tl2-evt-3",
+        label: "Petition for retroactive license filed",
+        description:
+          "The applicant files a petition under 37 CFR 5.25 with a verified statement showing the filing was through error and without deceptive intent.",
+      },
+      {
+        id: "z6-tl2-evt-4",
+        label: "Retroactive license granted",
+        description:
+          "If the USPTO is satisfied the error was innocent, the retroactive license is granted, removing the patent bar of 35 USC 185.",
+      },
+      {
+        id: "z6-tl2-evt-5",
+        label: "US patent application filed or maintained",
+        description:
+          "With the retroactive license in place, the applicant may file or continue prosecution of a US patent application without the 35 USC 185 bar.",
+      },
+    ],
+  },
+  {
+    id: "z6-timeline-3",
+    conceptId: "ffl-secrecy-order",
+    zoneSlug: "the-border",
+    title: "Secrecy Order Imposition and Resolution",
+    instruction:
+      "Arrange these events in the correct order when a secrecy order is imposed on an application.",
+    events: [
+      {
+        id: "z6-tl3-evt-1",
+        label: "US application filed and license petitioned",
+        description:
+          "The inventor files a US application, which automatically petitions for a foreign filing license. The USPTO begins its security review.",
+      },
+      {
+        id: "z6-tl3-evt-2",
+        label: "Secrecy order imposed under 35 USC 181",
+        description:
+          "A defense agency determines the invention requires secrecy protection. The USPTO imposes a secrecy order, barring foreign filing regardless of the 6-month rule.",
+      },
+      {
+        id: "z6-tl3-evt-3",
+        label: "Applicant barred from foreign filing",
+        description:
+          "While the secrecy order is in effect, the applicant cannot file abroad even if 6 months have passed since the US filing date. Any previously granted license is overridden.",
+      },
+      {
+        id: "z6-tl3-evt-4",
+        label: "Secrecy order rescinded",
+        description:
+          "The defense agency determines the secrecy order is no longer necessary and requests its rescission. The USPTO lifts the order.",
+      },
+      {
+        id: "z6-tl3-evt-5",
+        label: "Foreign filing permitted",
+        description:
+          "Once the secrecy order is rescinded, the applicant may obtain a new foreign filing license (or rely on the 6-month rule) and proceed with foreign filings.",
       },
     ],
   },

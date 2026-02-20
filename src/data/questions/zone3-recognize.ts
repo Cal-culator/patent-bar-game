@@ -2,6 +2,7 @@ import {
   TrapDetectorQuestion,
   SourceSortItem,
   PatternHighlightExcerpt,
+  SpotTheErrorData,
 } from "@/types";
 
 // ============================================================
@@ -620,6 +621,192 @@ export const ZONE3_PATTERN_HIGHLIGHTS: PatternHighlightExcerpt[] = [
       { text: ". The OED ", isTestable: false },
       { text: "publishes disciplinary decisions", isTestable: true, explanation: "Decisions are public — the transparency aspect is testable." },
       { text: " to promote transparency and serve as a deterrent.", isTestable: false },
+    ],
+  },
+];
+
+// --- SPOT THE ERROR ITEMS (4) ---
+// Each has 6-8 segments forming a readable paragraph, with 2-3 deliberate errors
+
+export const ZONE3_SPOT_ERRORS: SpotTheErrorData[] = [
+  {
+    id: "z3-spot-1",
+    zoneSlug: "the-gatekeepers",
+    title: "Assignee Authority Errors",
+    mpepRef: "MPEP 400 — 37 CFR 3.71 / 3.73",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "An assignee of the entire right, title, and interest in a patent application may take action in the application to the exclusion of the inventor. ",
+        hasError: false,
+      },
+      {
+        text: "To establish this authority, the assignee must file a statement under 37 CFR 3.73(c) setting forth the basis for entitlement, ",
+        hasError: false,
+      },
+      {
+        text: "supported by a sworn declaration from the inventor confirming the assignment",
+        hasError: true,
+        correctedText:
+          "supported by documentary evidence of the chain of title from the inventor to the current assignee",
+        explanation:
+          "The requirement under 37 CFR 3.73(c) is documentary evidence establishing the chain of title, not a sworn declaration from the inventor. The evidence must trace the assignment chain, not merely confirm it.",
+      },
+      {
+        text: ". Once the assignee has established authority, the assignee may revoke the existing power of attorney and appoint a new registered practitioner. ",
+        hasError: false,
+      },
+      {
+        text: "A partial assignee has the same prosecution rights as an assignee of the entire interest",
+        hasError: true,
+        correctedText:
+          "A partial assignee may inspect the application file but may not direct prosecution or amend claims",
+        explanation:
+          "Partial assignees do not have the same rights as full assignees. Under 37 CFR 3.71, a partial assignee may inspect the file but cannot direct prosecution. Only an assignee of the entire interest can control prosecution.",
+      },
+      {
+        text: " and can independently manage the application. ",
+        hasError: false,
+      },
+      {
+        text: "When multiple partial assignees exist, all partial assignees together with the inventor must join to take action in the application.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z3-spot-2",
+    zoneSlug: "the-gatekeepers",
+    title: "Suspended Practitioner Errors",
+    mpepRef: "MPEP 400 — 37 CFR 11.116",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under 37 CFR 11.116, USPTO employees shall not communicate about pending patent applications with practitioners who have been suspended or excluded from practice. ",
+        hasError: false,
+      },
+      {
+        text: "The Office of Enrollment and Discipline maintains a publicly available roster of suspended and excluded practitioners. ",
+        hasError: false,
+      },
+      {
+        text: "A suspended practitioner who is the actual inventor may file and prosecute their own application pro se",
+        hasError: false,
+      },
+      {
+        text: ", retaining all the rights of a registered practitioner including the ability to represent co-inventors",
+        hasError: true,
+        correctedText:
+          ", but may not represent others before the USPTO in any capacity",
+        explanation:
+          "The pro se exception is personal only. A suspended practitioner who is the inventor may file their own application, but they may not represent anyone else, including co-inventors. The exception does not restore practitioner privileges.",
+      },
+      {
+        text: ". The OED is responsible for registration, investigation, and discipline of patent practitioners before the USPTO. ",
+        hasError: false,
+      },
+      {
+        text: "Sanctions available to the OED include reprimand, probation, suspension, and exclusion",
+        hasError: false,
+      },
+      {
+        text: ", as well as criminal prosecution for serious violations",
+        hasError: true,
+        correctedText:
+          "; criminal prosecution is not an OED sanction but may be referred to appropriate law enforcement authorities",
+        explanation:
+          "Criminal prosecution is not an OED disciplinary sanction. The OED's sanctions are administrative: reprimand, probation, suspension, and exclusion. While the OED may refer matters to law enforcement, criminal prosecution is a judicial function, not an OED sanction.",
+      },
+      {
+        text: ". The OED publishes its disciplinary decisions to promote transparency.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z3-spot-3",
+    zoneSlug: "the-gatekeepers",
+    title: "Power of Attorney Errors",
+    mpepRef: "MPEP 400 — 37 CFR 1.32",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "A power of attorney in a patent application authorizes a registered practitioner to act on behalf of the applicant before the USPTO. ",
+        hasError: false,
+      },
+      {
+        text: "An assignee of the entire interest may revoke the existing power of attorney and appoint a new registered practitioner. ",
+        hasError: false,
+      },
+      {
+        text: "The power of attorney must be signed by the applicant or the assignee who has established entitlement under 37 CFR 3.73(c). ",
+        hasError: false,
+      },
+      {
+        text: "When an inventor assigns the entire interest to a company, the inventor retains the right to veto any power of attorney changes made by the assignee",
+        hasError: true,
+        correctedText:
+          "When an inventor assigns the entire interest to a company, the assignee has full authority to manage the power of attorney without inventor consent",
+        explanation:
+          "An assignee of the entire right, title, and interest can act to the exclusion of the inventor. The inventor does not retain veto power over power of attorney changes once the entire interest is assigned.",
+      },
+      {
+        text: ". Even after assignment, the inventor retains the right to receive notice of all USPTO actions ",
+        hasError: false,
+      },
+      {
+        text: "and the right to inspect the application file",
+        hasError: false,
+      },
+      {
+        text: ". These residual rights ensure the inventor is not completely excluded from the prosecution process.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z3-spot-4",
+    zoneSlug: "the-gatekeepers",
+    title: "Third-Party Access and Authorization Errors",
+    mpepRef: "MPEP 400 — 35 USC 122(a) / MPEP 106",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under 35 USC 122(a), patent applications shall be kept in confidence and no information shall be given without authority of the applicant. ",
+        hasError: false,
+      },
+      {
+        text: "Written authorization from the applicant or assignee is required for third-party access to unpublished applications. ",
+        hasError: false,
+      },
+      {
+        text: "Oral authorization given by the applicant to the examiner during an interview is sufficient to grant third-party access",
+        hasError: true,
+        correctedText:
+          "Authorization must be in writing; oral authorization is insufficient to grant third-party access to unpublished applications",
+        explanation:
+          "Under MPEP 106, the authorization must be in writing. Oral consent, even if given during an examiner interview, is not sufficient to grant access to confidential application files.",
+      },
+      {
+        text: ". Once the application is published or a patent is granted, the file becomes part of the public record and written consent is no longer required for inspection. ",
+        hasError: false,
+      },
+      {
+        text: "The USPTO verifies proper authorization before granting access",
+        hasError: false,
+      },
+      {
+        text: " to ensure that the confidentiality protections of 35 USC 122(a) are maintained. ",
+        hasError: false,
+      },
+      {
+        text: "Third parties who seek access to an unpublished abandoned application must file a petition under 37 CFR 1.14(i) demonstrating a legitimate basis for the request.",
+        hasError: true,
+        correctedText:
+          "Third parties who seek access to an unpublished abandoned application must file a petition under 37 CFR 1.14(i) demonstrating that the application is relied upon as a reference in a pending or patented application",
+        explanation:
+          "The standard for a 37 CFR 1.14(i) petition is specific: the petitioner must show the application is relied upon as a reference, not merely assert a general 'legitimate basis.' The requirement is a concrete nexus to a pending or patented application.",
+      },
     ],
   },
 ];

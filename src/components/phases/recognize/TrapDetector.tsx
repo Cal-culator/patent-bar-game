@@ -147,14 +147,14 @@ export default function TrapDetector({
       {/* Progress */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">
             Question {currentIndex + 1} of {questions.length}
           </span>
-          <span className="text-xs font-mono font-bold" style={{ color: accentColor }}>
+          <span className="text-sm font-mono font-bold" style={{ color: accentColor }}>
             {question.citationRef}
           </span>
         </div>
-        <div className="h-4 bg-[var(--color-border)] rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-[var(--color-primary)] rounded-full"
             animate={{ width: `${progress}%` }}
@@ -170,8 +170,8 @@ export default function TrapDetector({
           exit={{ opacity: 0, y: -20 }}
         >
           {/* Stem */}
-          <div className="bg-white rounded-2xl p-4 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-4">
-            <p className="text-sm text-[var(--color-text-primary)] leading-relaxed font-semibold">
+          <div className="bg-white rounded-2xl p-4 border border-[var(--color-border)] shadow-sm mb-4">
+            <p className="text-base text-[var(--color-text-primary)] leading-relaxed font-semibold">
               {question.stem}
             </p>
           </div>
@@ -179,7 +179,7 @@ export default function TrapDetector({
           {/* Stage indicator */}
           <div className="mb-3">
             <span
-              className="text-xs font-extrabold uppercase tracking-wider"
+              className="text-sm font-extrabold uppercase tracking-wider"
               style={{ color: accentColor }}
             >
               {stage === "tagging"
@@ -198,15 +198,15 @@ export default function TrapDetector({
               const isSelected = selectedAnswer === i;
               const isCorrectOption = i === shuffledOpts.correctIndex;
 
-              let cardClass = "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)]";
+              let cardClass = "border border-[var(--color-border)] shadow-sm";
               if (stage === "result") {
                 if (isCorrectOption) {
-                  cardClass = "border-2 border-b-4 border-[var(--color-correct)] border-b-[var(--color-correct-shadow)] bg-[var(--color-correct-bg)]";
+                  cardClass = "border-2 border-[var(--color-correct)] bg-[var(--color-correct-bg)]";
                 } else if (isSelected && !isCorrectOption) {
-                  cardClass = "border-2 border-b-4 border-[var(--color-incorrect)] border-b-[var(--color-incorrect-shadow)] bg-[var(--color-incorrect-bg)]";
+                  cardClass = "border-2 border-[var(--color-incorrect)] bg-[var(--color-incorrect-bg)]";
                 }
               } else if (stage === "answering" && tag) {
-                cardClass = `border-2 border-b-4`;
+                cardClass = `border-2`;
               }
 
               return (
@@ -226,7 +226,7 @@ export default function TrapDetector({
                       data-testid={`option-${i}${isCorrectOption ? '-correct' : ''}`}
                       className="flex-1 text-left"
                     >
-                      <span className="text-sm font-semibold">
+                      <span className="text-base font-semibold">
                         <span className="font-bold text-[var(--color-text-secondary)]">
                           {letter})
                         </span>{" "}
@@ -236,7 +236,7 @@ export default function TrapDetector({
 
                     {(stage === "answering" || stage === "result") && tag && (
                       <span
-                        className="text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap"
+                        className="text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap"
                         style={{
                           backgroundColor: `${TRAP_COLORS[tag]}20`,
                           color: TRAP_COLORS[tag],
@@ -254,7 +254,7 @@ export default function TrapDetector({
                         onChange={(e) =>
                           handleTagChange(i, e.target.value as TrapType)
                         }
-                        className="w-full text-xs font-semibold bg-[var(--color-surface)] border-2 border-[var(--color-border)] rounded-xl px-2 py-1.5 text-[var(--color-text-secondary)]"
+                        className="w-full text-sm font-semibold bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl px-2 py-1.5 text-[var(--color-text-secondary)]"
                         data-testid={`trap-select-${i}`}
                       >
                         <option value="">Select trap type...</option>
@@ -268,7 +268,7 @@ export default function TrapDetector({
                   )}
 
                   {stage === "result" && opt.trapExplanation && (
-                    <div className="mt-2 text-xs font-semibold text-[var(--color-text-muted)] border-t-2 border-[var(--color-border)] pt-2">
+                    <div className="mt-2 text-sm font-semibold text-[var(--color-text-muted)] border-t border-[var(--color-border)] pt-2">
                       {tag === opt.trapType ? "✓ " : "✗ "}
                       {opt.trapExplanation}
                     </div>
@@ -282,10 +282,10 @@ export default function TrapDetector({
             <button
               onClick={handleConfirmTags}
               disabled={!allTagged}
-              className={`w-full py-3 rounded-xl font-bold text-sm border-2 border-b-4 transition-colors disabled:opacity-40 uppercase tracking-wide active:border-b-2 active:translate-y-[2px] ${
+              className={`w-full py-3 rounded-xl font-bold text-base transition-colors disabled:opacity-40 uppercase tracking-wide ${
                 allTagged
-                  ? "bg-[var(--color-primary)] text-white border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)]"
-                  : "bg-[var(--color-surface)] text-[var(--color-text-muted)] border-[var(--color-border)] border-b-[var(--color-border-strong)]"
+                  ? "bg-[var(--color-primary)] text-white shadow-sm hover:shadow-md transition-shadow"
+                  : "bg-[var(--color-surface)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
               }`}
             >
               Confirm Tags
@@ -293,7 +293,7 @@ export default function TrapDetector({
           )}
 
           {stage === "answering" && (
-            <p className="text-xs font-bold text-center text-[var(--color-text-muted)]">
+            <p className="text-sm font-bold text-center text-[var(--color-text-muted)]">
               Now click the option you believe is the correct answer.
             </p>
           )}
@@ -304,7 +304,7 @@ export default function TrapDetector({
               animate={{ opacity: 1, height: "auto" }}
             >
               <div
-                className={`rounded-2xl p-4 text-sm mb-3 ${
+                className={`rounded-2xl p-4 text-base mb-3 ${
                   answerCorrect
                     ? "bg-[var(--color-correct-bg)]"
                     : "bg-[var(--color-incorrect-bg)]"
@@ -319,14 +319,14 @@ export default function TrapDetector({
                     Answer: {answerCorrect ? "Correct!" : "Incorrect"}
                   </span>
                 </div>
-                <p className="text-[var(--color-text-secondary)] text-xs font-semibold mt-2">
+                <p className="text-[var(--color-text-secondary)] text-sm font-semibold mt-2">
                   {question.explanation}
                 </p>
               </div>
 
               <button
                 onClick={handleNext}
-                className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
               >
                 {currentIndex < questions.length - 1
                   ? "Next Question"

@@ -2,6 +2,8 @@ import {
   ScenarioQuestion,
   QuickFireQuestion,
   ProceduralCascadeData,
+  MatchingGameData,
+  TimelinePuzzleData,
 } from "@/types";
 
 // ============================================================
@@ -424,6 +426,265 @@ export const ZONE4_CASCADES: ProceduralCascadeData[] = [
         correctIndex: 1,
         explanation:
           "L&R codes are procedural tracking markers that indicate the national security screening status of the application. The code is updated as the application moves through the screening process — from initial receipt through agency review to final clearance or secrecy order imposition. The application cannot be assigned for substantive examination until the L&R code reflects that screening is complete.",
+      },
+    ],
+  },
+];
+
+// --- MATCHING GAMES (4) ---
+// Term-definition matching exercises for national security review concepts
+
+export const ZONE4_MATCHING: MatchingGameData[] = [
+  {
+    id: "z4-match-1",
+    conceptId: "nsr-screening-authority",
+    zoneSlug: "the-classified-wing",
+    title: "National Security Screening Fundamentals",
+    instruction: "Match each term with its correct definition.",
+    pairs: [
+      {
+        term: "35 USC 181",
+        definition:
+          "Statutory authority for screening patent applications for national security implications before substantive examination",
+      },
+      {
+        term: "Secrecy order determination",
+        definition:
+          "One of the three screening functions — evaluating whether disclosure would be detrimental to national security",
+      },
+      {
+        term: "Export control review",
+        definition:
+          "One of the three screening functions — assessing whether the invention has export control implications",
+      },
+      {
+        term: "Government property interest",
+        definition:
+          "One of the three screening functions — determining whether the government has a property interest in the invention",
+      },
+      {
+        term: "Licensing and Review (L&R) division",
+        definition:
+          "The USPTO division responsible for receiving and processing classified patent applications and managing national security screening",
+      },
+    ],
+  },
+  {
+    id: "z4-match-2",
+    conceptId: "nsr-agency-screening",
+    zoneSlug: "the-classified-wing",
+    title: "Agency Screening Authority",
+    instruction: "Match each term with its correct definition.",
+    pairs: [
+      {
+        term: "Department of Energy (DOE)",
+        definition:
+          "Screens patent applications related to atomic energy under 42 USC 2182",
+      },
+      {
+        term: "NASA",
+        definition:
+          "Screens patent applications for space technology implications under 51 USC 20135",
+      },
+      {
+        term: "Department of Defense (DoD)",
+        definition:
+          "Screens patent applications for military significance that could be detrimental to national security",
+      },
+      {
+        term: "National Security Agency (NSA)",
+        definition:
+          "A DoD component that screens applications involving signals intelligence and cryptographic technology",
+      },
+      {
+        term: "Multi-agency screening",
+        definition:
+          "When an application touches multiple areas, each relevant agency independently screens within its own area of authority",
+      },
+    ],
+  },
+  {
+    id: "z4-match-3",
+    conceptId: "nsr-classified-filing",
+    zoneSlug: "the-classified-wing",
+    title: "Classified Application Filing Procedures",
+    instruction: "Match each term with its correct definition.",
+    pairs: [
+      {
+        term: "Hand-carry to L&R",
+        definition:
+          "The required method for submitting classified patent applications to the USPTO",
+      },
+      {
+        term: "Electronic filing prohibition",
+        definition:
+          "EFS-Web and other electronic systems are not approved for transmitting classified patent material",
+      },
+      {
+        term: "Security clearance requirement",
+        definition:
+          "Each practitioner who accesses classified applications must individually hold clearance at or above the classification level",
+      },
+      {
+        term: "L&R code",
+        definition:
+          "A tracking marker assigned by the Licensing and Review division indicating the national security screening status of an application",
+      },
+      {
+        term: "Cleared personnel",
+        definition:
+          "L&R staff who have undergone security vetting and are authorized to handle classified patent documents",
+      },
+    ],
+  },
+  {
+    id: "z4-match-4",
+    conceptId: "nsr-screening-timeline",
+    zoneSlug: "the-classified-wing",
+    title: "Screening Process and Outcomes",
+    instruction: "Match each term with its correct definition.",
+    pairs: [
+      {
+        term: "Pre-examination screening",
+        definition:
+          "National security review occurs before the application is assigned for substantive examination",
+      },
+      {
+        term: "Screening cleared — no secrecy order",
+        definition:
+          "The L&R code indicates screening is complete and the application may proceed to normal examination",
+      },
+      {
+        term: "Secrecy order imposed",
+        definition:
+          "A screening outcome where one or more agencies determined disclosure would be detrimental to national security",
+      },
+      {
+        term: "Variable screening timeline",
+        definition:
+          "There is no statutory deadline for completing national security screening; duration depends on complexity and number of agencies",
+      },
+      {
+        term: "42 USC 2182",
+        definition:
+          "The specific statutory authority under which the Department of Energy screens patent applications involving atomic energy",
+      },
+    ],
+  },
+];
+
+// --- TIMELINE PUZZLES (3) ---
+// Chronological ordering exercises for national security review procedures
+
+export const ZONE4_TIMELINES: TimelinePuzzleData[] = [
+  {
+    id: "z4-timeline-1",
+    conceptId: "nsr-screening-authority",
+    zoneSlug: "the-classified-wing",
+    title: "Standard National Security Screening Process",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z4-tl1-evt-1",
+        label: "Application filed at the USPTO",
+        description:
+          "The applicant files a patent application containing subject matter with potential national security implications.",
+      },
+      {
+        id: "z4-tl1-evt-2",
+        label: "Application routed to L&R division",
+        description:
+          "The Licensing and Review division receives the application and assigns an L&R code to track its screening status.",
+      },
+      {
+        id: "z4-tl1-evt-3",
+        label: "Defense agencies screen the application",
+        description:
+          "Relevant agencies (DoD, DOE, NASA, etc.) review the application for secrecy order determination, export control, and government property interest.",
+      },
+      {
+        id: "z4-tl1-evt-4",
+        label: "Screening outcome determined",
+        description:
+          "Agencies complete review and either recommend a secrecy order or clear the application with no national security restriction.",
+      },
+      {
+        id: "z4-tl1-evt-5",
+        label: "Application proceeds to substantive examination",
+        description:
+          "Once screening is complete and no secrecy order is imposed, the application is assigned to an examiner for normal prosecution.",
+      },
+    ],
+  },
+  {
+    id: "z4-timeline-2",
+    conceptId: "nsr-classified-filing",
+    zoneSlug: "the-classified-wing",
+    title: "Filing a Classified Patent Application",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z4-tl2-evt-1",
+        label: "Practitioner obtains security clearance",
+        description:
+          "The patent practitioner must hold a security clearance at or above the classification level of the material before accessing the invention.",
+      },
+      {
+        id: "z4-tl2-evt-2",
+        label: "Classified application prepared",
+        description:
+          "The cleared practitioner prepares the patent application containing classified technical information.",
+      },
+      {
+        id: "z4-tl2-evt-3",
+        label: "Application hand-carried to L&R",
+        description:
+          "The classified application is physically hand-delivered to the Licensing and Review division — electronic filing is prohibited.",
+      },
+      {
+        id: "z4-tl2-evt-4",
+        label: "L&R assigns screening code",
+        description:
+          "The L&R division receives the application, assigns an L&R code, and routes it for national security screening by the appropriate agencies.",
+      },
+    ],
+  },
+  {
+    id: "z4-timeline-3",
+    conceptId: "nsr-multi-agency",
+    zoneSlug: "the-classified-wing",
+    title: "Multi-Agency Screening Leading to Secrecy Order",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z4-tl3-evt-1",
+        label: "Application filed for multi-domain invention",
+        description:
+          "An inventor files an application covering nuclear-powered military satellite technology, implicating atomic energy, space, and defense domains.",
+      },
+      {
+        id: "z4-tl3-evt-2",
+        label: "Multiple agencies conduct independent screening",
+        description:
+          "DOE screens for atomic energy under 42 USC 2182, NASA screens for space technology under 51 USC 20135, and DoD screens for military significance.",
+      },
+      {
+        id: "z4-tl3-evt-3",
+        label: "One agency recommends a secrecy order",
+        description:
+          "DoD determines that disclosure of the military reconnaissance aspects would be detrimental to national security and recommends a secrecy order.",
+      },
+      {
+        id: "z4-tl3-evt-4",
+        label: "Commissioner imposes secrecy order",
+        description:
+          "Based on DoD's recommendation, the Commissioner of Patents imposes a secrecy order under 35 USC 181, even though other agencies cleared the application.",
+      },
+      {
+        id: "z4-tl3-evt-5",
+        label: "Application withheld from publication and patent grant",
+        description:
+          "The application is kept secret, publication is suppressed, and no patent will be granted for the duration of the secrecy order.",
       },
     ],
   },

@@ -100,11 +100,11 @@ export default function AnalogyMapper({
       {/* Progress */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">
             Analogy {currentIndex + 1} of {analogies.length}
           </span>
         </div>
-        <div className="h-4 bg-[var(--color-border)] rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-[var(--color-primary)] rounded-full"
             animate={{ width: `${progress}%` }}
@@ -121,8 +121,8 @@ export default function AnalogyMapper({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
           >
-            <div className="bg-white rounded-2xl p-5 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-4">
-              <div className="text-xs uppercase tracking-wider font-bold text-[var(--color-text-muted)] mb-3">
+            <div className="bg-white rounded-2xl p-5 border border-[var(--color-border)] shadow-sm mb-4">
+              <div className="text-sm uppercase tracking-wider font-bold text-[var(--color-text-muted)] mb-3">
                 Analogy
               </div>
               <p className="text-[var(--color-text-primary)] leading-relaxed italic font-semibold">
@@ -131,7 +131,7 @@ export default function AnalogyMapper({
             </div>
             <button
               onClick={() => setStage("map")}
-              className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+              className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
             >
               Now map it to the real rules
             </button>
@@ -146,7 +146,7 @@ export default function AnalogyMapper({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
           >
-            <div className="text-xs uppercase tracking-wider font-bold text-[var(--color-text-muted)] mb-3">
+            <div className="text-sm uppercase tracking-wider font-bold text-[var(--color-text-muted)] mb-3">
               Match each analogy element to its legal equivalent
             </div>
 
@@ -161,29 +161,29 @@ export default function AnalogyMapper({
                 return (
                   <div
                     key={mapping.analogyTerm}
-                    className={`bg-white rounded-xl p-3 border-2 border-b-4 transition-colors ${
+                    className={`bg-white rounded-xl p-3 transition-colors ${
                       isCorrect
-                        ? "border-[var(--color-correct)] border-b-[var(--color-correct-shadow)] bg-[var(--color-correct-bg)]"
+                        ? "border-2 border-[var(--color-correct)] bg-[var(--color-correct-bg)]"
                         : isWrong
-                          ? "border-[var(--color-incorrect)] border-b-[var(--color-incorrect-shadow)] bg-[var(--color-incorrect-bg)]"
-                          : "border-[var(--color-border)] border-b-[var(--color-border-strong)]"
+                          ? "border-2 border-[var(--color-incorrect)] bg-[var(--color-incorrect-bg)]"
+                          : "border border-[var(--color-border)] shadow-sm"
                     }`}
                   >
-                    <div className="text-sm font-bold mb-2" style={{ color: accentColor }}>
+                    <div className="text-base font-bold mb-2" style={{ color: accentColor }}>
                       {mapping.analogyTerm} =
                     </div>
                     {selected ? (
-                      <div className="text-sm font-semibold text-[var(--color-text-primary)]">
+                      <div className="text-base font-semibold text-[var(--color-text-primary)]">
                         {selected}
                         {mappingChecked && isWrong && (
-                          <span className="block text-xs font-bold text-[var(--color-correct)] mt-1">
+                          <span className="block text-sm font-bold text-[var(--color-correct)] mt-1">
                             Correct: {mapping.formalTerm}
                           </span>
                         )}
                       </div>
                     ) : (
                       <select
-                        className="w-full bg-[var(--color-surface)] border-2 border-[var(--color-border)] rounded-xl px-2 py-1.5 text-sm font-semibold text-[var(--color-text-primary)]"
+                        className="w-full bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl px-2 py-1.5 text-base font-semibold text-[var(--color-text-primary)]"
                         value=""
                         onChange={(e) =>
                           handleMapSelect(mapping.analogyTerm, e.target.value)
@@ -213,10 +213,10 @@ export default function AnalogyMapper({
               <button
                 onClick={handleCheckMapping}
                 disabled={!allMapped}
-                className={`w-full py-3 rounded-xl font-bold text-sm border-2 border-b-4 transition-colors disabled:opacity-40 uppercase tracking-wide active:border-b-2 active:translate-y-[2px] ${
+                className={`w-full py-3 rounded-xl font-bold text-base transition-colors disabled:opacity-40 uppercase tracking-wide ${
                   allMapped
-                    ? "bg-[var(--color-primary)] text-white border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)]"
-                    : "bg-[var(--color-surface)] text-[var(--color-text-muted)] border-[var(--color-border)] border-b-[var(--color-border-strong)]"
+                    ? "bg-[var(--color-primary)] text-white shadow-sm hover:shadow-md transition-shadow"
+                    : "bg-[var(--color-surface)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
                 }`}
               >
                 Check Mapping
@@ -224,7 +224,7 @@ export default function AnalogyMapper({
             ) : (
               <button
                 onClick={() => setStage("followup")}
-                className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
               >
                 Continue to Follow-Up Question
               </button>
@@ -240,28 +240,28 @@ export default function AnalogyMapper({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
           >
-            <div className="bg-white rounded-2xl p-5 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-4">
-              <div className="text-xs uppercase tracking-wider font-bold text-[var(--color-text-muted)] mb-3">
+            <div className="bg-white rounded-2xl p-5 border border-[var(--color-border)] shadow-sm mb-4">
+              <div className="text-sm uppercase tracking-wider font-bold text-[var(--color-text-muted)] mb-3">
                 Where does the analogy break?
               </div>
-              <p className="text-sm font-bold text-[var(--color-text-primary)] mb-4">
+              <p className="text-base font-bold text-[var(--color-text-primary)] mb-4">
                 {analogy.followUp.stem}
               </p>
               <div className="space-y-2">
                 {shuffledFollowUpOpts.options.map((opt, i) => {
                   const isCorrectOption = i === shuffledFollowUpOpts.correctIndex;
                   let cardClass =
-                    "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] hover:bg-[var(--color-surface)] active:border-b-2 active:translate-y-[2px]";
+                    "border border-[var(--color-border)] hover:bg-[var(--color-surface)] hover:shadow-sm transition-all";
                   if (followUpChecked) {
                     if (isCorrectOption) {
-                      cardClass = "border-2 border-b-4 border-[var(--color-correct)] border-b-[var(--color-correct-shadow)] bg-[var(--color-correct-bg)]";
+                      cardClass = "border-2 border-[var(--color-correct)] bg-[var(--color-correct-bg)]";
                     } else if (
                       i === followUpAnswer &&
                       !isCorrectOption
                     ) {
-                      cardClass = "border-2 border-b-4 border-[var(--color-incorrect)] border-b-[var(--color-incorrect-shadow)] bg-[var(--color-incorrect-bg)]";
+                      cardClass = "border-2 border-[var(--color-incorrect)] bg-[var(--color-incorrect-bg)]";
                     } else {
-                      cardClass = "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border)] opacity-40";
+                      cardClass = "border border-[var(--color-border)] opacity-40";
                     }
                   }
                   return (
@@ -270,7 +270,7 @@ export default function AnalogyMapper({
                       onClick={() => handleFollowUpAnswer(i)}
                       disabled={followUpChecked}
                       data-testid={`option-${i}${isCorrectOption ? '-correct' : ''}`}
-                      className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-all ${cardClass}`}
+                      className={`w-full text-left p-3 rounded-xl text-base font-semibold transition-all ${cardClass}`}
                     >
                       <span className="text-[var(--color-text-muted)] mr-2 font-bold">
                         {String.fromCharCode(65 + i)})
@@ -288,7 +288,7 @@ export default function AnalogyMapper({
                 animate={{ opacity: 1, height: "auto" }}
               >
                 <div
-                  className={`rounded-2xl p-4 text-sm mb-3 ${
+                  className={`rounded-2xl p-4 text-base mb-3 ${
                     followUpAnswer === shuffledFollowUpOpts.correctIndex
                       ? "bg-[var(--color-correct-bg)]"
                       : "bg-[var(--color-incorrect-bg)]"
@@ -303,7 +303,7 @@ export default function AnalogyMapper({
                 </div>
                 <button
                   onClick={handleNext}
-                  className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                  className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
                 >
                   {currentIndex < analogies.length - 1
                     ? "Next Analogy"

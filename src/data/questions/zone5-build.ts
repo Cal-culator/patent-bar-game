@@ -1,4 +1,4 @@
-import { RuleBuilderData, TableFillData } from "@/types";
+import { RuleBuilderData, TableFillData, FlowchartBuilderData, FlowchartStep } from "@/types";
 
 // ============================================================
 // Zone 5: The Sealed Chamber — Build Phase Content
@@ -310,6 +310,73 @@ export const ZONE5_TABLE_FILLS: TableFillData[] = [
       "Highest security handling at USPTO",
       "Restricted Data (Atomic Energy)",
       "Licensing & Review + DOE",
+    ],
+  },
+];
+
+// --- FLOWCHART BUILDERS ---
+// Students arrange procedural steps in the correct order
+
+export const ZONE5_FLOWCHARTS: FlowchartBuilderData[] = [
+  {
+    id: "z5-flow-1",
+    conceptId: "sec-imposition",
+    zoneSlug: "the-sealed-chamber",
+    title: "Imposition of a Secrecy Order",
+    statuteRef: "35 USC 181; MPEP 120",
+    instruction:
+      "Place the steps for imposing a secrecy order on a patent application in the correct order.",
+    steps: [
+      { id: "z5-flow-1-s1", label: "Patent application is filed at the USPTO" },
+      { id: "z5-flow-1-s2", label: "USPTO routes application to defense agencies for review" },
+      { id: "z5-flow-1-s3", label: "Defense agency determines disclosure would be detrimental to national security" },
+      { id: "z5-flow-1-s4", label: "Agency notifies the Commissioner to impose a secrecy order under 35 USC 181" },
+      { id: "z5-flow-1-s5", label: "Commissioner issues secrecy order and notifies the applicant" },
+    ],
+    distractors: [
+      { id: "z5-flow-1-d1", label: "Applicant publishes the application in the Official Gazette" },
+      { id: "z5-flow-1-d2", label: "USPTO forwards the application to the ITC for trade review" },
+    ],
+  },
+  {
+    id: "z5-flow-2",
+    conceptId: "sec-rescission",
+    zoneSlug: "the-sealed-chamber",
+    title: "Rescission of a Secrecy Order",
+    statuteRef: "35 USC 181; 37 CFR 5.2",
+    instruction:
+      "Place the steps for rescinding (lifting) a secrecy order in the correct order.",
+    steps: [
+      { id: "z5-flow-2-s1", label: "Imposing agency periodically reviews the secrecy order" },
+      { id: "z5-flow-2-s2", label: "Agency determines that disclosure is no longer detrimental to national security" },
+      { id: "z5-flow-2-s3", label: "Agency notifies the Commissioner to rescind the secrecy order" },
+      { id: "z5-flow-2-s4", label: "Commissioner lifts the secrecy order and notifies the applicant" },
+      { id: "z5-flow-2-s5", label: "Normal prosecution resumes and patent may issue" },
+    ],
+    distractors: [
+      { id: "z5-flow-2-d1", label: "Applicant files a petition to the PTAB to remove the secrecy order" },
+      { id: "z5-flow-2-d2", label: "USPTO automatically rescinds the order after 6 months" },
+      { id: "z5-flow-2-d3", label: "Applicant pays a rescission fee to the imposing agency" },
+    ],
+  },
+  {
+    id: "z5-flow-3",
+    conceptId: "sec-compensation",
+    zoneSlug: "the-sealed-chamber",
+    title: "Compensation Claim Under 35 USC 183",
+    statuteRef: "35 USC 183",
+    instruction:
+      "Place the steps for an applicant seeking compensation for damages caused by a secrecy order in the correct order.",
+    steps: [
+      { id: "z5-flow-3-s1", label: "Secrecy order is imposed on the applicant's patent application" },
+      { id: "z5-flow-3-s2", label: "Applicant suffers damages caused by the secrecy order" },
+      { id: "z5-flow-3-s3", label: "Applicant applies to the head of the imposing government department for compensation" },
+      { id: "z5-flow-3-s4", label: "Agency head reviews and decides the compensation claim" },
+    ],
+    distractors: [
+      { id: "z5-flow-3-d1", label: "Applicant files an inter partes review at the PTAB" },
+      { id: "z5-flow-3-d2", label: "USPTO Solicitor independently awards damages to the applicant" },
+      { id: "z5-flow-3-d3", label: "Applicant files a claim with the Federal Trade Commission" },
     ],
   },
 ];

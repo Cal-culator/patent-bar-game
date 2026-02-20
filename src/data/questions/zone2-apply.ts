@@ -2,6 +2,8 @@ import {
   ScenarioQuestion,
   QuickFireQuestion,
   ProceduralCascadeData,
+  MatchingGameData,
+  TimelinePuzzleData,
 } from "@/types";
 
 // ============================================================
@@ -423,6 +425,265 @@ export const ZONE2_CASCADES: ProceduralCascadeData[] = [
         correctIndex: 2,
         explanation:
           "If no non-provisional application is filed claiming priority, the expired provisional remains confidential. It is never published, and expiration does not trigger public access.",
+      },
+    ],
+  },
+];
+
+// --- MATCHING GAMES (4) ---
+// Term-definition matching exercises for key Zone 2 concepts
+
+export const ZONE2_MATCHING: MatchingGameData[] = [
+  {
+    id: "z2-match-1",
+    conceptId: "insp-open-files",
+    zoneSlug: "the-reading-room",
+    title: "Public Inspection Basics",
+    instruction: "Match each patent law term with its correct definition.",
+    pairs: [
+      {
+        term: "37 CFR 1.11(a)",
+        definition:
+          "Regulation providing that published applications and issued patents are open to public inspection",
+      },
+      {
+        term: "Patent Center",
+        definition:
+          "The primary electronic system for public access to patent application file wrappers, replacing PAIR",
+      },
+      {
+        term: "Image File Wrapper (IFW)",
+        definition:
+          "Electronic system that stores all file wrapper documents including office actions, amendments, and correspondence",
+      },
+      {
+        term: "File wrapper",
+        definition:
+          "The complete collection of documents associated with a patent application, including the specification, prosecution history, and all correspondence",
+      },
+      {
+        term: "Prosecution history",
+        definition:
+          "The record of all communications between the applicant and the USPTO during examination of a patent application",
+      },
+    ],
+  },
+  {
+    id: "z2-match-2",
+    conceptId: "insp-power-inspect",
+    zoneSlug: "the-reading-room",
+    title: "Access Rights by Party Type",
+    instruction: "Match each party with their access rights to unpublished pending applications.",
+    pairs: [
+      {
+        term: "Attorney of record",
+        definition:
+          "Has full access to unpublished pending application files under 37 CFR 1.14(c)",
+      },
+      {
+        term: "Named applicant or inventor",
+        definition:
+          "May access their own unpublished pending application without a petition or special authorization",
+      },
+      {
+        term: "Third party with written authorization",
+        definition:
+          "May inspect an unpublished application only when the applicant or assignee provides written consent",
+      },
+      {
+        term: "Any member of the public",
+        definition:
+          "May obtain status information (pending, abandoned, or patented) for an identified application under 37 CFR 1.14(e)",
+      },
+      {
+        term: "Unrelated registered patent attorney",
+        definition:
+          "Cannot access unpublished pending applications without authorization from the applicant or attorney of record",
+      },
+    ],
+  },
+  {
+    id: "z2-match-3",
+    conceptId: "insp-provisional",
+    zoneSlug: "the-reading-room",
+    title: "Provisional Application Access Rules",
+    instruction: "Match each patent law term with its correct definition.",
+    pairs: [
+      {
+        term: "Provisional application during pendency",
+        definition:
+          "Maintained in confidence under 35 USC 122 and not published by the USPTO during its 12-month life",
+      },
+      {
+        term: "Expired unfiled-upon provisional",
+        definition:
+          "Remains permanently confidential because it was never published and no non-provisional claimed priority to it",
+      },
+      {
+        term: "Provisional relied upon for priority in an issued patent",
+        definition:
+          "Becomes publicly accessible under 37 CFR 1.14(a) because the patent that claimed its priority has issued",
+      },
+      {
+        term: "Provisional relied upon for priority in a published application",
+        definition:
+          "May become accessible to the public once the non-provisional application claiming its priority is published",
+      },
+      {
+        term: "12-month pendency period",
+        definition:
+          "The maximum lifespan of a provisional application, after which it expires if no non-provisional is filed",
+      },
+    ],
+  },
+  {
+    id: "z2-match-4",
+    conceptId: "insp-foia",
+    zoneSlug: "the-reading-room",
+    title: "FOIA and Patent Confidentiality",
+    instruction: "Match each patent law term with its correct definition.",
+    pairs: [
+      {
+        term: "FOIA (5 USC 552)",
+        definition:
+          "Federal statute providing public access to government agency records, subject to certain exemptions",
+      },
+      {
+        term: "FOIA Exemption 3",
+        definition:
+          "Protects information specifically exempted by other statutes, including patent application confidentiality under 35 USC 122",
+      },
+      {
+        term: "USPTO administrative records",
+        definition:
+          "Non-application records such as training manuals and policy documents that are subject to FOIA disclosure",
+      },
+      {
+        term: "Unpublished application files",
+        definition:
+          "Patent records that are exempt from FOIA disclosure due to the confidentiality mandate of 35 USC 122",
+      },
+      {
+        term: "37 CFR 1.14(i) petition",
+        definition:
+          "The proper mechanism (not FOIA) for requesting access to an unpublished abandoned application relied upon as a reference",
+      },
+    ],
+  },
+];
+
+// --- TIMELINE PUZZLES (3) ---
+// Chronological ordering exercises for patent access procedures
+
+export const ZONE2_TIMELINES: TimelinePuzzleData[] = [
+  {
+    id: "z2-timeline-1",
+    conceptId: "insp-open-files",
+    zoneSlug: "the-reading-room",
+    title: "Application Access Milestones",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z2-tl1-evt-1",
+        label: "Application filed — confidential status begins",
+        description:
+          "A non-provisional utility application is filed. Under 35 USC 122(a), it is maintained in confidence. Only the applicant and attorney of record may access the file.",
+      },
+      {
+        id: "z2-tl1-evt-2",
+        label: "Pre-publication — limited access only",
+        description:
+          "During the period before publication, the file is accessible only to the applicant, attorney of record, and persons with written authorization under 37 CFR 1.14(c).",
+      },
+      {
+        id: "z2-tl1-evt-3",
+        label: "Application published at 18 months",
+        description:
+          "The application is published under 35 USC 122(b). The published application and file wrapper become open to public inspection under 37 CFR 1.11(a).",
+      },
+      {
+        id: "z2-tl1-evt-4",
+        label: "Public accesses file through Patent Center",
+        description:
+          "Any member of the public can now access the full prosecution history, including office actions and applicant responses, through Patent Center.",
+      },
+      {
+        id: "z2-tl1-evt-5",
+        label: "Patent issues — file permanently public",
+        description:
+          "Upon patent grant, the file wrapper remains permanently open to public inspection under 37 CFR 1.14(a), including all post-issuance documents.",
+      },
+    ],
+  },
+  {
+    id: "z2-timeline-2",
+    conceptId: "insp-petition-access",
+    zoneSlug: "the-reading-room",
+    title: "Petitioning for Access to an Unpublished Abandoned Application",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z2-tl2-evt-1",
+        label: "Unpublished application is abandoned",
+        description:
+          "Application B is abandoned before publication. It remains confidential under 35 USC 122(a) and is not available on Patent Center.",
+      },
+      {
+        id: "z2-tl2-evt-2",
+        label: "Examiner cites abandoned application as prior art",
+        description:
+          "During prosecution of Application A, the examiner cites unpublished abandoned Application B in a rejection.",
+      },
+      {
+        id: "z2-tl2-evt-3",
+        label: "Applicant A files petition under 37 CFR 1.14(i)",
+        description:
+          "The applicant of Application A files a petition identifying Application B and demonstrating it is relied upon as a reference in the pending rejection.",
+      },
+      {
+        id: "z2-tl2-evt-4",
+        label: "USPTO grants petition and provides access",
+        description:
+          "The Office reviews the petition and grants access to the specified portions of Application B's file as determined appropriate.",
+      },
+    ],
+  },
+  {
+    id: "z2-timeline-3",
+    conceptId: "insp-provisional",
+    zoneSlug: "the-reading-room",
+    title: "Provisional Application Access Lifecycle",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z2-tl3-evt-1",
+        label: "Provisional application filed",
+        description:
+          "The inventor files a provisional patent application. It is maintained in confidence under 35 USC 122 and will not be published by the USPTO.",
+      },
+      {
+        id: "z2-tl3-evt-2",
+        label: "Non-provisional filed claiming priority to provisional",
+        description:
+          "Within 12 months, the inventor files a non-provisional application claiming the benefit of the provisional filing date.",
+      },
+      {
+        id: "z2-tl3-evt-3",
+        label: "Non-provisional published at 18 months from provisional filing date",
+        description:
+          "The non-provisional is published 18 months from the provisional filing date (the earliest filing date for which benefit is sought).",
+      },
+      {
+        id: "z2-tl3-evt-4",
+        label: "Provisional becomes publicly accessible",
+        description:
+          "Because the provisional is relied upon for priority in a now-published application, it becomes accessible to the public under 37 CFR 1.14(a).",
+      },
+      {
+        id: "z2-tl3-evt-5",
+        label: "Patent issues — provisional remains part of public record",
+        description:
+          "When the patent issues, the provisional application referenced for priority remains part of the publicly accessible record.",
       },
     ],
   },

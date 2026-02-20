@@ -107,14 +107,14 @@ export default function RuleLayering({
       {/* Progress bar */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">
             Layer {currentIndex + 1} of {layers.length}
           </span>
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">
             {layer.layerNumber}/{layer.totalLayers} in concept
           </span>
         </div>
-        <div className="h-4 bg-[var(--color-border)] rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-[var(--color-primary)] rounded-full"
             animate={{ width: `${progress}%` }}
@@ -132,8 +132,8 @@ export default function RuleLayering({
           transition={{ duration: 0.3 }}
         >
           {/* Rule Text Card */}
-          <div className="bg-white rounded-2xl p-5 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-4">
-            <div className="text-xs uppercase tracking-wider font-bold text-[var(--color-text-muted)] mb-3">
+          <div className="bg-white rounded-2xl p-5 border border-[var(--color-border)] shadow-sm mb-4">
+            <div className="text-sm uppercase tracking-wider font-bold text-[var(--color-text-muted)] mb-3">
               The Rule
             </div>
             <p className="text-[var(--color-text-primary)] leading-relaxed font-semibold">
@@ -160,7 +160,7 @@ export default function RuleLayering({
           {!showQuestion ? (
             <motion.button
               onClick={handleReadComplete}
-              className="w-full py-3 rounded-xl font-bold text-sm border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] bg-[var(--color-primary)] text-white uppercase tracking-wide transition-colors active:border-b-2 active:translate-y-[2px]"
+              className="w-full py-3 rounded-xl font-bold text-base shadow-sm hover:shadow-md transition-shadow bg-[var(--color-primary)] text-white uppercase tracking-wide transition-colors"
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
             >
@@ -173,27 +173,27 @@ export default function RuleLayering({
             >
               {/* Question */}
               <div className="mb-4">
-                <p className="text-sm font-bold text-[var(--color-text-primary)] mb-3">
+                <p className="text-base font-bold text-[var(--color-text-primary)] mb-3">
                   {layer.question.stem}
                 </p>
                 <div className="space-y-2">
                   {shuffledOpts.options.map((option, i) => {
                     const isCorrectOption = i === shuffledOpts.correctIndex;
-                    let cardClass = "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] hover:bg-[var(--color-surface)] active:border-b-2 active:translate-y-[2px]";
+                    let cardClass = "border border-[var(--color-border)] hover:bg-[var(--color-surface)] hover:shadow-sm transition-all";
 
                     if (showResult) {
                       if (isCorrectOption) {
                         cardClass =
-                          "border-2 border-b-4 border-[var(--color-correct)] border-b-[var(--color-correct-shadow)] bg-[var(--color-correct-bg)]";
+                          "border-2 border-[var(--color-correct)] bg-[var(--color-correct-bg)]";
                       } else if (
                         i === selectedOption &&
                         !isCorrectOption
                       ) {
                         cardClass =
-                          "border-2 border-b-4 border-[var(--color-incorrect)] border-b-[var(--color-incorrect-shadow)] bg-[var(--color-incorrect-bg)]";
+                          "border-2 border-[var(--color-incorrect)] bg-[var(--color-incorrect-bg)]";
                       } else {
                         cardClass =
-                          "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border)] opacity-40";
+                          "border border-[var(--color-border)] opacity-40";
                       }
                     }
 
@@ -203,7 +203,7 @@ export default function RuleLayering({
                         onClick={() => handleAnswer(i)}
                         disabled={showResult}
                         data-testid={`option-${i}${isCorrectOption ? '-correct' : ''}`}
-                        className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-all ${cardClass}`}
+                        className={`w-full text-left p-3 rounded-xl text-base font-semibold transition-all ${cardClass}`}
                       >
                         <span className="text-[var(--color-text-muted)] mr-2 font-bold">
                           {String.fromCharCode(65 + i)})
@@ -223,7 +223,7 @@ export default function RuleLayering({
                   className="mb-4"
                 >
                   <div
-                    className={`rounded-2xl p-4 text-sm ${
+                    className={`rounded-2xl p-4 text-base ${
                       isCorrect
                         ? "bg-[var(--color-correct-bg)]"
                         : "bg-[var(--color-incorrect-bg)]"
@@ -239,7 +239,7 @@ export default function RuleLayering({
 
                   <button
                     onClick={handleNext}
-                    className="w-full mt-3 py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                    className="w-full mt-3 py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
                   >
                     {currentIndex < layers.length - 1
                       ? "Next Layer"

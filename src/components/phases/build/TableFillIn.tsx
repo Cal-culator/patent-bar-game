@@ -152,11 +152,11 @@ export default function TableFillIn({
       {/* Progress */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">
             Table {currentIndex + 1} of {tables.length}
           </span>
         </div>
-        <div className="h-4 bg-[var(--color-border)] rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-[var(--color-primary)] rounded-full"
             animate={{ width: `${progress}%` }}
@@ -172,8 +172,8 @@ export default function TableFillIn({
           exit={{ opacity: 0, y: -20 }}
         >
           <div className="mb-4">
-            <h3 className="font-bold text-sm text-[var(--color-text-primary)]">{table.title}</h3>
-            <p className="text-xs font-semibold text-[var(--color-text-secondary)]">
+            <h3 className="font-bold text-base text-[var(--color-text-primary)]">{table.title}</h3>
+            <p className="text-sm font-semibold text-[var(--color-text-secondary)]">
               {selectedBank
                 ? `Now tap a blank cell to place "${selectedBank}"`
                 : "Tap an answer from the bank, then tap a blank cell to place it."}
@@ -181,13 +181,13 @@ export default function TableFillIn({
           </div>
 
           {/* Table */}
-          <div className="bg-white rounded-2xl border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] overflow-hidden mb-4">
+          <div className="bg-white rounded-2xl border border-[var(--color-border)] shadow-sm overflow-hidden mb-4">
             <div
-              className="grid border-b-2 border-[var(--color-border)]"
+              className="grid border-b border-[var(--color-border)]"
               style={{ gridTemplateColumns: `repeat(${table.columns.length}, minmax(0, 1fr))` }}
             >
               {table.columns.map((col) => (
-                <div key={col} className="px-3 py-2 text-xs font-extrabold uppercase tracking-wider" style={{ color: accentColor }}>
+                <div key={col} className="px-3 py-2 text-sm font-extrabold uppercase tracking-wider" style={{ color: accentColor }}>
                   {col}
                 </div>
               ))}
@@ -224,7 +224,7 @@ export default function TableFillIn({
                     <div
                       key={colIdx}
                       onClick={() => handleCellClick(rowIdx, colIdx)}
-                      className={`px-3 py-2.5 text-xs font-semibold transition-all ${cellBg} ${cellBorder} ${
+                      className={`px-3 py-2.5 text-sm font-semibold transition-all ${cellBg} ${cellBorder} ${
                         isBlank && !checked ? "cursor-pointer hover:bg-[var(--color-surface)]" : ""
                       }`}
                     >
@@ -239,7 +239,7 @@ export default function TableFillIn({
                         <span className="text-[var(--color-text-muted)] italic">___</span>
                       )}
                       {checked && isBlank && filled !== correctAnswer && (
-                        <div className="text-[10px] font-bold text-[var(--color-correct)] mt-0.5">{correctAnswer}</div>
+                        <div className="text-xs font-bold text-[var(--color-correct)] mt-0.5">{correctAnswer}</div>
                       )}
                     </div>
                   );
@@ -251,23 +251,23 @@ export default function TableFillIn({
           {/* Answer Bank */}
           {!checked && (
             <div className="mb-4">
-              <div className="text-xs uppercase tracking-wider font-bold text-[var(--color-text-muted)] mb-2">Answer bank</div>
+              <div className="text-sm uppercase tracking-wider font-bold text-[var(--color-text-muted)] mb-2">Answer bank</div>
               <div className="flex flex-wrap gap-1.5">
                 {availableBank.map((item, i) => (
                   <button
                     key={`${item}-${i}`}
                     onClick={() => handleBankClick(item)}
-                    className={`px-2.5 py-1.5 rounded-lg text-xs font-bold border-2 border-b-4 transition-all active:border-b-2 active:translate-y-[2px] ${
+                    className={`px-3 py-2 rounded-lg text-sm font-bold transition-all ${
                       selectedBank === item
-                        ? "border-[var(--color-selected)] border-b-[var(--color-selected-shadow)] bg-[var(--color-selected-bg)] text-[var(--color-selected)]"
-                        : "border-[var(--color-border)] border-b-[var(--color-border-strong)] hover:bg-[var(--color-surface)]"
+                        ? "border-2 border-[var(--color-selected)] bg-[var(--color-selected-bg)] text-[var(--color-selected)]"
+                        : "border border-[var(--color-border)] hover:bg-[var(--color-surface)] hover:shadow-sm"
                     }`}
                   >
                     {item}
                   </button>
                 ))}
                 {availableBank.length === 0 && (
-                  <span className="text-xs font-semibold text-[var(--color-text-muted)] italic">All answers placed</span>
+                  <span className="text-sm font-semibold text-[var(--color-text-muted)] italic">All answers placed</span>
                 )}
               </div>
             </div>
@@ -278,28 +278,28 @@ export default function TableFillIn({
             <button
               onClick={handleCheck}
               disabled={!allFilled}
-              className={`w-full py-3 rounded-xl font-bold text-sm border-2 border-b-4 transition-colors disabled:opacity-40 uppercase tracking-wide active:border-b-2 active:translate-y-[2px] ${
+              className={`w-full py-3 rounded-xl font-bold text-base transition-colors disabled:opacity-40 uppercase tracking-wide ${
                 allFilled
-                  ? "bg-[var(--color-primary)] text-white border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)]"
-                  : "bg-[var(--color-surface)] text-[var(--color-text-muted)] border-[var(--color-border)] border-b-[var(--color-border-strong)]"
+                  ? "bg-[var(--color-primary)] text-white shadow-sm hover:shadow-md transition-shadow"
+                  : "bg-[var(--color-surface)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
               }`}
             >
               Check Answers
             </button>
           ) : (
             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
-              <div className={`rounded-2xl p-4 text-sm mb-3 ${correctCount === table.answers.length ? "bg-[var(--color-correct-bg)]" : "bg-[var(--color-incorrect-bg)]"}`}>
+              <div className={`rounded-2xl p-4 text-base mb-3 ${correctCount === table.answers.length ? "bg-[var(--color-correct-bg)]" : "bg-[var(--color-incorrect-bg)]"}`}>
                 <p className={`font-extrabold ${correctCount === table.answers.length ? "text-[var(--color-correct)]" : "text-[var(--color-incorrect)]"}`}>
                   {correctCount === table.answers.length ? "Perfect!" : `${correctCount} of ${table.answers.length} correct.`}
                 </p>
                 {correctCount < table.answers.length && (
-                  <p className="text-xs font-semibold text-[var(--color-text-secondary)] mt-1">Corrections are shown in the table above.</p>
+                  <p className="text-sm font-semibold text-[var(--color-text-secondary)] mt-1">Corrections are shown in the table above.</p>
                 )}
               </div>
 
               <button
                 onClick={handleNext}
-                className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
               >
                 {currentIndex < tables.length - 1 ? "Next Table" : "Complete Tables"}
               </button>

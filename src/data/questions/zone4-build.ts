@@ -1,4 +1,4 @@
-import { RuleBuilderData, TableFillData } from "@/types";
+import { RuleBuilderData, TableFillData, FlowchartBuilderData, FlowchartStep } from "@/types";
 
 // ============================================================
 // Zone 4: The Classified Wing — Build Phase Content
@@ -308,6 +308,74 @@ export const ZONE4_TABLE_FILLS: TableFillData[] = [
       "Specially cleared practitioner and L&R",
       "Highest security handling; special facilities",
       "Nuclear or top-secret defense inventions",
+    ],
+  },
+];
+
+// --- FLOWCHART BUILDERS ---
+// Students arrange procedural steps in the correct order, ignoring distractors
+
+export const ZONE4_FLOWCHARTS: FlowchartBuilderData[] = [
+  {
+    id: "z4-flow-1",
+    conceptId: "nsr-screening-authority",
+    zoneSlug: "the-classified-wing",
+    title: "National Security Screening of a Patent Application",
+    statuteRef: "35 USC 181 / MPEP 130",
+    instruction:
+      "Place the steps of the national security screening process for a patent application in the correct order.",
+    steps: [
+      { id: "z4-flow-1-s1", label: "Patent application is filed at the USPTO" },
+      { id: "z4-flow-1-s2", label: "Application is referred to the appropriate defense agency for national security review" },
+      { id: "z4-flow-1-s3", label: "Defense agency evaluates whether disclosure would be detrimental to national security" },
+      { id: "z4-flow-1-s4", label: "Licensing and Review division assigns an L&R code based on screening outcome" },
+      { id: "z4-flow-1-s5", label: "Application proceeds to examination if no secrecy order is imposed" },
+    ],
+    distractors: [
+      { id: "z4-flow-1-d1", label: "Applicant requests national security screening by checking a box on the application form" },
+      { id: "z4-flow-1-d2", label: "Examiner conducts a prior art search before the security screening is completed" },
+      { id: "z4-flow-1-d3", label: "Applicant receives a foreign filing license before the application is screened" },
+    ],
+  },
+  {
+    id: "z4-flow-2",
+    conceptId: "nsr-classified-filing",
+    zoneSlug: "the-classified-wing",
+    title: "Filing a Classified Patent Application",
+    statuteRef: "MPEP 130",
+    instruction:
+      "Arrange the steps for properly filing a classified patent application at the USPTO.",
+    steps: [
+      { id: "z4-flow-2-s1", label: "Practitioner obtains the appropriate security clearance for the classification level" },
+      { id: "z4-flow-2-s2", label: "Classified application materials are prepared in accordance with security handling requirements" },
+      { id: "z4-flow-2-s3", label: "Application is hand-carried to the Licensing and Review division at the USPTO" },
+      { id: "z4-flow-2-s4", label: "L&R division receives and secures the application under appropriate classification protocols" },
+      { id: "z4-flow-2-s5", label: "Application is processed entirely within secure channels — no electronic filing or mailing permitted" },
+    ],
+    distractors: [
+      { id: "z4-flow-2-d1", label: "Application is filed electronically through Patent Center with a classified designation" },
+      { id: "z4-flow-2-d2", label: "Applicant mails the classified application via registered mail to the Commissioner" },
+    ],
+  },
+  {
+    id: "z4-flow-3",
+    conceptId: "nsr-defense-screening",
+    zoneSlug: "the-classified-wing",
+    title: "Imposition of a Secrecy Order",
+    statuteRef: "35 USC 181",
+    instruction:
+      "Place the steps for the imposition of a secrecy order on a patent application in the correct order.",
+    steps: [
+      { id: "z4-flow-3-s1", label: "Defense agency determines that publication or disclosure of the invention would be detrimental to national security" },
+      { id: "z4-flow-3-s2", label: "Defense agency notifies the Commissioner of Patents recommending a secrecy order" },
+      { id: "z4-flow-3-s3", label: "Commissioner issues a secrecy order under 35 USC 181 directing that the invention be kept secret" },
+      { id: "z4-flow-3-s4", label: "Applicant is notified of the secrecy order and prohibited from publishing or disclosing the invention" },
+      { id: "z4-flow-3-s5", label: "Patent application is withheld from publication and issuance until the secrecy order is rescinded" },
+    ],
+    distractors: [
+      { id: "z4-flow-3-d1", label: "Applicant appeals the secrecy order directly to the Patent Trial and Appeal Board" },
+      { id: "z4-flow-3-d2", label: "Examiner completes examination and issues an allowance before the secrecy order takes effect" },
+      { id: "z4-flow-3-d3", label: "Applicant voluntarily withdraws the application upon learning of the security concern" },
     ],
   },
 ];

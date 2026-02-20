@@ -2,6 +2,7 @@ import {
   TrapDetectorQuestion,
   SourceSortItem,
   PatternHighlightExcerpt,
+  SpotTheErrorData,
 } from "@/types";
 
 // ============================================================
@@ -618,6 +619,188 @@ export const ZONE2_PATTERN_HIGHLIGHTS: PatternHighlightExcerpt[] = [
       { text: ". The petition must ", isTestable: false },
       { text: "identify the application", isTestable: true, explanation: "Procedural requirement — the petitioner must specify which application they seek access to." },
       { text: " and provide sufficient information to support the request.", isTestable: false },
+    ],
+  },
+];
+
+// --- SPOT THE ERROR ITEMS (4) ---
+// Each has 6-8 segments forming a readable paragraph, with 2-3 deliberate errors
+
+export const ZONE2_SPOT_ERRORS: SpotTheErrorData[] = [
+  {
+    id: "z2-spot-1",
+    zoneSlug: "the-reading-room",
+    title: "Public Inspection Rules Errors",
+    mpepRef: "MPEP 100 — 37 CFR 1.11(a)",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under 37 CFR 1.11(a), patents and published applications for patent are open to public inspection. ",
+        hasError: false,
+      },
+      {
+        text: "The public may access the file wrapper of a published application through Patent Center, the USPTO's electronic access system. ",
+        hasError: false,
+      },
+      {
+        text: "All pending applications, including those that have not been published, are available through Patent Center's public portal",
+        hasError: true,
+        correctedText:
+          "Only published applications and patents are available through Patent Center's public portal; unpublished pending applications remain confidential",
+        explanation:
+          "Patent Center's public portal only provides access to published applications and patents. Unpublished pending applications are confidential under 35 USC 122(a) and are not accessible to the public.",
+      },
+      {
+        text: ". Once an application is published under 35 USC 122(b), the entire file wrapper becomes available for public review. ",
+        hasError: false,
+      },
+      {
+        text: "The publication occurs promptly after 18 months from the earliest filing date",
+        hasError: false,
+      },
+      {
+        text: " for which a benefit is sought. ",
+        hasError: false,
+      },
+      {
+        text: "Provisional applications are also published at 18 months following their filing date",
+        hasError: true,
+        correctedText:
+          "Provisional applications are not published and are not available for public inspection",
+        explanation:
+          "Provisional applications are never published by the USPTO. They expire after 12 months and remain confidential. Only nonprovisional applications are subject to 18-month publication.",
+      },
+      {
+        text: " and their contents are available for public review.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z2-spot-2",
+    zoneSlug: "the-reading-room",
+    title: "Power to Inspect Errors",
+    mpepRef: "MPEP 100 — 37 CFR 1.14(c)",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under 37 CFR 1.14(c), access to an unpublished pending application may be provided to the applicant, ",
+        hasError: false,
+      },
+      {
+        text: "the attorney or agent of record, ",
+        hasError: false,
+      },
+      {
+        text: "and any registered patent attorney or agent who requests access",
+        hasError: true,
+        correctedText:
+          "and any person with written authority from the applicant or the attorney or agent of record",
+        explanation:
+          "Access is not available to just any registered practitioner. It requires written authorization from the applicant or attorney of record. Only the applicant and their representative of record have automatic access.",
+      },
+      {
+        text: ". Third parties who are not authorized may only obtain basic status information under 37 CFR 1.14(e), ",
+        hasError: false,
+      },
+      {
+        text: "specifically whether the application is pending, abandoned, or patented. ",
+        hasError: false,
+      },
+      {
+        text: "This status information is available to any person upon request",
+        hasError: false,
+      },
+      {
+        text: " and applies to all applications, including unpublished ones. ",
+        hasError: false,
+      },
+      {
+        text: "No additional information beyond status may be disclosed without proper authorization or until the application is published or a patent is granted.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z2-spot-3",
+    zoneSlug: "the-reading-room",
+    title: "FOIA and Patent Files Errors",
+    mpepRef: "MPEP 100 — 35 USC 122 / 5 USC 552",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "The Freedom of Information Act (FOIA) under 5 USC 552 generally requires federal agencies to make records available to the public. ",
+        hasError: false,
+      },
+      {
+        text: "However, unpublished patent application files are largely exempt from FOIA disclosure ",
+        hasError: false,
+      },
+      {
+        text: "under the trade secrets exemption of FOIA, which protects proprietary business information",
+        hasError: true,
+        correctedText:
+          "under 35 USC 122, which provides that applications shall be kept in confidence",
+        explanation:
+          "The exemption for patent files comes from 35 USC 122 (patent-specific confidentiality), not from the general trade secrets exemption of FOIA. The statute provides its own confidentiality protection independent of FOIA exemptions.",
+      },
+      {
+        text: ". Once an application is published or a patent is granted, the file becomes part of the public record and is freely accessible. ",
+        hasError: false,
+      },
+      {
+        text: "Members of the public who wish to obtain the file of a published application ",
+        hasError: false,
+      },
+      {
+        text: "must submit a written request to the Technology Center Director for approval",
+        hasError: true,
+        correctedText:
+          "may access it through Patent Center without any special request or approval",
+        explanation:
+          "Published application files are freely available through Patent Center. No written request to the Technology Center Director is required for accessing published files.",
+      },
+      {
+        text: ". The USPTO makes these files available to promote public access to patent information.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z2-spot-4",
+    zoneSlug: "the-reading-room",
+    title: "Incorporation by Reference Errors",
+    mpepRef: "MPEP 100 — 37 CFR 1.57",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under 37 CFR 1.57, material may be incorporated by reference into a patent application. ",
+        hasError: false,
+      },
+      {
+        text: "The legal effect of incorporation by reference is that the referenced material becomes part of the application as though fully set forth therein. ",
+        hasError: false,
+      },
+      {
+        text: "Material incorporated by reference is noted for informational purposes but does not form part of the official disclosure",
+        hasError: true,
+        correctedText:
+          "Material incorporated by reference is treated as though it were set forth in full in the application and forms part of the official disclosure",
+        explanation:
+          "Incorporation by reference makes the material legally part of the application, not merely informational. Under 37 CFR 1.57, incorporated material is treated as though fully set forth in the specification.",
+      },
+      {
+        text: ". Practitioners should ensure that proper incorporation language is used in the specification ",
+        hasError: false,
+      },
+      {
+        text: "and that the referenced material is clearly identified. ",
+        hasError: false,
+      },
+      {
+        text: "Applicants are encouraged to include sufficient description in the specification rather than relying solely on incorporation by reference, particularly for essential subject matter.",
+        hasError: false,
+      },
     ],
   },
 ];

@@ -2,6 +2,7 @@ import {
   TrapDetectorQuestion,
   SourceSortItem,
   PatternHighlightExcerpt,
+  SpotTheErrorData,
 } from "@/types";
 
 // ============================================================
@@ -629,6 +630,172 @@ export const ZONE6_PATTERN_HIGHLIGHTS: PatternHighlightExcerpt[] = [
       { text: " of the material for which licensing is sought. ", isTestable: false },
       { text: "The material will be reviewed by defense agencies", isTestable: false },
       { text: " to determine if a license can be granted.", isTestable: false },
+    ],
+  },
+];
+
+// --- SPOT THE ERROR ITEMS (4) ---
+// Passages with deliberate errors in legal facts
+
+export const ZONE6_SPOT_ERRORS: SpotTheErrorData[] = [
+  {
+    id: "z6-spot-1",
+    zoneSlug: "the-border",
+    title: "Foreign Filing License Timeline Errors",
+    mpepRef: "MPEP 140 / 35 USC 184",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under 35 USC 184, an applicant who files a patent application in the United States",
+        hasError: false,
+      },
+      {
+        text: "may not file the same invention in a foreign country within 3 months from the date of US filing",
+        hasError: true,
+        correctedText: "may not file the same invention in a foreign country within 6 months from the date of US filing",
+        explanation: "The foreign filing bar under 35 USC 184 is 6 months from the date of US filing, not 3 months. This is one of the most frequently tested time periods on the patent bar.",
+      },
+      {
+        text: "unless a foreign filing license has been obtained from the Commissioner of Patents.",
+        hasError: false,
+      },
+      {
+        text: "Under 37 CFR 5.12, the filing of a US patent application automatically constitutes a petition for a foreign filing license.",
+        hasError: false,
+      },
+      {
+        text: "Security screening is typically completed within approximately 3 business days when no national security concerns are identified.",
+        hasError: false,
+      },
+      {
+        text: "After the 6-month period, the applicant is free to file abroad without restriction,",
+        hasError: false,
+      },
+      {
+        text: "unless a secrecy order has been imposed on the application under 35 USC 181, which bars foreign filing regardless of timing.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z6-spot-2",
+    zoneSlug: "the-border",
+    title: "Patent Invalidation and Error Exception Errors",
+    mpepRef: "MPEP 140 / 35 USC 185",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under 35 USC 185, filing abroad without the required foreign filing license carries significant consequences.",
+        hasError: false,
+      },
+      {
+        text: "The US patent application is automatically abandoned",
+        hasError: true,
+        correctedText: "Any resulting US patent shall be invalid",
+        explanation: "Under 35 USC 185, the consequence is patent invalidity (the patent is barred), not application abandonment. Application abandonment is the penalty for secrecy order violations under 35 USC 182, not for unauthorized foreign filing.",
+      },
+      {
+        text: "if the applicant filed or caused to be filed in any foreign country without the required license.",
+        hasError: false,
+      },
+      {
+        text: "However, there is an exception: the patent is not barred if the failure to obtain the license was through error",
+        hasError: false,
+      },
+      {
+        text: "regardless of whether the subject matter was under a secrecy order.",
+        hasError: true,
+        correctedText: "and the subject matter was not under a secrecy order within the scope of section 181.",
+        explanation: "The error exception under 35 USC 185 requires BOTH conditions: (1) the filing was through error AND (2) the subject matter was not under a secrecy order. If the subject matter was under a secrecy order, the error exception does not apply.",
+      },
+      {
+        text: "This exception reflects the statutory intent to distinguish between willful violations and inadvertent mistakes.",
+        hasError: false,
+      },
+      {
+        text: "The criminal penalties under 35 USC 186 also require willful conduct, with a maximum fine of $10,000 and/or imprisonment for up to 2 years.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z6-spot-3",
+    zoneSlug: "the-border",
+    title: "License Scope and Retroactive License Errors",
+    mpepRef: "MPEP 140 / 37 CFR 5.15 / 37 CFR 5.25",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Foreign filing licenses come in two scope levels under 37 CFR 5.15.",
+        hasError: false,
+      },
+      {
+        text: "A broad scope license permits the filing of applications abroad including amendments and modifications,",
+        hasError: false,
+      },
+      {
+        text: "provided that the general nature of the invention is not changed.",
+        hasError: false,
+      },
+      {
+        text: "A narrow scope license permits the filing abroad only on the specific subject matter reviewed by defense agencies.",
+        hasError: false,
+      },
+      {
+        text: "If an applicant discovers that foreign filing occurred without the required license, a retroactive license may be sought under 35 USC 184.",
+        hasError: true,
+        correctedText: "If an applicant discovers that foreign filing occurred without the required license, a retroactive license may be sought under 37 CFR 5.25.",
+        explanation: "Retroactive foreign filing license petitions are governed by 37 CFR 5.25, not 35 USC 184. The statute (35 USC 184) addresses the general foreign filing license requirement and timing, while the regulation (37 CFR 5.25) provides the specific procedure for obtaining a retroactive license.",
+      },
+      {
+        text: "The petition must include a listing of each foreign country where filing occurred, the dates of filing, a verified statement that no secrecy order was in effect, and evidence of diligent pursuit after discovering the error.",
+        hasError: false,
+      },
+      {
+        text: "If a retroactive license petition is denied, the applicant may renew the petition within 60 days or challenge the denial under 37 CFR 1.181.",
+        hasError: true,
+        correctedText: "If a retroactive license petition is denied, the applicant may renew the petition within 30 days or challenge the denial under 37 CFR 1.181.",
+        explanation: "The renewal period for a denied retroactive license petition is 30 days, not 60 days.",
+      },
+    ],
+  },
+  {
+    id: "z6-spot-4",
+    zoneSlug: "the-border",
+    title: "Foreign Filing Without US Application Errors",
+    mpepRef: "MPEP 140 / 37 CFR 5.11 / 37 CFR 5.13",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "A common misconception is that a foreign filing license is only required when a US patent application has been filed.",
+        hasError: false,
+      },
+      {
+        text: "In fact, under 37 CFR 5.11, a foreign filing license is required before filing abroad for any invention made in the United States,",
+        hasError: false,
+      },
+      {
+        text: "but only if the inventor is a US citizen or permanent resident.",
+        hasError: true,
+        correctedText: "regardless of the inventor's citizenship or residency status.",
+        explanation: "The foreign filing license requirement applies to inventions made in the United States regardless of the inventor's citizenship. The geographic trigger is where the invention was made, not the inventor's nationality.",
+      },
+      {
+        text: "When no US application exists, the petitioner must submit legible copies of the material for which licensing is sought under 37 CFR 5.13.",
+        hasError: false,
+      },
+      {
+        text: "The material is reviewed by defense agencies to determine if a license can be granted.",
+        hasError: false,
+      },
+      {
+        text: "Broad scope licenses are commonly granted with the filing receipt, and only applications flagged during defense agency review typically receive narrow scope licenses.",
+        hasError: false,
+      },
+      {
+        text: "Practitioners should check the filing receipt carefully to confirm whether a foreign filing license has been granted before advising clients to file abroad.",
+        hasError: false,
+      },
     ],
   },
 ];

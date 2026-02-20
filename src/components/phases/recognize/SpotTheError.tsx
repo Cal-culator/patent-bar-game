@@ -2,22 +2,22 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PatternHighlightExcerpt } from "@/types";
+import { SpotTheErrorData } from "@/types";
 import { useGameStore } from "@/stores/gameStore";
 import { calculateXp, calculateCoins } from "@/lib/scoring";
 import { shuffle } from "@/lib/shuffle";
 
-interface PatternHighlighterProps {
-  excerpts: PatternHighlightExcerpt[];
+interface SpotTheErrorProps {
+  items: SpotTheErrorData[];
   onComplete: () => void;
   accentColor: string;
 }
 
-export default function PatternHighlighter({
-  excerpts,
+export default function SpotTheError({
+  items,
   onComplete,
   accentColor,
-}: PatternHighlighterProps) {
+}: SpotTheErrorProps) {
   const addXp = useGameStore((s) => s.addXp);
   const addCoins = useGameStore((s) => s.addCoins);
   const multiplier = useGameStore((s) => s.streakMultiplier);
@@ -25,7 +25,7 @@ export default function PatternHighlighter({
   const resetSessionStreak = useGameStore((s) => s.resetSessionStreak);
   const recordAnswer = useGameStore((s) => s.recordAnswer);
 
-  const [shuffledExcerpts] = useState(() => shuffle(excerpts));
+  const [shuffledItems] = useState(() => shuffle(items));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<Set<number>>(new Set());
   const [checked, setChecked] = useState(false);
@@ -33,10 +33,10 @@ export default function PatternHighlighter({
   const [misses, setMisses] = useState(0);
   const [falsePositives, setFalsePositives] = useState(0);
 
-  const excerpt = shuffledExcerpts[currentIndex];
-  if (!excerpt) return null;
+  const item = shuffledItems[currentIndex];
+  if (!item) return null;
 
-  const totalTestable = excerpt.segments.filter((s) => s.isTestable).length;
+  const totalErrors = item.segments.filter((s) => s.hasError).length;
 
   const handleToggleSegment = (segIndex: number) => {
     if (checked) return;
@@ -56,11 +56,11 @@ export default function PatternHighlighter({
     let m = 0;
     let fp = 0;
 
-    excerpt.segments.forEach((seg, i) => {
+    item.segments.forEach((seg, i) => {
       const wasSelected = selected.has(i);
-      if (seg.isTestable && wasSelected) h++;
-      else if (seg.isTestable && !wasSelected) m++;
-      else if (!seg.isTestable && wasSelected) fp++;
+      if (seg.hasError && wasSelected) h++;
+      else if (seg.hasError && !wasSelected) m++;
+      else if (!seg.hasError && wasSelected) fp++;
     });
 
     setHits(h);
@@ -68,7 +68,7 @@ export default function PatternHighlighter({
     setFalsePositives(fp);
     setChecked(true);
 
-    const accuracy = totalTestable > 0 ? h / totalTestable : 0;
+    const accuracy = totalErrors > 0 ? h / totalErrors : 0;
     const correct = accuracy >= 0.5;
     const baseXp = calculateXp("recognize", true, multiplier);
     const scaledXp = Math.round(baseXp * accuracy);
@@ -84,7 +84,7 @@ export default function PatternHighlighter({
     }
 
     recordAnswer({
-      questionId: excerpt.id,
+      questionId: item.id,
       phase: "recognize",
       selectedIndex: h,
       correct,
@@ -95,7 +95,7 @@ export default function PatternHighlighter({
   };
 
   const handleNext = () => {
-    if (currentIndex < excerpts.length - 1) {
+    if (currentIndex < shuffledItems.length - 1) {
       setCurrentIndex((i) => i + 1);
       setSelected(new Set());
       setChecked(false);
@@ -107,7 +107,7 @@ export default function PatternHighlighter({
     }
   };
 
-  const progress = ((currentIndex + 1) / excerpts.length) * 100;
+  const progress = ((currentIndex + 1) / shuffledItems.length) * 100;
 
   return (
     <div className="max-w-xl mx-auto">
@@ -115,10 +115,10 @@ export default function PatternHighlighter({
       <div className="mb-6">
         <div className="flex items-center justify-between mb-1">
           <span className="text-sm font-bold text-[var(--color-text-muted)]">
-            Excerpt {currentIndex + 1} of {excerpts.length}
+            Passage {currentIndex + 1} of {shuffledItems.length}
           </span>
           <span className="text-sm font-mono font-bold" style={{ color: accentColor }}>
-            {excerpt.mpepRef}
+            {item.mpepRef}
           </span>
         </div>
         <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
@@ -139,38 +139,38 @@ export default function PatternHighlighter({
           {/* Title & instruction */}
           <div className="mb-4">
             <h3 className="font-bold text-base text-[var(--color-text-primary)]">
-              {excerpt.title}
+              {item.title}
             </h3>
             <p className="text-sm font-semibold text-[var(--color-text-secondary)]">
-              {excerpt.instruction}
+              {item.instruction}
             </p>
           </div>
 
-          {/* Excerpt text with clickable segments */}
+          {/* Text passage with clickable segments */}
           <div className="bg-white rounded-2xl p-4 border border-[var(--color-border)] shadow-sm mb-4">
             <p className="text-base leading-relaxed font-semibold">
-              {excerpt.segments.map((seg, i) => {
+              {item.segments.map((seg, i) => {
                 const isSelected = selected.has(i);
-                const isTestable = seg.isTestable;
+                const hasError = seg.hasError;
 
                 let style: React.CSSProperties = {};
                 let className = "transition-all cursor-pointer rounded-sm px-0.5";
 
                 if (checked) {
                   className = "rounded-sm px-0.5";
-                  if (isTestable && isSelected) {
+                  if (hasError && isSelected) {
                     // Hit — green
                     style = {
                       backgroundColor: "var(--color-correct-bg)",
                       borderBottom: "2px solid var(--color-correct)",
                     };
-                  } else if (isTestable && !isSelected) {
+                  } else if (hasError && !isSelected) {
                     // Miss — yellow/orange
                     style = {
                       backgroundColor: "rgba(255, 150, 0, 0.2)",
                       borderBottom: "2px solid var(--color-xp)",
                     };
-                  } else if (!isTestable && isSelected) {
+                  } else if (!hasError && isSelected) {
                     // False positive — red strikethrough
                     style = {
                       backgroundColor: "var(--color-incorrect-bg)",
@@ -193,7 +193,7 @@ export default function PatternHighlighter({
                     onClick={() => handleToggleSegment(i)}
                     className={className}
                     style={style}
-                    data-testid={`segment-${i}`}
+                    data-testid={`error-segment-${i}`}
                   >
                     {seg.text}
                   </span>
@@ -229,20 +229,32 @@ export default function PatternHighlighter({
             </div>
           )}
 
-          {/* Explanations for testable segments after check */}
+          {/* Explanations + corrections for error segments after check */}
           {checked && (
             <div className="space-y-2 mb-4">
-              {excerpt.segments
-                .filter((seg) => seg.isTestable && seg.explanation)
+              {item.segments
+                .filter((seg) => seg.hasError)
                 .map((seg, i) => (
                   <div
                     key={i}
                     className="text-sm font-semibold text-[var(--color-text-secondary)] bg-white rounded-xl p-3 border border-[var(--color-border)]"
                   >
-                    <span className="font-bold" style={{ color: accentColor }}>
-                      &ldquo;{seg.text.trim()}&rdquo;
-                    </span>{" "}
-                    — {seg.explanation}
+                    <span className="font-bold" style={{ color: "var(--color-incorrect)" }}>
+                      Error: &ldquo;{seg.text.trim()}&rdquo;
+                    </span>
+                    {seg.correctedText && (
+                      <>
+                        {" "}&rarr;{" "}
+                        <span className="font-bold" style={{ color: "var(--color-correct)" }}>
+                          &ldquo;{seg.correctedText}&rdquo;
+                        </span>
+                      </>
+                    )}
+                    {seg.explanation && (
+                      <p className="mt-1 text-[var(--color-text-secondary)]">
+                        {seg.explanation}
+                      </p>
+                    )}
                   </div>
                 ))}
             </div>
@@ -258,6 +270,7 @@ export default function PatternHighlighter({
                   ? "bg-[var(--color-primary)] text-white shadow-sm hover:shadow-md transition-shadow"
                   : "bg-[var(--color-surface)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
               }`}
+              data-testid="error-check"
             >
               Check ({selected.size} selected)
             </button>
@@ -268,13 +281,13 @@ export default function PatternHighlighter({
             >
               <div
                 className={`rounded-2xl p-4 text-base mb-3 ${
-                  hits === totalTestable
+                  hits === totalErrors
                     ? "bg-[var(--color-correct-bg)]"
                     : "bg-[var(--color-incorrect-bg)]"
                 }`}
               >
-                <p className={`font-extrabold mb-1 ${hits === totalTestable ? "text-[var(--color-correct)]" : "text-[var(--color-incorrect)]"}`}>
-                  {hits}/{totalTestable} testable phrases identified
+                <p className={`font-extrabold mb-1 ${hits === totalErrors ? "text-[var(--color-correct)]" : "text-[var(--color-incorrect)]"}`}>
+                  {hits}/{totalErrors} errors found
                 </p>
                 {falsePositives > 0 && (
                   <p className="text-sm font-semibold text-[var(--color-text-secondary)] mt-1">
@@ -286,10 +299,11 @@ export default function PatternHighlighter({
               <button
                 onClick={handleNext}
                 className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
+                data-testid="error-next"
               >
-                {currentIndex < excerpts.length - 1
-                  ? "Next Excerpt"
-                  : "Complete Pattern Highlighter"}
+                {currentIndex < shuffledItems.length - 1
+                  ? "Next Passage"
+                  : "Complete Spot the Error"}
               </button>
             </motion.div>
           )}

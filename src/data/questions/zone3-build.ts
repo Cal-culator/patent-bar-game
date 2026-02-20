@@ -1,4 +1,4 @@
-import { RuleBuilderData, TableFillData } from "@/types";
+import { RuleBuilderData, TableFillData, FlowchartBuilderData, FlowchartStep } from "@/types";
 
 // ============================================================
 // Zone 3: The Gatekeepers — Build Phase Content
@@ -276,6 +276,73 @@ export const ZONE3_TABLE_FILLS: TableFillData[] = [
       "Anyone (public record)",
       "Yes",
       "No",
+    ],
+  },
+];
+
+// --- FLOWCHART BUILDERS ---
+// Students arrange procedural steps in the correct order, ignoring distractors
+
+export const ZONE3_FLOWCHARTS: FlowchartBuilderData[] = [
+  {
+    id: "z3-flow-1",
+    conceptId: "gate-assignee-control",
+    zoneSlug: "the-gatekeepers",
+    title: "Establishing Assignee Entitlement to Take Action",
+    statuteRef: "37 CFR 3.71 / 37 CFR 3.73(c)",
+    instruction:
+      "Place the steps for an assignee to establish entitlement to take action in a patent application in the correct order.",
+    steps: [
+      { id: "z3-flow-1-s1", label: "Assignment of the entire right, title, and interest is executed by the inventor" },
+      { id: "z3-flow-1-s2", label: "Assignment is recorded at the USPTO Assignment Recordation Branch" },
+      { id: "z3-flow-1-s3", label: "Assignee files a statement under 37 CFR 3.73(c) setting forth the basis for entitlement" },
+      { id: "z3-flow-1-s4", label: "Documentary evidence of the chain of title is submitted to support the statement" },
+      { id: "z3-flow-1-s5", label: "Assignee is recognized by the USPTO and may direct prosecution of the application" },
+    ],
+    distractors: [
+      { id: "z3-flow-1-d1", label: "Assignee obtains a registered patent attorney number from the OED" },
+      { id: "z3-flow-1-d2", label: "Partial assignee files a petition to the Director for prosecution rights" },
+    ],
+  },
+  {
+    id: "z3-flow-2",
+    conceptId: "gate-written-consent",
+    zoneSlug: "the-gatekeepers",
+    title: "Appointing a Power of Attorney",
+    statuteRef: "37 CFR 1.32 / 37 CFR 1.34",
+    instruction:
+      "Arrange the steps for establishing power of attorney in a patent application.",
+    steps: [
+      { id: "z3-flow-2-s1", label: "Applicant or assignee identifies a registered patent practitioner to represent them" },
+      { id: "z3-flow-2-s2", label: "A power of attorney document designating the practitioner is prepared and signed" },
+      { id: "z3-flow-2-s3", label: "The signed power of attorney is filed with the USPTO in the application file" },
+      { id: "z3-flow-2-s4", label: "The designated practitioner becomes the attorney or agent of record" },
+      { id: "z3-flow-2-s5", label: "USPTO directs all correspondence to the practitioner of record" },
+    ],
+    distractors: [
+      { id: "z3-flow-2-d1", label: "Practitioner passes a background check conducted by the OED before appointment" },
+      { id: "z3-flow-2-d2", label: "USPTO examiner approves the power of attorney before it takes effect" },
+      { id: "z3-flow-2-d3", label: "The applicant pays a power of attorney filing fee" },
+    ],
+  },
+  {
+    id: "z3-flow-3",
+    conceptId: "gate-oed-role",
+    zoneSlug: "the-gatekeepers",
+    title: "OED Disciplinary Proceeding Against a Practitioner",
+    statuteRef: "37 CFR 11.22 / 37 CFR 11.116",
+    instruction:
+      "Place the steps of an OED disciplinary proceeding against a registered practitioner in the correct order.",
+    steps: [
+      { id: "z3-flow-3-s1", label: "A grievance or complaint is filed with the OED Director" },
+      { id: "z3-flow-3-s2", label: "OED investigates the allegations of practitioner misconduct" },
+      { id: "z3-flow-3-s3", label: "OED Director files a complaint with the USPTO Administrative Law Judge if warranted" },
+      { id: "z3-flow-3-s4", label: "A hearing is held before the Administrative Law Judge" },
+      { id: "z3-flow-3-s5", label: "Sanction is imposed (reprimand, probation, suspension, or exclusion)" },
+    ],
+    distractors: [
+      { id: "z3-flow-3-d1", label: "The practitioner's clients are automatically notified by the USPTO before the investigation" },
+      { id: "z3-flow-3-d2", label: "The practitioner must retake the patent bar exam before the hearing" },
     ],
   },
 ];

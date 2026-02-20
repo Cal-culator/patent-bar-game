@@ -1,4 +1,4 @@
-import { RuleBuilderData, TableFillData } from "@/types";
+import { RuleBuilderData, TableFillData, FlowchartBuilderData, FlowchartStep } from "@/types";
 
 // ============================================================
 // Zone 1: The Vault — Build Phase Content
@@ -351,6 +351,72 @@ export const ZONE1_TABLE_FILLS: TableFillData[] = [
       "Any person",
       "35 USC 186",
       "Fine up to $10,000 or 2 years prison or both",
+    ],
+  },
+];
+
+// --- FLOWCHART BUILDERS ---
+// Students arrange procedural steps in the correct order, ignoring distractors
+
+export const ZONE1_FLOWCHARTS: FlowchartBuilderData[] = [
+  {
+    id: "z1-flow-1",
+    conceptId: "conf-18-month-pub",
+    zoneSlug: "the-vault",
+    title: "Patent Application Publication Process",
+    statuteRef: "35 USC 122(b)",
+    instruction:
+      "Place the steps of the patent application publication process in the correct order.",
+    steps: [
+      { id: "z1-flow-1-s1", label: "Applicant files a nonprovisional patent application" },
+      { id: "z1-flow-1-s2", label: "Application is maintained in confidence under 35 USC 122(a)" },
+      { id: "z1-flow-1-s3", label: "18-month period from earliest filing date expires" },
+      { id: "z1-flow-1-s4", label: "USPTO publishes the application as a patent application publication" },
+      { id: "z1-flow-1-s5", label: "Published application becomes available for public inspection" },
+    ],
+    distractors: [
+      { id: "z1-flow-1-d1", label: "Applicant files a non-publication request at the time of filing" },
+      { id: "z1-flow-1-d2", label: "Examiner issues a first office action before publication" },
+      { id: "z1-flow-1-d3", label: "Patent is granted before the 18-month publication date" },
+    ],
+  },
+  {
+    id: "z1-flow-2",
+    conceptId: "conf-non-pub-request",
+    zoneSlug: "the-vault",
+    title: "Filing a Non-Publication Request",
+    statuteRef: "35 USC 122(b)(2)(B)",
+    instruction:
+      "Arrange the steps for successfully requesting non-publication of a patent application.",
+    steps: [
+      { id: "z1-flow-2-s1", label: "Applicant certifies the invention has not been and will not be filed in a foreign country" },
+      { id: "z1-flow-2-s2", label: "Applicant files non-publication request at the time of filing the application" },
+      { id: "z1-flow-2-s3", label: "USPTO accepts the request and withholds the application from publication" },
+      { id: "z1-flow-2-s4", label: "If applicant later files abroad, they must notify the USPTO within 45 days and rescind the request" },
+    ],
+    distractors: [
+      { id: "z1-flow-2-d1", label: "Applicant pays an additional non-publication surcharge fee" },
+      { id: "z1-flow-2-d2", label: "USPTO examiner reviews the non-publication request for patentability" },
+    ],
+  },
+  {
+    id: "z1-flow-3",
+    conceptId: "conf-abandoned-access",
+    zoneSlug: "the-vault",
+    title: "Obtaining Access to an Unpublished Abandoned Application",
+    statuteRef: "37 CFR 1.14(a)(1)(iv)",
+    instruction:
+      "Place the steps for a third party to gain access to an unpublished abandoned application in the correct order.",
+    steps: [
+      { id: "z1-flow-3-s1", label: "Third party identifies the unpublished abandoned application they need access to" },
+      { id: "z1-flow-3-s2", label: "Third party files a petition under 37 CFR 1.14 to the Director" },
+      { id: "z1-flow-3-s3", label: "Petitioner demonstrates that the abandoned application is relied upon (e.g., cited in another application)" },
+      { id: "z1-flow-3-s4", label: "Director grants the petition based on sufficient showing" },
+      { id: "z1-flow-3-s5", label: "USPTO provides access to the file of the unpublished abandoned application" },
+    ],
+    distractors: [
+      { id: "z1-flow-3-d1", label: "Third party obtains written consent from the original applicant" },
+      { id: "z1-flow-3-d2", label: "Third party submits a FOIA request to the USPTO for the application" },
     ],
   },
 ];

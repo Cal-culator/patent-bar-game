@@ -2,6 +2,7 @@ import {
   TrapDetectorQuestion,
   SourceSortItem,
   PatternHighlightExcerpt,
+  SpotTheErrorData,
 } from "@/types";
 
 // ============================================================
@@ -756,6 +757,192 @@ export const ZONE4_PATTERN_HIGHLIGHTS: PatternHighlightExcerpt[] = [
           "Outcome communication — the code system is how L&R communicates screening results, indicating foreign filing license status and any secrecy order.",
       },
       { text: " indicating the result of the screening process.", isTestable: false },
+    ],
+  },
+];
+
+// --- SPOT THE ERROR ITEMS (4) ---
+// Each has 6-8 segments forming a readable paragraph, with 2-3 deliberate errors
+
+export const ZONE4_SPOT_ERRORS: SpotTheErrorData[] = [
+  {
+    id: "z4-spot-1",
+    zoneSlug: "the-classified-wing",
+    title: "Secrecy Order Authority Errors",
+    mpepRef: "MPEP 130 — 35 USC 181",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under 35 USC 181, whenever the publication or disclosure of an invention would be detrimental to the national security, ",
+        hasError: false,
+      },
+      {
+        text: "the Commissioner shall order that the invention be kept secret and shall withhold the publication of the application. ",
+        hasError: false,
+      },
+      {
+        text: "The determination of whether disclosure would be detrimental is made by the patent examiner assigned to the application",
+        hasError: true,
+        correctedText:
+          "The determination of whether disclosure would be detrimental is made by the head of the interested government agency, who notifies the Commissioner",
+        explanation:
+          "The patent examiner does not decide whether an application poses a national security concern. Under 35 USC 181, the heads of interested government agencies (such as the Department of Defense) make this determination and notify the Commissioner.",
+      },
+      {
+        text: ", who evaluates the subject matter against national security criteria. ",
+        hasError: false,
+      },
+      {
+        text: "Applications are referred to the appropriate defense agencies, including the Department of Defense and the National Security Agency, for screening. ",
+        hasError: false,
+      },
+      {
+        text: "A secrecy order bars the grant of a patent on the application",
+        hasError: true,
+        correctedText:
+          "A secrecy order bars the publication of the application and withholds the grant of the patent, but the application may still be examined",
+        explanation:
+          "A secrecy order withholds publication and patent grant, but it does not prevent the application from being examined. The application continues in prosecution; only the public disclosure and patent issuance are blocked.",
+      },
+      {
+        text: " and may remain in effect for renewable periods as specified by the ordering agency.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z4-spot-2",
+    zoneSlug: "the-classified-wing",
+    title: "Classified Filing Procedure Errors",
+    mpepRef: "MPEP 130 — Classified Applications",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Classified patent applications require special filing procedures that differ from standard practice. ",
+        hasError: false,
+      },
+      {
+        text: "Such applications must be hand-carried directly to the Licensing and Review division of the USPTO. ",
+        hasError: false,
+      },
+      {
+        text: "Electronic filing through Patent Center is not permitted for classified applications, nor may they be sent through the mail. ",
+        hasError: false,
+      },
+      {
+        text: "The practitioner filing a classified application must hold an appropriate security clearance issued by the USPTO",
+        hasError: true,
+        correctedText:
+          "The practitioner filing a classified application must hold an appropriate security clearance issued by the appropriate government agency (e.g., Department of Defense)",
+        explanation:
+          "The USPTO does not issue security clearances. Security clearances are issued by the appropriate government agency, such as the Department of Defense. The clearance level must correspond to the classification level of the application.",
+      },
+      {
+        text: " at the level corresponding to the classification of the application. ",
+        hasError: false,
+      },
+      {
+        text: "After receiving the classified application, the Licensing and Review division coordinates with defense agencies ",
+        hasError: false,
+      },
+      {
+        text: "and assigns a code indicating the screening outcome. ",
+        hasError: false,
+      },
+      {
+        text: "Screening occurs after the examiner completes substantive examination of the application",
+        hasError: true,
+        correctedText:
+          "Screening occurs early in prosecution, before substantive examination of the application begins",
+        explanation:
+          "National security screening occurs early in prosecution, before substantive examination begins, not after. This ensures security concerns are identified before the examiner engages with the application on its merits.",
+      },
+    ],
+  },
+  {
+    id: "z4-spot-3",
+    zoneSlug: "the-classified-wing",
+    title: "Agency Screening Authority Errors",
+    mpepRef: "MPEP 130 — 42 USC 2182 / 51 USC 20135",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Patent applications are screened by multiple agencies depending on the subject matter. The Department of Defense and the National Security Agency screen for national defense concerns under 35 USC 181. ",
+        hasError: false,
+      },
+      {
+        text: "The Department of Energy screens patent applications for atomic energy inventions under 42 USC 2182, which covers inventions useful in the production or utilization of special nuclear material or atomic energy. ",
+        hasError: false,
+      },
+      {
+        text: "NASA screens patent applications for space-related inventions under 42 USC 2182, the same statutory authority used by the Department of Energy",
+        hasError: true,
+        correctedText:
+          "NASA screens patent applications for space-related inventions under 51 USC 20135, a separate statutory authority from DOE's 42 USC 2182",
+        explanation:
+          "NASA's screening authority comes from 51 USC 20135 (formerly 42 USC 2457), not 42 USC 2182. Each screening agency has its own distinct statutory basis: DOD/NSA under 35 USC 181, DOE under 42 USC 2182, and NASA under 51 USC 20135.",
+      },
+      {
+        text: ". When DOE identifies a relevant invention, it may declare that the government has a property interest in the invention, ",
+        hasError: false,
+      },
+      {
+        text: "which can affect the applicant's rights in the patent. ",
+        hasError: false,
+      },
+      {
+        text: "Similarly, inventions made under a NASA contract may be claimed as the exclusive property of the United States unless the NASA Administrator waives such rights.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z4-spot-4",
+    zoneSlug: "the-classified-wing",
+    title: "Foreign Filing License and Secrecy Order Errors",
+    mpepRef: "MPEP 130 — 37 CFR 5.2 / 35 USC 184",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "The filing of a patent application in the United States Patent and Trademark Office constitutes a petition for a foreign filing license under 35 USC 184, as implemented by 37 CFR 5.12. ",
+        hasError: false,
+      },
+      {
+        text: "The Licensing and Review division reviews each application to determine whether a foreign filing license may be granted. ",
+        hasError: false,
+      },
+      {
+        text: "When a secrecy order is imposed on an application under 35 USC 181, the foreign filing license previously granted for that application remains valid",
+        hasError: true,
+        correctedText:
+          "When a secrecy order is imposed on an application under 35 USC 181, any foreign filing license previously granted for that application is automatically revoked",
+        explanation:
+          "Under 37 CFR 5.2, a secrecy order bars the grant of any foreign filing license and revokes any license previously granted. The foreign filing license does not survive the imposition of a secrecy order.",
+      },
+      {
+        text: " unless explicitly revoked by a separate order. ",
+        hasError: false,
+      },
+      {
+        text: "The scope of a secrecy order extends to any related application containing subject matter that is substantially the same as the application originally placed under the order. ",
+        hasError: false,
+      },
+      {
+        text: "A petition to rescind a secrecy order must be accompanied by evidence showing that the subject matter no longer warrants the classification that led to its imposition.",
+        hasError: false,
+      },
+      {
+        text: " Applications under secrecy orders continue to be examined by the USPTO",
+        hasError: true,
+        correctedText:
+          " Applications under secrecy orders may continue to be examined by the USPTO, but the patent will not be granted while the order remains in effect",
+        explanation:
+          "While applications under secrecy orders can still be examined, the patent itself will not be granted (issued) while the secrecy order is in effect. The statement as written omits this critical limitation on patent grant.",
+      },
+      {
+        text: " and patents are issued in the normal course upon allowance.",
+        hasError: false,
+      },
     ],
   },
 ];

@@ -186,14 +186,14 @@ export default function SpeedrunDrill({
       {/* Progress & running score */}
       <div className="mb-4">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">
             Prompt {currentIndex + 1} of {prompts.length}
           </span>
-          <span className="text-xs font-mono font-bold" style={{ color: accentColor }}>
+          <span className="text-sm font-mono font-bold" style={{ color: accentColor }}>
             {correctCount}/{currentIndex + (submitted ? 1 : 0)} correct
           </span>
         </div>
-        <div className="h-4 bg-[var(--color-border)] rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-[var(--color-primary)] rounded-full"
             animate={{ width: `${progress}%` }}
@@ -205,11 +205,11 @@ export default function SpeedrunDrill({
       {!submitted && (
         <div className="mb-4">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-[10px] font-bold text-[var(--color-text-muted)]">
+            <span className="text-xs font-bold text-[var(--color-text-muted)]">
               Time remaining
             </span>
             <span
-              className="text-xs font-mono font-bold"
+              className="text-sm font-mono font-bold"
               style={{
                 color:
                   timeLeft <= 10 ? "var(--color-incorrect)" : accentColor,
@@ -243,7 +243,7 @@ export default function SpeedrunDrill({
           {/* Difficulty badge */}
           <div className="mb-3">
             <span
-              className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
+              className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
               style={{
                 backgroundColor: `${diff.color}20`,
                 color: diff.color,
@@ -254,11 +254,11 @@ export default function SpeedrunDrill({
           </div>
 
           {/* Prompt */}
-          <div className="bg-white rounded-2xl p-4 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-4">
-            <p className="text-xs font-bold text-[var(--color-text-muted)] mb-1">
+          <div className="bg-white rounded-2xl p-4 border border-[var(--color-border)] shadow-sm mb-4">
+            <p className="text-sm font-bold text-[var(--color-text-muted)] mb-1">
               Name the section or statute:
             </p>
-            <p className="text-sm text-[var(--color-text-primary)] leading-relaxed font-bold">
+            <p className="text-base text-[var(--color-text-primary)] leading-relaxed font-bold">
               {prompt.prompt}
             </p>
           </div>
@@ -273,17 +273,17 @@ export default function SpeedrunDrill({
               onKeyDown={handleKeyDown}
               disabled={submitted}
               placeholder="Type your answer (e.g., 35 USC 184)..."
-              className="w-full text-sm font-semibold bg-[var(--color-surface)] border-2 border-[var(--color-border)] rounded-xl px-4 py-3 text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-[var(--color-selected)] disabled:opacity-60"
+              className="w-full text-base font-semibold bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl px-4 py-3 text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-[var(--color-selected)] disabled:opacity-60"
               data-testid="speedrun-input"
             />
             {!submitted && (
               <button
                 onClick={() => handleSubmit(userInput)}
                 disabled={!userInput.trim()}
-                className={`w-full mt-2 py-3 rounded-xl font-bold text-sm border-2 border-b-4 transition-colors disabled:opacity-40 uppercase tracking-wide active:border-b-2 active:translate-y-[2px] ${
+                className={`w-full mt-2 py-3 rounded-xl font-bold text-base transition-colors disabled:opacity-40 uppercase tracking-wide ${
                   userInput.trim()
-                    ? "bg-[var(--color-primary)] text-white border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)]"
-                    : "bg-[var(--color-surface)] text-[var(--color-text-muted)] border-[var(--color-border)] border-b-[var(--color-border-strong)]"
+                    ? "bg-[var(--color-primary)] text-white shadow-sm hover:shadow-md transition-shadow"
+                    : "bg-[var(--color-surface)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
                 }`}
               >
                 Submit
@@ -298,7 +298,7 @@ export default function SpeedrunDrill({
               animate={{ opacity: 1, height: "auto" }}
             >
               <div
-                className={`rounded-2xl p-4 text-sm mb-3 ${
+                className={`rounded-2xl p-4 text-base mb-3 ${
                   isCorrect
                     ? "bg-[var(--color-correct-bg)]"
                     : "bg-[var(--color-incorrect-bg)]"
@@ -325,11 +325,11 @@ export default function SpeedrunDrill({
                     </span>
                   )}
                 </div>
-                <p className="text-[var(--color-text-secondary)] text-xs font-semibold mb-1">
+                <p className="text-[var(--color-text-secondary)] text-sm font-semibold mb-1">
                   {prompt.explanation}
                 </p>
                 <p
-                  className="text-xs font-mono font-bold"
+                  className="text-sm font-mono font-bold"
                   style={{ color: accentColor }}
                 >
                   Answer: {prompt.canonicalAnswer}
@@ -338,7 +338,7 @@ export default function SpeedrunDrill({
 
               <button
                 onClick={handleNext}
-                className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
               >
                 {currentIndex < prompts.length - 1
                   ? "Next Prompt"

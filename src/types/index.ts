@@ -163,6 +163,21 @@ export interface VisualTimelineData {
 
 // --- Build Phase Types ---
 
+export interface FlowchartStep {
+  id: string;
+  label: string;
+}
+export interface FlowchartBuilderData {
+  id: string;
+  conceptId: string;
+  zoneSlug: ZoneSlug;
+  title: string;
+  statuteRef: string;
+  instruction: string;
+  steps: FlowchartStep[];     // correct order
+  distractors: FlowchartStep[];  // 2-3 wrong steps mixed in
+}
+
 export interface RuleBuilderData {
   id: string;
   conceptId: string;
@@ -187,6 +202,21 @@ export interface TableFillData {
 }
 
 // --- Recognize Phase Types ---
+
+export interface SpotTheErrorSegment {
+  text: string;
+  hasError: boolean;
+  correctedText?: string;
+  explanation?: string;
+}
+export interface SpotTheErrorData {
+  id: string;
+  zoneSlug: ZoneSlug;
+  title: string;
+  mpepRef: string;
+  instruction: string;
+  segments: SpotTheErrorSegment[];
+}
 
 export interface TrapDetectorQuestion {
   id: string;
@@ -224,6 +254,33 @@ export interface PatternHighlightExcerpt {
 }
 
 // --- Apply Phase Types ---
+
+export interface MatchingPair {
+  term: string;
+  definition: string;
+}
+export interface MatchingGameData {
+  id: string;
+  conceptId: string;
+  zoneSlug: ZoneSlug;
+  title: string;
+  instruction: string;
+  pairs: MatchingPair[];  // 5-6 pairs per game
+}
+
+export interface TimelineEvent {
+  id: string;
+  label: string;
+  description: string;
+}
+export interface TimelinePuzzleData {
+  id: string;
+  conceptId: string;
+  zoneSlug: ZoneSlug;
+  title: string;
+  instruction: string;
+  events: TimelineEvent[];  // correct order; component shuffles them
+}
 
 export interface ScenarioQuestion {
   id: string;

@@ -1,4 +1,4 @@
-import { RuleBuilderData, TableFillData } from "@/types";
+import { RuleBuilderData, TableFillData, FlowchartBuilderData, FlowchartStep } from "@/types";
 
 // ============================================================
 // Zone 6: The Border — Build Phase Content
@@ -274,6 +274,73 @@ export const ZONE6_TABLE_FILLS: TableFillData[] = [
       "Establishes timeline of violation",
       "Confirms no national security breach",
       "Diligent pursuit",
+    ],
+  },
+];
+
+// --- FLOWCHART BUILDERS ---
+// Students arrange procedural steps in the correct order
+
+export const ZONE6_FLOWCHARTS: FlowchartBuilderData[] = [
+  {
+    id: "z6-flow-1",
+    conceptId: "ffl-basic-rule",
+    zoneSlug: "the-border",
+    title: "Obtaining a Foreign Filing License",
+    statuteRef: "35 USC 184; 37 CFR 5.12",
+    instruction:
+      "Place the steps of the foreign filing license process in the correct order.",
+    steps: [
+      { id: "z6-flow-1-s1", label: "Inventor files a US patent application at the USPTO" },
+      { id: "z6-flow-1-s2", label: "Filing automatically constitutes a petition for a foreign filing license under 37 CFR 5.12" },
+      { id: "z6-flow-1-s3", label: "USPTO Licensing and Review division screens the application for national security concerns" },
+      { id: "z6-flow-1-s4", label: "If no security concerns, a foreign filing license is granted (typically printed on the filing receipt)" },
+      { id: "z6-flow-1-s5", label: "Applicant may file corresponding applications in foreign countries" },
+    ],
+    distractors: [
+      { id: "z6-flow-1-d1", label: "Applicant submits a separate fee payment to request the foreign filing license" },
+      { id: "z6-flow-1-d2", label: "State Department issues the foreign filing license directly to the applicant" },
+      { id: "z6-flow-1-d3", label: "Applicant waits 12 months before being eligible for a foreign filing license" },
+    ],
+  },
+  {
+    id: "z6-flow-2",
+    conceptId: "ffl-retroactive",
+    zoneSlug: "the-border",
+    title: "Retroactive Foreign Filing License Petition",
+    statuteRef: "35 USC 184; 37 CFR 5.25",
+    instruction:
+      "Place the steps for obtaining a retroactive foreign filing license in the correct order.",
+    steps: [
+      { id: "z6-flow-2-s1", label: "Applicant discovers that a foreign application was filed without first obtaining a foreign filing license" },
+      { id: "z6-flow-2-s2", label: "Applicant files a petition for a retroactive license under 37 CFR 5.25" },
+      { id: "z6-flow-2-s3", label: "Petition includes dates, countries of foreign filing, and a verified statement that the subject matter was not under a secrecy order" },
+      { id: "z6-flow-2-s4", label: "USPTO Licensing and Review evaluates whether the error was made in good faith and no national security breach occurred" },
+      { id: "z6-flow-2-s5", label: "If approved, retroactive license is granted and the US patent is not barred under 35 USC 185" },
+    ],
+    distractors: [
+      { id: "z6-flow-2-d1", label: "Applicant withdraws all foreign applications before petitioning for a retroactive license" },
+      { id: "z6-flow-2-d2", label: "USPTO automatically grants retroactive licenses after 6 months from filing" },
+    ],
+  },
+  {
+    id: "z6-flow-3",
+    conceptId: "ffl-penalties",
+    zoneSlug: "the-border",
+    title: "Penalty Assessment for Unauthorized Foreign Filing",
+    statuteRef: "35 USC 185; 35 USC 186",
+    instruction:
+      "Place the steps showing how penalties are assessed for filing abroad without a foreign filing license in the correct order.",
+    steps: [
+      { id: "z6-flow-3-s1", label: "Applicant files a patent application in a foreign country without obtaining a foreign filing license" },
+      { id: "z6-flow-3-s2", label: "USPTO or applicant discovers the unauthorized foreign filing" },
+      { id: "z6-flow-3-s3", label: "Under 35 USC 185, any US patent issuing on the same invention is rendered invalid" },
+      { id: "z6-flow-3-s4", label: "If the violation was willful, criminal penalties apply under 35 USC 186: fine up to $10,000 or imprisonment up to 2 years, or both" },
+    ],
+    distractors: [
+      { id: "z6-flow-3-d1", label: "USPTO imposes a surcharge fee and allows the patent to proceed normally" },
+      { id: "z6-flow-3-d2", label: "The foreign application is automatically invalidated by the foreign patent office" },
+      { id: "z6-flow-3-d3", label: "Applicant receives a 90-day grace period to cure the violation" },
     ],
   },
 ];

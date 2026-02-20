@@ -103,14 +103,14 @@ export default function ScenarioQuestions({
       {/* Progress */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">
             Question {currentIndex + 1} of {questions.length}
           </span>
-          <span className="text-xs font-mono font-bold" style={{ color: accentColor }}>
+          <span className="text-sm font-mono font-bold" style={{ color: accentColor }}>
             {question.citationRef}
           </span>
         </div>
-        <div className="h-4 bg-[var(--color-border)] rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-[var(--color-primary)] rounded-full"
             animate={{ width: `${progress}%` }}
@@ -128,7 +128,7 @@ export default function ScenarioQuestions({
           {/* Difficulty badge */}
           <div className="mb-3">
             <span
-              className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
+              className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
               style={{
                 backgroundColor: `${diffConfig.color}20`,
                 color: diffConfig.color,
@@ -140,8 +140,8 @@ export default function ScenarioQuestions({
           </div>
 
           {/* Stem */}
-          <div className="bg-white rounded-2xl p-4 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-4">
-            <p className="text-sm text-[var(--color-text-primary)] leading-relaxed font-semibold">
+          <div className="bg-white rounded-2xl p-4 border border-[var(--color-border)] shadow-sm mb-4">
+            <p className="text-base text-[var(--color-text-primary)] leading-relaxed font-semibold">
               {question.stem}
             </p>
           </div>
@@ -153,21 +153,21 @@ export default function ScenarioQuestions({
               const isSelected = selectedAnswer === i;
               const isCorrectOption = i === shuffledOpts.correctIndex;
 
-              let cardClass = "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] hover:bg-[var(--color-surface)] active:border-b-2 active:translate-y-[2px]";
+              let cardClass = "border border-[var(--color-border)] hover:bg-[var(--color-surface)] hover:shadow-sm transition-all";
 
               if (answered) {
                 if (isCorrectOption) {
                   cardClass =
-                    "border-2 border-b-4 border-[var(--color-correct)] border-b-[var(--color-correct-shadow)] bg-[var(--color-correct-bg)]";
+                    "border-2 border-[var(--color-correct)] bg-[var(--color-correct-bg)]";
                 } else if (
                   isSelected &&
                   !isCorrectOption
                 ) {
                   cardClass =
-                    "border-2 border-b-4 border-[var(--color-incorrect)] border-b-[var(--color-incorrect-shadow)] bg-[var(--color-incorrect-bg)]";
+                    "border-2 border-[var(--color-incorrect)] bg-[var(--color-incorrect-bg)]";
                 } else {
                   cardClass =
-                    "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border)] opacity-40";
+                    "border border-[var(--color-border)] opacity-40";
                 }
               }
 
@@ -177,7 +177,7 @@ export default function ScenarioQuestions({
                   onClick={() => handleSelectAnswer(i)}
                   disabled={answered}
                   data-testid={`option-${i}${isCorrectOption ? '-correct' : ''}`}
-                  className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-all ${cardClass}`}
+                  className={`w-full text-left p-3 rounded-xl text-base font-semibold transition-all ${cardClass}`}
                 >
                   <span className="text-[var(--color-text-muted)] mr-2 font-bold">
                     {letter})
@@ -195,7 +195,7 @@ export default function ScenarioQuestions({
               animate={{ opacity: 1, height: "auto" }}
             >
               <div
-                className={`rounded-2xl p-4 text-sm mb-3 ${
+                className={`rounded-2xl p-4 text-base mb-3 ${
                   isCorrect
                     ? "bg-[var(--color-correct-bg)]"
                     : "bg-[var(--color-incorrect-bg)]"
@@ -204,11 +204,11 @@ export default function ScenarioQuestions({
                 <p className={`font-extrabold mb-1 ${isCorrect ? "text-[var(--color-correct)]" : "text-[var(--color-incorrect)]"}`}>
                   {isCorrect ? "Correct!" : "Incorrect"}
                 </p>
-                <p className="text-[var(--color-text-secondary)] text-xs font-semibold">
+                <p className="text-[var(--color-text-secondary)] text-sm font-semibold">
                   {question.explanation}
                 </p>
                 <p
-                  className="text-xs font-mono font-bold mt-1"
+                  className="text-sm font-mono font-bold mt-1"
                   style={{ color: accentColor }}
                 >
                   {question.citationRef}
@@ -217,7 +217,7 @@ export default function ScenarioQuestions({
 
               <button
                 onClick={handleNext}
-                className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
               >
                 {currentIndex < questions.length - 1
                   ? "Next Question"

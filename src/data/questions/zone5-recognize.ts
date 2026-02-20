@@ -2,6 +2,7 @@ import {
   TrapDetectorQuestion,
   SourceSortItem,
   PatternHighlightExcerpt,
+  SpotTheErrorData,
 } from "@/types";
 
 // ============================================================
@@ -765,6 +766,180 @@ export const ZONE5_PATTERN_HIGHLIGHTS: PatternHighlightExcerpt[] = [
           "Restoration — once the order is lifted, the application resumes normal processing including publication and unrestricted appeals.",
       },
       { text: " and made available for publication.", isTestable: false },
+    ],
+  },
+];
+
+// --- SPOT THE ERROR ITEMS (4) ---
+// Passages with deliberate errors in legal facts
+
+export const ZONE5_SPOT_ERRORS: SpotTheErrorData[] = [
+  {
+    id: "z5-spot-1",
+    zoneSlug: "the-sealed-chamber",
+    title: "Secrecy Order Duration and Renewal Errors",
+    mpepRef: "MPEP 120 / 35 USC 181",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under 35 USC 181, a secrecy order may be imposed when the publication or disclosure of an invention would be detrimental to the national security.",
+        hasError: false,
+      },
+      {
+        text: "Once imposed, the secrecy order remains in effect for a period of two years",
+        hasError: true,
+        correctedText: "Once imposed, the secrecy order remains in effect for a period of one year",
+        explanation: "A secrecy order lasts 1 year, not 2 years. Under 35 USC 181, the order is effective for one year and may be renewed for additional one-year periods.",
+      },
+      {
+        text: "and may be renewed for additional periods upon notification by the head of the interested government agency.",
+        hasError: false,
+      },
+      {
+        text: "There is no statutory limit on the number of times a secrecy order may be renewed,",
+        hasError: false,
+      },
+      {
+        text: "meaning that in practice, some secrecy orders have remained in effect for decades.",
+        hasError: false,
+      },
+      {
+        text: "The determination to impose a secrecy order is made by the patent examiner",
+        hasError: true,
+        correctedText: "The determination to impose a secrecy order is made by the head of an interested government agency",
+        explanation: "The patent examiner does not decide whether to impose a secrecy order. Under 35 USC 181, the head of an interested government agency makes the determination that publication would be detrimental to national security, and the Commissioner then issues the order.",
+      },
+      {
+        text: "who notifies the Commissioner, and the Commissioner shall order the invention kept secret.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z5-spot-2",
+    zoneSlug: "the-sealed-chamber",
+    title: "Secrecy Order Type Classification Errors",
+    mpepRef: "MPEP 120",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "There are three types of secrecy orders, each imposing escalating levels of restriction.",
+        hasError: false,
+      },
+      {
+        text: "Type I secrecy orders are the least restrictive, permitting the filing of corresponding patent applications in up to 12 specified countries",
+        hasError: true,
+        correctedText: "Type I secrecy orders are the least restrictive, permitting the filing of corresponding patent applications in up to 18 specified countries",
+        explanation: "Type I orders permit filing in up to 18 specified allied countries, not 12. This is a commonly tested number on the patent bar exam.",
+      },
+      {
+        text: "that have security agreements with the United States.",
+        hasError: false,
+      },
+      {
+        text: "Type II secrecy orders prohibit any filing in a foreign country but do not restrict all disclosure of the subject matter.",
+        hasError: false,
+      },
+      {
+        text: "Type III secrecy orders are the most restrictive, prohibiting any disclosure of the subject matter whatsoever to any unauthorized person.",
+        hasError: false,
+      },
+      {
+        text: "When a secrecy order is imposed, any previously granted foreign filing license remains valid for applications already in progress",
+        hasError: true,
+        correctedText: "When a secrecy order is imposed, any previously granted foreign filing license is automatically revoked",
+        explanation: "Under 37 CFR 5.2, a secrecy order automatically revokes any foreign filing license that has been granted. There is no carve-out for applications in progress.",
+      },
+      {
+        text: "until the secrecy order is rescinded.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z5-spot-3",
+    zoneSlug: "the-sealed-chamber",
+    title: "Secrecy Order Violation Consequences Errors",
+    mpepRef: "MPEP 120 / 35 USC 182 / 35 USC 186",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Violating a secrecy order carries severe consequences under federal law.",
+        hasError: false,
+      },
+      {
+        text: "Under 35 USC 182, if an applicant willfully publishes or discloses an invention subject to a secrecy order, the invention shall be deemed abandoned",
+        hasError: false,
+      },
+      {
+        text: "but the inventor retains all claims for compensation against the United States government.",
+        hasError: true,
+        correctedText: "and the inventor forfeits all claims for compensation against the United States government.",
+        explanation: "Under 35 USC 182, the inventor forfeits (not retains) all claims against the government. Violation results in both abandonment and forfeiture of government claims.",
+      },
+      {
+        text: "In addition to these civil consequences, criminal penalties may apply.",
+        hasError: false,
+      },
+      {
+        text: "Under 35 USC 186, willful violation of a secrecy order is punishable by a fine of not more than $10,000,",
+        hasError: false,
+      },
+      {
+        text: "or imprisonment for not more than 5 years, or both.",
+        hasError: true,
+        correctedText: "or imprisonment for not more than 2 years, or both.",
+        explanation: "The maximum imprisonment under 35 USC 186 is 2 years, not 5 years. The correct penalties are a fine of up to $10,000 and/or imprisonment for up to 2 years.",
+      },
+      {
+        text: "Criminal penalties require a showing of willful conduct; inadvertent disclosure does not trigger criminal liability.",
+        hasError: false,
+      },
+      {
+        text: "The secrecy order extends to any application containing subject matter substantially the same as that under the order, as specified in 37 CFR 5.3.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z5-spot-4",
+    zoneSlug: "the-sealed-chamber",
+    title: "Compensation and Examination Under Secrecy Errors",
+    mpepRef: "MPEP 120 / MPEP 130 / 35 USC 183",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under 35 USC 183, an inventor whose application is subject to a secrecy order has the right to seek compensation for damages caused by the order.",
+        hasError: false,
+      },
+      {
+        text: "This right to compensation arises when the applicant is notified that the application is otherwise in condition for allowance.",
+        hasError: false,
+      },
+      {
+        text: "The applicant must file a compensation claim within 2 years of the secrecy order being lifted,",
+        hasError: true,
+        correctedText: "The right to compensation shall not be waived or forfeited by reason of any failure to file,",
+        explanation: "There is no 2-year filing deadline for compensation claims under 35 USC 183. The statute provides that the right to compensation shall not be waived or forfeited by reason of any failure to file for such compensation.",
+      },
+      {
+        text: "or the right is waived.",
+        hasError: false,
+      },
+      {
+        text: "Regarding examination, under MPEP 130, examination of an application under a secrecy order is suspended until the order is lifted.",
+        hasError: true,
+        correctedText: "Regarding examination, under MPEP 130, examination of an application under a secrecy order continues in the same manner as other applications.",
+        explanation: "Examination is NOT suspended. Under MPEP 130, examination proceeds normally under the secrecy order. The application is not published and appeal rights are restricted, but examination itself continues.",
+      },
+      {
+        text: "Applications bearing security markings from a government agency are forwarded to the Licensing and Review office for initial processing under MPEP 121.",
+        hasError: false,
+      },
+      {
+        text: "Appeal to the Patent Trial and Appeal Board is restricted for applications under secrecy orders, to maintain the confidentiality of the subject matter.",
+        hasError: false,
+      },
     ],
   },
 ];

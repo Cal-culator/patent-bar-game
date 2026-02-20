@@ -2,6 +2,7 @@ import {
   TrapDetectorQuestion,
   SourceSortItem,
   PatternHighlightExcerpt,
+  SpotTheErrorData,
 } from "@/types";
 
 // ============================================================
@@ -820,6 +821,183 @@ export const ZONE1_PATTERN_HIGHLIGHTS: PatternHighlightExcerpt[] = [
       {
         text: " in a pending or patented application.",
         isTestable: false,
+      },
+    ],
+  },
+];
+
+// --- SPOT THE ERROR ITEMS (4) ---
+// Each has 6-8 segments forming a readable paragraph, with 2-3 deliberate errors
+
+export const ZONE1_SPOT_ERRORS: SpotTheErrorData[] = [
+  {
+    id: "z1-spot-1",
+    zoneSlug: "the-vault",
+    title: "Publication Timeline Errors",
+    mpepRef: "MPEP 2100 — 35 USC 122(b)",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under 35 USC 122(b)(1)(A), each patent application shall be published promptly after the expiration of a period of ",
+        hasError: false,
+      },
+      {
+        text: "12 months from the earliest filing date",
+        hasError: true,
+        correctedText: "18 months from the earliest filing date",
+        explanation:
+          "The publication period is 18 months, not 12 months. Twelve months is the pendency period for provisional applications.",
+      },
+      {
+        text: " for which a benefit is sought. This publication requirement applies to utility and plant applications filed under 35 USC 111(a). ",
+        hasError: false,
+      },
+      {
+        text: "Design patent applications are also subject to this 18-month publication requirement",
+        hasError: true,
+        correctedText:
+          "Design patent applications are not subject to the 18-month publication requirement and are published only upon grant",
+        explanation:
+          "Design patents are exempt from 18-month publication under 35 USC 122(b)(2)(A)(iv). They are only published when the patent is granted.",
+      },
+      {
+        text: " and their files become available for public inspection upon publication. ",
+        hasError: false,
+      },
+      {
+        text: "At the request of the applicant, an application may be published earlier than the end of the 18-month period.",
+        hasError: false,
+      },
+      {
+        text: " The applicant may also request that the application not be published if certain conditions regarding foreign filing are met.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z1-spot-2",
+    zoneSlug: "the-vault",
+    title: "Non-Publication Request Errors",
+    mpepRef: "MPEP 2100 — 35 USC 122(b)(2)(B)",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "An applicant may request non-publication of a patent application under 35 USC 122(b)(2)(B)(i). To qualify, the applicant must certify that the invention ",
+        hasError: false,
+      },
+      {
+        text: "has not been and will not be the subject of an application filed in any foreign country",
+        hasError: true,
+        correctedText:
+          "has not been and will not be the subject of an application filed in a foreign country that requires publication of applications 18 months after filing",
+        explanation:
+          "The restriction applies only to foreign countries that require 18-month publication, not to all foreign countries. Filing in a country that does not require publication would not disqualify the request.",
+      },
+      {
+        text: ". The non-publication request must be made at the time of filing the application. ",
+        hasError: false,
+      },
+      {
+        text: "If the applicant later files in a foreign country that requires publication, the applicant must notify the USPTO within 45 days",
+        hasError: false,
+      },
+      {
+        text: " or the application will be published at the next scheduled publication date. ",
+        hasError: true,
+        correctedText:
+          " or the application may be regarded as abandoned.",
+        explanation:
+          "Failure to notify the USPTO within 45 days may result in the application being regarded as abandoned under 35 USC 122(b)(2)(B)(iii), not merely published at the next date.",
+      },
+      {
+        text: "Provisional applications do not require a non-publication request because they are not subject to the 18-month publication requirement.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z1-spot-3",
+    zoneSlug: "the-vault",
+    title: "Confidentiality and Access Errors",
+    mpepRef: "MPEP 2100 — 37 CFR 1.14",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under 35 USC 122(a), patent applications shall be kept in confidence by the Patent and Trademark Office. ",
+        hasError: false,
+      },
+      {
+        text: "No information concerning an application shall be given without authority of the applicant. ",
+        hasError: false,
+      },
+      {
+        text: "Once a patent is granted or the application is published, the file becomes open to public inspection under 37 CFR 1.14(a). ",
+        hasError: false,
+      },
+      {
+        text: "Under 37 CFR 1.14(e), the public may obtain status information including whether the application is pending, abandoned, patented, or under appeal",
+        hasError: true,
+        correctedText:
+          "Under 37 CFR 1.14(e), the public may obtain status information including whether the application is pending, abandoned, or patented",
+        explanation:
+          "The status categories available to the public under 37 CFR 1.14(e) are limited to pending, abandoned, or patented. 'Under appeal' is not one of the disclosed status categories.",
+      },
+      {
+        text: ". Unauthorized disclosure of patent application information by a government employee may result in ",
+        hasError: false,
+      },
+      {
+        text: "administrative sanctions including reassignment or demotion under 35 USC 122(a)",
+        hasError: true,
+        correctedText:
+          "criminal penalties including fines, imprisonment, and removal from office under 18 USC 1905",
+        explanation:
+          "Unauthorized disclosure by a government employee is subject to criminal penalties under 18 USC 1905, not merely administrative sanctions. The statute provides for fines, imprisonment, and removal from office.",
+      },
+      {
+        text: ". The Office takes these confidentiality obligations seriously and enforces compliance rigorously.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z1-spot-4",
+    zoneSlug: "the-vault",
+    title: "Access to Abandoned Applications Errors",
+    mpepRef: "MPEP 2100 — 37 CFR 1.14(i)",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Unpublished abandoned patent applications remain confidential under 35 USC 122(a) even after abandonment. ",
+        hasError: false,
+      },
+      {
+        text: "A member of the public may gain access to such an application by filing a petition under 37 CFR 1.14(i). ",
+        hasError: false,
+      },
+      {
+        text: "The petitioner must demonstrate that the application is relied upon as a reference in a pending or patented application. ",
+        hasError: false,
+      },
+      {
+        text: "Alternatively, a member of the public may obtain access by filing a Freedom of Information Act request under 5 USC 552",
+        hasError: true,
+        correctedText:
+          "Unpublished patent application files are largely exempt from FOIA under 35 USC 122, which provides that applications shall be kept in confidence",
+        explanation:
+          "FOIA does not override patent application confidentiality. Unpublished applications are exempt from FOIA disclosure under the patent-specific confidentiality provisions of 35 USC 122.",
+      },
+      {
+        text: ". Once an abandoned application has been published, however, it is available for public inspection ",
+        hasError: false,
+      },
+      {
+        text: "through Patent Center, and no petition is required",
+        hasError: false,
+      },
+      {
+        text: " because published applications are open to the public under 37 CFR 1.14(a).",
+        hasError: false,
       },
     ],
   },

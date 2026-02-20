@@ -2,6 +2,8 @@ import {
   ScenarioQuestion,
   QuickFireQuestion,
   ProceduralCascadeData,
+  MatchingGameData,
+  TimelinePuzzleData,
 } from "@/types";
 
 // ============================================================
@@ -423,6 +425,272 @@ export const ZONE7_CASCADES: ProceduralCascadeData[] = [
         correctIndex: 1,
         explanation:
           "Even after revival, the underlying obligation remains: EnergyStart must file the required statement under MPEP 151 with the three required elements — contract identification, invention nexus, and government rights.",
+      },
+    ],
+  },
+];
+
+// --- MATCHING GAMES (4) ---
+// Term-definition matching for government interest in patents concepts
+
+export const ZONE7_MATCHING: MatchingGameData[] = [
+  {
+    id: "z7-match-1",
+    conceptId: "gov-doe-authority",
+    zoneSlug: "the-agencies",
+    title: "DOE and NASA Statutory Authority",
+    instruction:
+      "Match each government agency or statute with its correct description.",
+    pairs: [
+      {
+        term: "42 USC 2182",
+        definition:
+          "Statutory basis for DOE authority over inventions made under Atomic Energy Commission/DOE contracts",
+      },
+      {
+        term: "51 USC 20135",
+        definition:
+          "Statutory basis for NASA authority over inventions made by contractors under NASA contracts",
+      },
+      {
+        term: "DOE subject matter",
+        definition:
+          "Inventions relating to atomic energy, including nuclear reactors, enrichment, and waste processing",
+      },
+      {
+        term: "NASA subject matter",
+        definition:
+          "Inventions relating to aeronautical and space activities made under NASA contracts",
+      },
+      {
+        term: "MPEP 150",
+        definition:
+          "Section of the Manual of Patent Examining Procedure covering government interest in patents and the 45-day letter process",
+      },
+    ],
+  },
+  {
+    id: "z7-match-2",
+    conceptId: "gov-45day-letter",
+    zoneSlug: "the-agencies",
+    title: "The 45-Day Letter Process",
+    instruction:
+      "Match each element of the 45-day letter process with its correct description.",
+    pairs: [
+      {
+        term: "45-day letter",
+        definition:
+          "Notice sent by the USPTO to an applicant when DOE or NASA identifies a patent application as involving a contractor invention",
+      },
+      {
+        term: "30-day response deadline",
+        definition:
+          "The actual time the applicant has to respond to a 45-day letter, despite its name",
+      },
+      {
+        term: "Agency identification",
+        definition:
+          "The step where DOE or NASA reviews filed applications and flags those involving contractor inventions",
+      },
+      {
+        term: "Failure to respond",
+        definition:
+          "May result in the patent application being regarded as abandoned",
+      },
+      {
+        term: "Non-extendable deadline",
+        definition:
+          "The 30-day response period is statutory and may not be extended under standard 37 CFR 1.136 procedures",
+      },
+    ],
+  },
+  {
+    id: "z7-match-3",
+    conceptId: "gov-statement-content",
+    zoneSlug: "the-agencies",
+    title: "Statement Requirements Under MPEP 151",
+    instruction:
+      "Match each required element of the response statement with its description.",
+    pairs: [
+      {
+        term: "Contract identification",
+        definition:
+          "The statement must specify the government contract number under which the invention was made",
+      },
+      {
+        term: "Invention nexus",
+        definition:
+          "The statement must confirm whether the invention was conceived or first actually reduced to practice under the contract",
+      },
+      {
+        term: "Government rights description",
+        definition:
+          "The statement must describe what property rights the government holds, including any waiver",
+      },
+      {
+        term: "Waiver assertion",
+        definition:
+          "If the agency has waived its title rights, the statement should describe the waiver and any retained license",
+      },
+      {
+        term: "MPEP 151",
+        definition:
+          "Section specifying the three required elements for statements filed in response to 45-day letters",
+      },
+    ],
+  },
+  {
+    id: "z7-match-4",
+    conceptId: "gov-substitute-statement",
+    zoneSlug: "the-agencies",
+    title: "Substitute Statements and Special Situations",
+    instruction:
+      "Match each special situation term with its correct description.",
+    pairs: [
+      {
+        term: "Substitute statement",
+        definition:
+          "Filed by a knowledgeable party when the inventor cannot be reached or refuses to cooperate",
+      },
+      {
+        term: "Unavailability explanation",
+        definition:
+          "Additional requirement in a substitute statement: why the inventor cannot sign the regular statement",
+      },
+      {
+        term: "Multiple inventors — mixed status",
+        definition:
+          "Only those inventors who worked under the government contract must file statements",
+      },
+      {
+        term: "Agency waiver of rights",
+        definition:
+          "DOE or NASA may relinquish title, typically retaining only a non-exclusive government license",
+      },
+      {
+        term: "Government non-exclusive license",
+        definition:
+          "Right retained by the government to practice the invention even after waiving title to the contractor",
+      },
+    ],
+  },
+];
+
+// --- TIMELINE PUZZLES (3) ---
+// Arrange events in correct chronological/procedural order
+
+export const ZONE7_TIMELINES: TimelinePuzzleData[] = [
+  {
+    id: "z7-timeline-1",
+    conceptId: "gov-45day-letter",
+    zoneSlug: "the-agencies",
+    title: "Standard 45-Day Letter Response Process",
+    instruction:
+      "Arrange these steps in the correct order for responding to a 45-day letter from the USPTO.",
+    events: [
+      {
+        id: "z7-tl1-evt-1",
+        label: "Contractor files patent application",
+        description:
+          "A DOE or NASA contractor files a patent application at the USPTO for an invention developed under a government contract.",
+      },
+      {
+        id: "z7-tl1-evt-2",
+        label: "Agency identifies the application",
+        description:
+          "DOE or NASA reviews newly filed applications and identifies the application as involving a contractor invention under their jurisdiction.",
+      },
+      {
+        id: "z7-tl1-evt-3",
+        label: "USPTO issues 45-day letter",
+        description:
+          "The USPTO sends the applicant a 45-day letter requiring a statement about the government contract and the government's rights within 30 days.",
+      },
+      {
+        id: "z7-tl1-evt-4",
+        label: "Applicant files required statement",
+        description:
+          "The applicant files a statement identifying the contract, confirming the invention was made under it, and describing the government's property rights.",
+      },
+      {
+        id: "z7-tl1-evt-5",
+        label: "Agency determines disposition of rights",
+        description:
+          "The agency reviews the statement and decides whether to claim title, waive rights retaining a license, or take other action regarding the invention.",
+      },
+    ],
+  },
+  {
+    id: "z7-timeline-2",
+    conceptId: "gov-substitute-statement",
+    zoneSlug: "the-agencies",
+    title: "Substitute Statement Process for Unavailable Inventor",
+    instruction:
+      "Arrange these steps in the correct order when an inventor is unavailable to sign a required statement.",
+    events: [
+      {
+        id: "z7-tl2-evt-1",
+        label: "45-day letter received",
+        description:
+          "The USPTO sends a 45-day letter requiring a statement from the inventor who worked under the government contract.",
+      },
+      {
+        id: "z7-tl2-evt-2",
+        label: "Diligent efforts to reach inventor",
+        description:
+          "The applicant or assignee makes diligent efforts to contact the inventor, documenting all attempts.",
+      },
+      {
+        id: "z7-tl2-evt-3",
+        label: "Inventor determined unavailable",
+        description:
+          "After diligent efforts, the inventor cannot be reached or refuses to cooperate, necessitating a substitute statement.",
+      },
+      {
+        id: "z7-tl2-evt-4",
+        label: "Substitute statement filed",
+        description:
+          "A knowledgeable party files a substitute statement containing all required elements plus an explanation of the inventor's unavailability, within the 30-day deadline.",
+      },
+    ],
+  },
+  {
+    id: "z7-timeline-3",
+    conceptId: "gov-abandonment",
+    zoneSlug: "the-agencies",
+    title: "Missed Deadline — Abandonment and Revival",
+    instruction:
+      "Arrange these events in the correct order when an applicant misses the 30-day response deadline.",
+    events: [
+      {
+        id: "z7-tl3-evt-1",
+        label: "45-day letter issued by USPTO",
+        description:
+          "The USPTO sends the 45-day letter on behalf of DOE or NASA, starting the 30-day response clock.",
+      },
+      {
+        id: "z7-tl3-evt-2",
+        label: "30-day deadline passes without response",
+        description:
+          "The applicant fails to file the required statement within 30 days. The statutory deadline is not extendable under 37 CFR 1.136.",
+      },
+      {
+        id: "z7-tl3-evt-3",
+        label: "Application regarded as abandoned",
+        description:
+          "Because no timely response was filed, the USPTO may regard the application as abandoned under MPEP 150.",
+      },
+      {
+        id: "z7-tl3-evt-4",
+        label: "Petition to revive filed",
+        description:
+          "The applicant files a petition to revive, demonstrating the delay was unintentional and satisfying both USPTO and agency requirements.",
+      },
+      {
+        id: "z7-tl3-evt-5",
+        label: "Required statement filed upon revival",
+        description:
+          "Even after successful revival, the applicant must still file the required statement under MPEP 151 identifying the contract and the government's rights.",
       },
     ],
   },

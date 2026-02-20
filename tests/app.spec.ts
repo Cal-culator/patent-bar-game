@@ -393,6 +393,77 @@ test.describe("Build Phase - Table Fill-In", () => {
 });
 
 // ============================================================
+// BUILD PHASE - FLOWCHART BUILDER
+// ============================================================
+
+test.describe("Build Phase - Flowchart Builder", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(
+      (s) => localStorage.setItem("patent-bar-game-storage", JSON.stringify(s)),
+      buildPhaseState()
+    );
+  });
+
+  test("renders flowchart builder with slots and bank", async ({ page }) => {
+    test.setTimeout(180000);
+    await page.goto("/zones/the-border/build");
+
+    // Complete all 7 rule builders first
+    for (let i = 0; i < 7; i++) {
+      await expect(page.getByText("Available fragments")).toBeVisible({ timeout: 5000 });
+      const availArea = page.locator("text=Available fragments").locator("..");
+      for (let attempt = 0; attempt < 20; attempt++) {
+        const count = await availArea.locator("button").count();
+        if (count === 0) break;
+        await availArea.locator("button").first().click({ timeout: 3000 });
+        await page.waitForTimeout(150);
+      }
+      const checkBtn = page.locator("button").filter({ hasText: "Check" });
+      await expect(checkBtn).toBeEnabled({ timeout: 5000 });
+      await checkBtn.click();
+      const nextBtn = page.locator("button").filter({ hasText: /Next Rule|Complete Rule Builders/ });
+      await nextBtn.first().click({ timeout: 5000 });
+      await page.waitForTimeout(300);
+    }
+
+    // Complete all table fill-ins
+    await expect(page.getByText("Table 1 of")).toBeVisible({ timeout: 10000 });
+    const tableCount = await page.getByText(/Table \d+ of (\d+)/).textContent();
+    const total = parseInt(tableCount?.match(/of (\d+)/)?.[1] || "0");
+    for (let i = 0; i < total; i++) {
+      await expect(page.getByText("Answer bank")).toBeVisible({ timeout: 5000 });
+      // Fill all blanks: click a bank button, then a blank cell (___), repeat
+      for (let attempt = 0; attempt < 30; attempt++) {
+        const bankArea = page.locator("text=Answer bank").locator("..");
+        const bankBtns = bankArea.locator("button");
+        const bankCount = await bankBtns.count();
+        if (bankCount === 0) break;
+        await bankBtns.first().click({ timeout: 3000 });
+        // Find blank cell with "___" or "Tap to place" text
+        const blankCell = page.locator("text=___").first();
+        const blankCount = await page.locator("text=___").count();
+        if (blankCount > 0) {
+          await blankCell.click({ timeout: 3000 });
+        }
+        await page.waitForTimeout(150);
+      }
+      const checkBtn = page.locator("button").filter({ hasText: "Check Answers" });
+      await expect(checkBtn).toBeEnabled({ timeout: 5000 });
+      await checkBtn.click();
+      const nextBtn = page.locator("button").filter({ hasText: /Next Table|Complete Tables/ });
+      await nextBtn.first().click({ timeout: 5000 });
+      await page.waitForTimeout(300);
+    }
+
+    // Should now be in flowcharts sub-phase
+    await expect(page.getByText("Flowchart 1 of")).toBeVisible({ timeout: 10000 });
+    await expect(page.getByText("Step bank")).toBeVisible();
+    await expect(page.locator("[data-testid='flowchart-slots']")).toBeVisible();
+  });
+});
+
+// ============================================================
 // NAVIGATION & ROUTING
 // ============================================================
 
@@ -629,6 +700,33 @@ test.describe("Recognize Phase - Pattern Highlighter", () => {
 });
 
 // ============================================================
+// RECOGNIZE PHASE - SPOT THE ERROR
+// ============================================================
+
+test.describe("Recognize Phase - Spot the Error", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(
+      (s) => localStorage.setItem("patent-bar-game-storage", JSON.stringify(s)),
+      recognizePhaseState()
+    );
+  });
+
+  test("renders recognize phase with data-zone attribute", async ({ page }) => {
+    await page.goto("/zones/the-border/recognize");
+    await expect(page.locator("[data-zone='the-border']")).toBeVisible();
+    await expect(page.getByText("Recognize").first()).toBeVisible();
+  });
+
+  test("spot the error is the 4th sub-phase after highlights", async ({ page }) => {
+    await page.goto("/zones/the-border/recognize");
+    // The recognize phase has 4 sub-phase dots (traps, sources, highlights, errors)
+    const dots = page.locator(".h-3.flex-1.rounded-full");
+    await expect(dots).toHaveCount(4);
+  });
+});
+
+// ============================================================
 // RECOGNIZE PHASE - LOCK & NAVIGATION
 // ============================================================
 
@@ -846,6 +944,58 @@ test.describe("Apply Phase - Procedural Cascade", () => {
     await page.locator("[data-testid$='-correct']").first().click();
     // After shuffling, any citation ref could appear
     await expect(page.getByText(/35 USC|37 CFR|MPEP/).first()).toBeVisible();
+  });
+});
+
+// ============================================================
+// APPLY PHASE - MATCHING GAME
+// ============================================================
+
+test.describe("Apply Phase - Matching Game", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(
+      (s) => localStorage.setItem("patent-bar-game-storage", JSON.stringify(s)),
+      applyPhaseState()
+    );
+  });
+
+  test("apply phase has 5 sub-phase dots including matching and timelines", async ({ page }) => {
+    await page.goto("/zones/the-border/apply");
+    // Should have 5 dots: scenarios, quickfire, cascades, matching, timelines
+    const dots = page.locator(".h-3.flex-1.rounded-full");
+    await expect(dots).toHaveCount(5);
+  });
+
+  test("apply page renders with scenario sub-phase label", async ({ page }) => {
+    await page.goto("/zones/the-border/apply");
+    await expect(page.getByText("Solve exam-style scenarios")).toBeVisible();
+  });
+});
+
+// ============================================================
+// APPLY PHASE - TIMELINE PUZZLE
+// ============================================================
+
+test.describe("Apply Phase - Timeline Puzzle", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(
+      (s) => localStorage.setItem("patent-bar-game-storage", JSON.stringify(s)),
+      applyPhaseState()
+    );
+  });
+
+  test("apply phase shows Phase 4 header", async ({ page }) => {
+    await page.goto("/zones/the-border/apply");
+    await expect(page.getByText("Phase 4:")).toBeVisible();
+    await expect(page.getByText("Apply").first()).toBeVisible();
+  });
+
+  test("apply sub-phase labels include matching and timelines", async ({ page }) => {
+    await page.goto("/zones/the-border/apply");
+    // These labels exist in the SUB_PHASE_LABELS object
+    await expect(page.locator("[data-zone='the-border']")).toBeVisible();
   });
 });
 

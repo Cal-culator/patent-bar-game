@@ -133,14 +133,14 @@ export default function OpenBookSim({
       {/* Progress */}
       <div className="mb-4">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">
             Question {currentIndex + 1} of {questions.length}
           </span>
-          <span className="text-xs font-mono font-bold" style={{ color: accentColor }}>
+          <span className="text-sm font-mono font-bold" style={{ color: accentColor }}>
             {question.citationRef}
           </span>
         </div>
-        <div className="h-4 bg-[var(--color-border)] rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-[var(--color-primary)] rounded-full"
             animate={{ width: `${progress}%` }}
@@ -151,15 +151,15 @@ export default function OpenBookSim({
       {/* Search hint */}
       {question.searchHint && !answered && (
         <div className="mb-3">
-          <span className="text-[10px] uppercase tracking-wider font-bold text-[var(--color-text-muted)]">
+          <span className="text-xs uppercase tracking-wider font-bold text-[var(--color-text-muted)]">
             Hint: try searching for &ldquo;{question.searchHint}&rdquo;
           </span>
         </div>
       )}
 
       {/* Stem */}
-      <div className="bg-white rounded-2xl p-4 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-4">
-        <p className="text-sm text-[var(--color-text-primary)] leading-relaxed font-semibold">
+      <div className="bg-white rounded-2xl p-4 border border-[var(--color-border)] shadow-sm mb-4">
+        <p className="text-base text-[var(--color-text-primary)] leading-relaxed font-semibold">
           {question.stem}
         </p>
       </div>
@@ -171,18 +171,18 @@ export default function OpenBookSim({
           const isSelected = selectedAnswer === i;
           const isCorrectOption = i === shuffledOpts.correctIndex;
 
-          let cardClass = "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] hover:bg-[var(--color-surface)] active:border-b-2 active:translate-y-[2px]";
+          let cardClass = "border border-[var(--color-border)] hover:bg-[var(--color-surface)] hover:shadow-sm transition-all";
 
           if (answered) {
             if (isCorrectOption) {
               cardClass =
-                "border-2 border-b-4 border-[var(--color-correct)] border-b-[var(--color-correct-shadow)] bg-[var(--color-correct-bg)]";
+                "border-2 border-[var(--color-correct)] bg-[var(--color-correct-bg)]";
             } else if (isSelected && !isCorrectOption) {
               cardClass =
-                "border-2 border-b-4 border-[var(--color-incorrect)] border-b-[var(--color-incorrect-shadow)] bg-[var(--color-incorrect-bg)]";
+                "border-2 border-[var(--color-incorrect)] bg-[var(--color-incorrect-bg)]";
             } else {
               cardClass =
-                "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border)] opacity-40";
+                "border border-[var(--color-border)] opacity-40";
             }
           }
 
@@ -192,7 +192,7 @@ export default function OpenBookSim({
               onClick={() => handleSelectAnswer(i)}
               disabled={answered}
               data-testid={`option-${i}${isCorrectOption ? '-correct' : ''}`}
-              className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-all ${cardClass}`}
+              className={`w-full text-left p-3 rounded-xl text-base font-semibold transition-all ${cardClass}`}
             >
               <span className="text-[var(--color-text-muted)] mr-2 font-bold">
                 {letter})
@@ -210,7 +210,7 @@ export default function OpenBookSim({
           animate={{ opacity: 1, height: "auto" }}
         >
           <div
-            className={`rounded-2xl p-4 text-sm mb-3 ${
+            className={`rounded-2xl p-4 text-base mb-3 ${
               isCorrect
                 ? "bg-[var(--color-correct-bg)]"
                 : "bg-[var(--color-incorrect-bg)]"
@@ -219,16 +219,16 @@ export default function OpenBookSim({
             <p className={`font-extrabold mb-1 ${isCorrect ? "text-[var(--color-correct)]" : "text-[var(--color-incorrect)]"}`}>
               {isCorrect ? "Correct!" : "Incorrect"}
             </p>
-            <p className="text-[var(--color-text-secondary)] text-xs font-semibold mb-2">
+            <p className="text-[var(--color-text-secondary)] text-sm font-semibold mb-2">
               {question.explanation}
             </p>
 
             {/* Score breakdown */}
-            <div className="border-t-2 border-[var(--color-border)] pt-2 mt-2">
-              <p className="text-[10px] uppercase tracking-wider font-bold text-[var(--color-text-muted)] mb-1">
+            <div className="border-t border-[var(--color-border)] pt-2 mt-2">
+              <p className="text-xs uppercase tracking-wider font-bold text-[var(--color-text-muted)] mb-1">
                 Score Breakdown
               </p>
-              <div className="grid grid-cols-2 gap-1 text-xs font-semibold">
+              <div className="grid grid-cols-2 gap-1 text-sm font-semibold">
                 <span className="text-[var(--color-text-muted)]">
                   Correctness:
                 </span>
@@ -255,7 +255,7 @@ export default function OpenBookSim({
                 </span>
               </div>
               <p
-                className="text-xs font-extrabold mt-1"
+                className="text-sm font-extrabold mt-1"
                 style={{ color: accentColor }}
               >
                 Total: {lastScore.total}/100
@@ -265,7 +265,7 @@ export default function OpenBookSim({
 
           <button
             onClick={handleNext}
-            className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+            className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
           >
             {currentIndex < questions.length - 1
               ? "Next Question"
@@ -282,20 +282,20 @@ export default function OpenBookSim({
       <div className="flex gap-2 mb-4 md:hidden">
         <button
           onClick={() => setMobileTab("question")}
-          className={`flex-1 py-2 rounded-xl text-xs font-bold border-2 border-b-4 transition-colors active:border-b-2 active:translate-y-[2px] ${
+          className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all ${
             mobileTab === "question"
-              ? "border-[var(--color-selected)] border-b-[var(--color-selected-shadow)] bg-[var(--color-selected-bg)] text-[var(--color-selected)]"
-              : "border-[var(--color-border)] border-b-[var(--color-border-strong)] text-[var(--color-text-secondary)]"
+              ? "border-2 border-[var(--color-selected)] bg-[var(--color-selected-bg)] text-[var(--color-selected)]"
+              : "border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:shadow-sm"
           }`}
         >
           Question
         </button>
         <button
           onClick={() => setMobileTab("mpep")}
-          className={`flex-1 py-2 rounded-xl text-xs font-bold border-2 border-b-4 transition-colors active:border-b-2 active:translate-y-[2px] ${
+          className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all ${
             mobileTab === "mpep"
-              ? "border-[var(--color-selected)] border-b-[var(--color-selected-shadow)] bg-[var(--color-selected-bg)] text-[var(--color-selected)]"
-              : "border-[var(--color-border)] border-b-[var(--color-border-strong)] text-[var(--color-text-secondary)]"
+              ? "border-2 border-[var(--color-selected)] bg-[var(--color-selected-bg)] text-[var(--color-selected)]"
+              : "border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:shadow-sm"
           }`}
         >
           MPEP Reference

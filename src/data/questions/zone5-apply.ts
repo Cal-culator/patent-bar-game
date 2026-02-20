@@ -2,6 +2,8 @@ import {
   ScenarioQuestion,
   QuickFireQuestion,
   ProceduralCascadeData,
+  MatchingGameData,
+  TimelinePuzzleData,
 } from "@/types";
 
 // ============================================================
@@ -424,6 +426,271 @@ export const ZONE5_CASCADES: ProceduralCascadeData[] = [
         correctIndex: 1,
         explanation:
           "A secrecy order can be rescinded by the originating agency when it determines the national security concern no longer exists. Once rescinded, the application is no longer subject to secrecy restrictions and may proceed through normal prosecution to patent issuance. The rescission of the secrecy order is independent of any pending compensation claim — both processes can proceed separately.",
+      },
+    ],
+  },
+];
+
+// --- MATCHING GAMES (4) ---
+// Term-definition matching exercises for secrecy order concepts
+
+export const ZONE5_MATCHING: MatchingGameData[] = [
+  {
+    id: "z5-match-1",
+    conceptId: "sec-order-basics",
+    zoneSlug: "the-sealed-chamber",
+    title: "Secrecy Order Fundamentals",
+    instruction: "Match each term with its correct definition.",
+    pairs: [
+      {
+        term: "35 USC 181",
+        definition:
+          "Statutory authority for the Commissioner to order secrecy when disclosure of an invention would be detrimental to national security",
+      },
+      {
+        term: "Secrecy order duration",
+        definition:
+          "One year from the date of issuance, renewable annually by the originating agency",
+      },
+      {
+        term: "Commissioner of Patents",
+        definition:
+          "The official who issues the secrecy order upon determination by a defense or government agency",
+      },
+      {
+        term: "Originating agency",
+        definition:
+          "The government department or agency whose determination that disclosure would harm national security triggers the secrecy order",
+      },
+      {
+        term: "Rescission of secrecy order",
+        definition:
+          "The lifting of the order, which may be done by the originating agency or the Commissioner when the national security concern no longer exists",
+      },
+    ],
+  },
+  {
+    id: "z5-match-2",
+    conceptId: "sec-type-i-filing",
+    zoneSlug: "the-sealed-chamber",
+    title: "Types of Secrecy Orders",
+    instruction: "Match each term with its correct definition.",
+    pairs: [
+      {
+        term: "Type I secrecy order",
+        definition:
+          "Permits filing in up to 18 approved allied countries (including Australia, Canada, UK, Germany, Japan) subject to conditions",
+      },
+      {
+        term: "Type II secrecy order",
+        definition:
+          "Prohibits all foreign filing but allows limited domestic disclosure to authorized persons",
+      },
+      {
+        term: "Type III secrecy order",
+        definition:
+          "The most restrictive order — prohibits any disclosure of the invention whatsoever",
+      },
+      {
+        term: "DoD Directive 5230.25",
+        definition:
+          "The Department of Defense directive that classifies secrecy orders into Type I, II, and III categories",
+      },
+      {
+        term: "Foreign filing license revocation",
+        definition:
+          "Under 37 CFR 5.2, a secrecy order immediately revokes any previously granted foreign filing license",
+      },
+    ],
+  },
+  {
+    id: "z5-match-3",
+    conceptId: "sec-compensation-claim",
+    zoneSlug: "the-sealed-chamber",
+    title: "Compensation and Penalties Under Secrecy Orders",
+    instruction: "Match each term with its correct definition.",
+    pairs: [
+      {
+        term: "35 USC 183",
+        definition:
+          "Provides that an applicant may apply for compensation to the head of the agency that caused the secrecy order",
+      },
+      {
+        term: "Court of Federal Claims",
+        definition:
+          "The court where an applicant may sue if denied or dissatisfied with the agency's compensation determination",
+      },
+      {
+        term: "35 USC 182 — violation consequences",
+        definition:
+          "The invention is deemed abandoned and the applicant forfeits any right to compensation from the government",
+      },
+      {
+        term: "35 USC 186 — willful violation",
+        definition:
+          "Criminal penalties of up to $10,000 fine and up to 2 years imprisonment for knowingly violating a secrecy order",
+      },
+      {
+        term: "Statutory abandonment",
+        definition:
+          "Abandonment imposed by law upon secrecy order violation — it cannot be revived by petition under 37 CFR 1.137",
+      },
+    ],
+  },
+  {
+    id: "z5-match-4",
+    conceptId: "sec-examination-under-secrecy",
+    zoneSlug: "the-sealed-chamber",
+    title: "Examination and Administration Under Secrecy Orders",
+    instruction: "Match each term with its correct definition.",
+    pairs: [
+      {
+        term: "MPEP 130 — examination under secrecy",
+        definition:
+          "Examination proceeds normally with office actions and responses, but publication, interference, and appeal publication are barred",
+      },
+      {
+        term: "37 CFR 5.3 — related subject matter",
+        definition:
+          "A secrecy order extends to any application containing related subject matter, including continuations and divisionals",
+      },
+      {
+        term: "Publication withheld",
+        definition:
+          "Applications under secrecy orders are not published at 18 months under 35 USC 122(b)",
+      },
+      {
+        term: "MPEP 121 — security-marked documents",
+        definition:
+          "Documents bearing security markings are routed to the Licensing and Review division for handling",
+      },
+      {
+        term: "Annual renewal review",
+        definition:
+          "The originating agency reviews the secrecy order each year to determine whether the national security concern persists",
+      },
+    ],
+  },
+];
+
+// --- TIMELINE PUZZLES (3) ---
+// Chronological ordering exercises for secrecy order procedures
+
+export const ZONE5_TIMELINES: TimelinePuzzleData[] = [
+  {
+    id: "z5-timeline-1",
+    conceptId: "sec-order-basics",
+    zoneSlug: "the-sealed-chamber",
+    title: "Lifecycle of a Secrecy Order",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z5-tl1-evt-1",
+        label: "Patent application filed with the USPTO",
+        description:
+          "An applicant files a patent application containing subject matter with potential national security implications.",
+      },
+      {
+        id: "z5-tl1-evt-2",
+        label: "Defense agency determines national security risk",
+        description:
+          "During national security screening, the relevant agency determines that disclosure would be detrimental to national security.",
+      },
+      {
+        id: "z5-tl1-evt-3",
+        label: "Commissioner imposes secrecy order under 35 USC 181",
+        description:
+          "The Commissioner orders the invention to be kept secret and withholds the grant of a patent.",
+      },
+      {
+        id: "z5-tl1-evt-4",
+        label: "Any previously granted foreign filing license is revoked",
+        description:
+          "Under 37 CFR 5.2, the secrecy order immediately revokes any foreign filing license that had been granted for the application.",
+      },
+      {
+        id: "z5-tl1-evt-5",
+        label: "Secrecy order reviewed annually for renewal or rescission",
+        description:
+          "The originating agency reviews the order each year. If renewed, it continues for another year; if the concern no longer exists, it may be rescinded.",
+      },
+    ],
+  },
+  {
+    id: "z5-timeline-2",
+    conceptId: "sec-compensation-claim",
+    zoneSlug: "the-sealed-chamber",
+    title: "Pursuing Compensation Under 35 USC 183",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z5-tl2-evt-1",
+        label: "Secrecy order prevents patent grant and commercialization",
+        description:
+          "The applicant is unable to obtain a patent or commercialize the invention due to the secrecy order, resulting in financial losses.",
+      },
+      {
+        id: "z5-tl2-evt-2",
+        label: "Applicant documents damages and losses",
+        description:
+          "The applicant compiles evidence of lost licensing revenue, development costs, and other financial harm caused by the secrecy order.",
+      },
+      {
+        id: "z5-tl2-evt-3",
+        label: "Compensation claim filed with the originating agency",
+        description:
+          "Under 35 USC 183, the applicant must first apply for compensation to the head of the department or agency that caused the secrecy order.",
+      },
+      {
+        id: "z5-tl2-evt-4",
+        label: "Agency issues compensation determination",
+        description:
+          "The agency reviews the claim and either awards compensation or denies it. The applicant may find the award inadequate.",
+      },
+      {
+        id: "z5-tl2-evt-5",
+        label: "Suit filed in the Court of Federal Claims",
+        description:
+          "If denied or dissatisfied, the applicant may bring suit against the United States in the Court of Federal Claims for just compensation.",
+      },
+    ],
+  },
+  {
+    id: "z5-timeline-3",
+    conceptId: "sec-willful-violation",
+    zoneSlug: "the-sealed-chamber",
+    title: "Consequences of Violating a Secrecy Order",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z5-tl3-evt-1",
+        label: "Secrecy order imposed on the application",
+        description:
+          "The Commissioner imposes a secrecy order under 35 USC 181, restricting disclosure and foreign filing.",
+      },
+      {
+        id: "z5-tl3-evt-2",
+        label: "Applicant makes unauthorized disclosure or foreign filing",
+        description:
+          "The applicant willfully discloses the invention to an unauthorized party or files a patent application in a non-approved foreign country.",
+      },
+      {
+        id: "z5-tl3-evt-3",
+        label: "Invention deemed abandoned under 35 USC 182",
+        description:
+          "By operation of statute, the invention is deemed abandoned and cannot be revived by petition — this is a statutory, not administrative, abandonment.",
+      },
+      {
+        id: "z5-tl3-evt-4",
+        label: "Forfeiture of compensation rights",
+        description:
+          "The applicant forfeits any right to claim compensation from the United States government under 35 USC 183.",
+      },
+      {
+        id: "z5-tl3-evt-5",
+        label: "Criminal prosecution for willful violation",
+        description:
+          "Under 35 USC 186, the applicant faces criminal penalties of up to $10,000 fine and up to 2 years imprisonment, or both.",
       },
     ],
   },

@@ -1,4 +1,4 @@
-import { RuleBuilderData, TableFillData } from "@/types";
+import { RuleBuilderData, TableFillData, FlowchartBuilderData, FlowchartStep } from "@/types";
 
 // ============================================================
 // Zone 2: The Reading Room — Build Phase Content
@@ -273,6 +273,72 @@ export const ZONE2_TABLE_FILLS: TableFillData[] = [
       "FOIA request",
       "5 USC 552",
       "Examiner guidance docs",
+    ],
+  },
+];
+
+// --- FLOWCHART BUILDERS ---
+// Students arrange procedural steps in the correct order, ignoring distractors
+
+export const ZONE2_FLOWCHARTS: FlowchartBuilderData[] = [
+  {
+    id: "z2-flow-1",
+    conceptId: "insp-petition-access",
+    zoneSlug: "the-reading-room",
+    title: "Petitioning for Access to an Unpublished Abandoned Application",
+    statuteRef: "37 CFR 1.14(i)",
+    instruction:
+      "Place the steps for petitioning to access an unpublished abandoned application in the correct order.",
+    steps: [
+      { id: "z2-flow-1-s1", label: "Identify the unpublished abandoned application and confirm it has not been published" },
+      { id: "z2-flow-1-s2", label: "Prepare a petition to the Director under 37 CFR 1.14" },
+      { id: "z2-flow-1-s3", label: "Include evidence showing the application is relied upon or relevant to a pending matter" },
+      { id: "z2-flow-1-s4", label: "Submit the petition with the required fee to the USPTO" },
+      { id: "z2-flow-1-s5", label: "USPTO grants or denies the petition and provides access if granted" },
+    ],
+    distractors: [
+      { id: "z2-flow-1-d1", label: "File a FOIA request with the USPTO Office of General Counsel" },
+      { id: "z2-flow-1-d2", label: "Obtain a court order compelling the USPTO to release the file" },
+    ],
+  },
+  {
+    id: "z2-flow-2",
+    conceptId: "insp-open-files",
+    zoneSlug: "the-reading-room",
+    title: "Accessing a Published Application via Patent Center",
+    statuteRef: "37 CFR 1.11(a)",
+    instruction:
+      "Arrange the steps for a member of the public to access a published patent application file.",
+    steps: [
+      { id: "z2-flow-2-s1", label: "Determine the application number or publication number of the published application" },
+      { id: "z2-flow-2-s2", label: "Navigate to the USPTO Patent Center public portal" },
+      { id: "z2-flow-2-s3", label: "Search for the application using the application or publication number" },
+      { id: "z2-flow-2-s4", label: "View the Image File Wrapper (IFW) containing all publicly available documents" },
+    ],
+    distractors: [
+      { id: "z2-flow-2-d1", label: "Submit a written request to the USPTO and wait for mailed copies" },
+      { id: "z2-flow-2-d2", label: "Log in with a registered practitioner account to view the file" },
+      { id: "z2-flow-2-d3", label: "Pay a per-document access fee before viewing the file wrapper" },
+    ],
+  },
+  {
+    id: "z2-flow-3",
+    conceptId: "insp-incorporation",
+    zoneSlug: "the-reading-room",
+    title: "Incorporation by Reference Procedure",
+    statuteRef: "37 CFR 1.57",
+    instruction:
+      "Place the steps for properly incorporating material by reference into a patent application in the correct order.",
+    steps: [
+      { id: "z2-flow-3-s1", label: "Identify the material to be incorporated (e.g., a prior patent or publication)" },
+      { id: "z2-flow-3-s2", label: "Include a specific statement of incorporation by reference in the application specification" },
+      { id: "z2-flow-3-s3", label: "Identify the incorporated document with sufficient detail (title, patent number, or publication data)" },
+      { id: "z2-flow-3-s4", label: "The incorporated material becomes part of the application as though fully set forth" },
+    ],
+    distractors: [
+      { id: "z2-flow-3-d1", label: "Attach the full text of the referenced document as an appendix to the application" },
+      { id: "z2-flow-3-d2", label: "File a supplemental information disclosure statement listing the incorporated reference" },
+      { id: "z2-flow-3-d3", label: "Obtain written permission from the author of the referenced material" },
     ],
   },
 ];

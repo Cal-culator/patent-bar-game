@@ -1,4 +1,4 @@
-import { RuleBuilderData, TableFillData } from "@/types";
+import { RuleBuilderData, TableFillData, FlowchartBuilderData, FlowchartStep } from "@/types";
 
 // ============================================================
 // Zone 7: The Agencies — Build Phase Content
@@ -258,6 +258,74 @@ export const ZONE7_TABLE_FILLS: TableFillData[] = [
       "No",
       "Unavailable inventor",
       "Same content plus unavailability explanation",
+    ],
+  },
+];
+
+// --- FLOWCHART BUILDERS ---
+// Students arrange procedural steps in the correct order
+
+export const ZONE7_FLOWCHARTS: FlowchartBuilderData[] = [
+  {
+    id: "z7-flow-1",
+    conceptId: "gov-45day-letter",
+    zoneSlug: "the-agencies",
+    title: "The 45-Day Letter Process",
+    statuteRef: "MPEP 150",
+    instruction:
+      "Place the steps of the 45-day letter process for government interest inventions in the correct order.",
+    steps: [
+      { id: "z7-flow-1-s1", label: "DOE or NASA identifies a patent application with potential government interest" },
+      { id: "z7-flow-1-s2", label: "Agency notifies the USPTO of its interest in the application" },
+      { id: "z7-flow-1-s3", label: "USPTO sends a 45-day letter to the applicant requiring a statement of government interest" },
+      { id: "z7-flow-1-s4", label: "Applicant files a statement within 30 days identifying the contract and government rights" },
+      { id: "z7-flow-1-s5", label: "USPTO forwards the statement to the interested agency for review and resolution" },
+    ],
+    distractors: [
+      { id: "z7-flow-1-d1", label: "Applicant pays a government interest processing fee to the USPTO" },
+      { id: "z7-flow-1-d2", label: "USPTO publishes the application immediately to notify the public of government interest" },
+      { id: "z7-flow-1-d3", label: "Applicant files a petition to the PTAB to contest the government interest claim" },
+    ],
+  },
+  {
+    id: "z7-flow-2",
+    conceptId: "gov-doe-authority",
+    zoneSlug: "the-agencies",
+    title: "DOE Patent Rights Determination",
+    statuteRef: "42 USC 2182; MPEP 150",
+    instruction:
+      "Place the steps for determining DOE patent rights in a contractor's invention in the correct order.",
+    steps: [
+      { id: "z7-flow-2-s1", label: "Contractor makes or conceives an invention under a DOE contract" },
+      { id: "z7-flow-2-s2", label: "Contractor files a patent application at the USPTO" },
+      { id: "z7-flow-2-s3", label: "DOE identifies the application as relating to work under its contract" },
+      { id: "z7-flow-2-s4", label: "USPTO issues a 45-day letter; applicant responds with a statement of government interest" },
+      { id: "z7-flow-2-s5", label: "DOE determines whether to claim title, grant a waiver, or retain a royalty-free license" },
+    ],
+    distractors: [
+      { id: "z7-flow-2-d1", label: "Contractor assigns all patent rights to the USPTO before prosecution begins" },
+      { id: "z7-flow-2-d2", label: "DOE files its own separate patent application on the same invention" },
+    ],
+  },
+  {
+    id: "z7-flow-3",
+    conceptId: "gov-substitute-statement",
+    zoneSlug: "the-agencies",
+    title: "Filing a Substitute Statement for an Unavailable Inventor",
+    statuteRef: "MPEP 151; 37 CFR 1.64",
+    instruction:
+      "Place the steps for filing a substitute statement when an inventor is unavailable or uncooperative in the correct order.",
+    steps: [
+      { id: "z7-flow-3-s1", label: "USPTO requires a statement of government interest from the inventor" },
+      { id: "z7-flow-3-s2", label: "Inventor cannot be reached or refuses to cooperate" },
+      { id: "z7-flow-3-s3", label: "A party with sufficient knowledge of the facts prepares a substitute statement" },
+      { id: "z7-flow-3-s4", label: "Substitute statement includes the same required content plus an explanation of the inventor's unavailability" },
+      { id: "z7-flow-3-s5", label: "Substitute statement is filed with the USPTO within the response deadline" },
+    ],
+    distractors: [
+      { id: "z7-flow-3-d1", label: "USPTO waives the statement requirement entirely when the inventor is unavailable" },
+      { id: "z7-flow-3-d2", label: "Applicant files a petition to declare the inventor deceased" },
+      { id: "z7-flow-3-d3", label: "The agency files the patent application on behalf of the inventor" },
     ],
   },
 ];

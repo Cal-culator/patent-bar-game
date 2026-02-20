@@ -2,6 +2,8 @@ import {
   ScenarioQuestion,
   QuickFireQuestion,
   ProceduralCascadeData,
+  MatchingGameData,
+  TimelinePuzzleData,
 } from "@/types";
 
 // ============================================================
@@ -423,6 +425,265 @@ export const ZONE3_CASCADES: ProceduralCascadeData[] = [
         correctIndex: 1,
         explanation:
           "As assignee of the entire right, title, and interest, StartUp Alpha gains full control under 37 CFR 3.71. It can independently authorize third-party access, direct prosecution, amend claims, and manage the power of attorney without needing consent from partial assignees or the inventor for prosecution actions.",
+      },
+    ],
+  },
+];
+
+// --- MATCHING GAMES (4) ---
+// Term-definition matching exercises for key Zone 3 concepts
+
+export const ZONE3_MATCHING: MatchingGameData[] = [
+  {
+    id: "z3-match-1",
+    conceptId: "gate-suspended",
+    zoneSlug: "the-gatekeepers",
+    title: "Practitioner Discipline and Suspension",
+    instruction: "Match each patent law term with its correct definition.",
+    pairs: [
+      {
+        term: "Suspended practitioner",
+        definition:
+          "A registered patent attorney or agent who is temporarily barred from practicing before the USPTO",
+      },
+      {
+        term: "Excluded practitioner",
+        definition:
+          "A registered patent attorney or agent who is permanently barred from practicing before the USPTO",
+      },
+      {
+        term: "37 CFR 11.116",
+        definition:
+          "Regulation prohibiting USPTO employees from communicating with suspended or excluded practitioners about pending applications",
+      },
+      {
+        term: "Office of Enrollment and Discipline (OED)",
+        definition:
+          "The USPTO office responsible for investigating and imposing disciplinary sanctions on practitioners",
+      },
+      {
+        term: "Pro se exception",
+        definition:
+          "The right of a suspended or excluded practitioner to file and prosecute their own patent application as the actual inventor",
+      },
+    ],
+  },
+  {
+    id: "z3-match-2",
+    conceptId: "gate-assignee-control",
+    zoneSlug: "the-gatekeepers",
+    title: "Assignee Rights and Prosecution Control",
+    instruction: "Match each patent law term with its correct definition.",
+    pairs: [
+      {
+        term: "37 CFR 3.73(c) statement",
+        definition:
+          "A filing establishing the assignee's chain of title from the inventor, supported by documentary evidence",
+      },
+      {
+        term: "Assignee of entire interest",
+        definition:
+          "An entity that holds all right, title, and interest and may independently direct prosecution of the application",
+      },
+      {
+        term: "Partial assignee",
+        definition:
+          "An entity holding less than the full right, title, and interest that cannot independently direct prosecution",
+      },
+      {
+        term: "Power of attorney",
+        definition:
+          "A formal authorization designating a registered practitioner to act on behalf of the applicant before the USPTO",
+      },
+      {
+        term: "Revocation of power of attorney",
+        definition:
+          "An action that an assignee of the entire interest may take to replace the current attorney of record with new counsel",
+      },
+    ],
+  },
+  {
+    id: "z3-match-3",
+    conceptId: "gate-partial-interest",
+    zoneSlug: "the-gatekeepers",
+    title: "Partial Assignees and Joint Ownership",
+    instruction: "Match each patent law term with its correct definition.",
+    pairs: [
+      {
+        term: "37 CFR 3.71",
+        definition:
+          "Regulation requiring all partial assignees together with the inventor to join in taking action on an application",
+      },
+      {
+        term: "Joint inventors with partial assignments",
+        definition:
+          "A situation where multiple entities each hold a fractional interest, requiring unanimous agreement for prosecution actions",
+      },
+      {
+        term: "Obligation to join",
+        definition:
+          "The requirement that all parties with ownership interests must participate in prosecution decisions when no single entity holds the entire interest",
+      },
+      {
+        term: "Acquiring the entire interest",
+        definition:
+          "The action of consolidating all partial ownership interests, which allows independent prosecution control under 37 CFR 3.71",
+      },
+      {
+        term: "Documentary evidence of chain of title",
+        definition:
+          "Written proof such as assignment agreements required under 37 CFR 3.73(c) to establish an assignee's right to take action",
+      },
+    ],
+  },
+  {
+    id: "z3-match-4",
+    conceptId: "gate-written-consent",
+    zoneSlug: "the-gatekeepers",
+    title: "Third-Party Access and Authorization",
+    instruction: "Match each patent law term with its correct definition.",
+    pairs: [
+      {
+        term: "Written authorization for inspection",
+        definition:
+          "Consent from the applicant or assignee required for third parties to access unpublished patent applications",
+      },
+      {
+        term: "35 USC 122(a) confidentiality",
+        definition:
+          "The statutory mandate that patent applications be held in confidence until published or granted",
+      },
+      {
+        term: "MPEP 106",
+        definition:
+          "MPEP section addressing who may inspect patent applications and the requirements for third-party access",
+      },
+      {
+        term: "Inventor's retained rights",
+        definition:
+          "The right to receive notice of USPTO actions and to inspect the application file, retained even after full assignment",
+      },
+      {
+        term: "37 CFR 1.32-1.36",
+        definition:
+          "Regulations governing the designation and revocation of power of attorney and correspondence address in patent applications",
+      },
+    ],
+  },
+];
+
+// --- TIMELINE PUZZLES (3) ---
+// Chronological ordering exercises for Zone 3 patent procedures
+
+export const ZONE3_TIMELINES: TimelinePuzzleData[] = [
+  {
+    id: "z3-timeline-1",
+    conceptId: "gate-assignee-control",
+    zoneSlug: "the-gatekeepers",
+    title: "Assignee Taking Control of Prosecution",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z3-tl1-evt-1",
+        label: "Inventor files patent application",
+        description:
+          "The inventor files a patent application and designates an attorney of record via power of attorney under 37 CFR 1.32.",
+      },
+      {
+        id: "z3-tl1-evt-2",
+        label: "Inventor assigns entire interest to company",
+        description:
+          "The inventor executes a written assignment transferring all right, title, and interest in the application to the acquiring company.",
+      },
+      {
+        id: "z3-tl1-evt-3",
+        label: "Company files 37 CFR 3.73(c) statement",
+        description:
+          "The assignee files a statement with the USPTO establishing the chain of title from the inventor, supported by documentary evidence of the assignment.",
+      },
+      {
+        id: "z3-tl1-evt-4",
+        label: "Company revokes old power of attorney and appoints new counsel",
+        description:
+          "As assignee of the entire interest, the company revokes the inventor's original power of attorney and designates its own registered practitioner.",
+      },
+      {
+        id: "z3-tl1-evt-5",
+        label: "New attorney directs prosecution on behalf of assignee",
+        description:
+          "The newly appointed attorney of record takes over prosecution, filing responses and communicating with the examiner on behalf of the assignee.",
+      },
+    ],
+  },
+  {
+    id: "z3-timeline-2",
+    conceptId: "gate-suspended",
+    zoneSlug: "the-gatekeepers",
+    title: "Handling an Attorney Suspension Mid-Prosecution",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z3-tl2-evt-1",
+        label: "Attorney receives suspension notice from OED",
+        description:
+          "The Office of Enrollment and Discipline notifies the attorney that they are suspended from practice before the USPTO, effective immediately.",
+      },
+      {
+        id: "z3-tl2-evt-2",
+        label: "Attorney must cease all USPTO practice immediately",
+        description:
+          "Under 37 CFR 11.116, the suspended attorney can no longer file documents, communicate with examiners, or take any action on pending applications.",
+      },
+      {
+        id: "z3-tl2-evt-3",
+        label: "Client (assignee) notified of suspension",
+        description:
+          "The client learns of the attorney's suspension and must act quickly to protect pending applications with upcoming deadlines.",
+      },
+      {
+        id: "z3-tl2-evt-4",
+        label: "Client revokes suspended attorney's power of attorney",
+        description:
+          "The assignee of the entire interest formally revokes the suspended attorney's power of attorney on record with the USPTO.",
+      },
+      {
+        id: "z3-tl2-evt-5",
+        label: "New registered practitioner appointed and files response",
+        description:
+          "The client grants a new power of attorney to a registered practitioner who files the required response before the statutory deadline.",
+      },
+    ],
+  },
+  {
+    id: "z3-timeline-3",
+    conceptId: "gate-partial-interest",
+    zoneSlug: "the-gatekeepers",
+    title: "Resolving Partial Assignee Prosecution Control",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z3-tl3-evt-1",
+        label: "Inventor assigns partial interest to University",
+        description:
+          "The inventor assigns a fractional interest (e.g., 50%) to a university pursuant to an employment agreement, retaining the remaining interest.",
+      },
+      {
+        id: "z3-tl3-evt-2",
+        label: "Inventor assigns remaining partial interest to Company",
+        description:
+          "The inventor later assigns the remaining fractional interest to a company, creating a situation where the university and company are both partial assignees.",
+      },
+      {
+        id: "z3-tl3-evt-3",
+        label: "Prosecution action needed — all parties must join",
+        description:
+          "An office action requires a response. Under 37 CFR 3.71, all partial assignees together with the inventor must join to take action since no single entity holds the entire interest.",
+      },
+      {
+        id: "z3-tl3-evt-4",
+        label: "Company acquires university's interest to become sole assignee",
+        description:
+          "The company negotiates and acquires the university's partial interest, becoming the assignee of the entire right, title, and interest in the application.",
       },
     ],
   },

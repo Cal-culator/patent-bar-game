@@ -2,6 +2,7 @@ import {
   TrapDetectorQuestion,
   SourceSortItem,
   PatternHighlightExcerpt,
+  SpotTheErrorData,
 } from "@/types";
 
 // ============================================================
@@ -686,6 +687,178 @@ export const ZONE7_PATTERN_HIGHLIGHTS: PatternHighlightExcerpt[] = [
         explanation: "The standard — waivers are evaluated based on whether the public interest is served.",
       },
       { text: ". If granted, the applicant may retain full patent rights.", isTestable: false },
+    ],
+  },
+];
+
+// --- SPOT THE ERROR ITEMS (4) ---
+// Passages with deliberate errors in legal facts
+
+export const ZONE7_SPOT_ERRORS: SpotTheErrorData[] = [
+  {
+    id: "z7-spot-1",
+    zoneSlug: "the-agencies",
+    title: "DOE and NASA Authority Errors",
+    mpepRef: "MPEP 150 / 42 USC 2182 / 51 USC 20135",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "The Department of Energy derives its authority over contractor inventions from 42 USC 2182, part of the Atomic Energy Act.",
+        hasError: false,
+      },
+      {
+        text: "Under this statute, inventions made or conceived under contracts with the Atomic Energy Commission or the DOE are subject to government claims.",
+        hasError: false,
+      },
+      {
+        text: "Similarly, NASA derives its authority from 51 USC 20135, part of the Atomic Energy Act,",
+        hasError: true,
+        correctedText: "Similarly, NASA derives its authority from 51 USC 20135, part of the National Aeronautics and Space Act (Space Act),",
+        explanation: "51 USC 20135 is part of the Space Act, not the Atomic Energy Act. The Atomic Energy Act (42 USC 2182) is the DOE statute. NASA's authority comes from the Space Act.",
+      },
+      {
+        text: "which allows the Administrator to determine whether to acquire title to inventions made by contractors performing work under NASA contracts.",
+        hasError: false,
+      },
+      {
+        text: "Under both statutes, the government may only receive a non-exclusive license to the invention, not full title.",
+        hasError: true,
+        correctedText: "Under both statutes, the government may claim full title to the invention, not merely a non-exclusive license.",
+        explanation: "Both DOE under 42 USC 2182 and NASA under 51 USC 20135 may claim full title to contractor inventions, not just a non-exclusive license. The right to claim title is the most significant government power under these statutes.",
+      },
+      {
+        text: "Contractors may request waivers of the government's rights under regulations prescribed by the relevant agency.",
+        hasError: false,
+      },
+      {
+        text: "These provisions ensure that the public interest is served when government-funded research produces patentable inventions.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z7-spot-2",
+    zoneSlug: "the-agencies",
+    title: "45-Day Letter Process Errors",
+    mpepRef: "MPEP 150",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "When DOE or NASA identifies a patent application as potentially involving an invention made under a government contract,",
+        hasError: false,
+      },
+      {
+        text: "the USPTO sends a 45-day letter to the applicant.",
+        hasError: false,
+      },
+      {
+        text: "The applicant must respond within 45 days from the date of the letter",
+        hasError: true,
+        correctedText: "The applicant must respond within 30 days from the date of the letter",
+        explanation: "The response deadline is 30 days, not 45 days. A common exam trap is confusing the name of the letter (the '45-day letter') with the response period (30 days). The 30-day period runs from the date of the letter, not from receipt.",
+      },
+      {
+        text: "with a statement establishing the applicant's rights in the invention.",
+        hasError: false,
+      },
+      {
+        text: "This deadline is statutory in nature, which means it typically cannot be extended under the standard USPTO extension procedures of 37 CFR 1.136.",
+        hasError: false,
+      },
+      {
+        text: "Failure to respond within the deadline may result in the application being regarded as abandoned.",
+        hasError: false,
+      },
+      {
+        text: "The 45-day letter is initiated when the patent examiner determines the invention relates to national defense,",
+        hasError: true,
+        correctedText: "The 45-day letter is initiated when DOE or NASA identifies the application as involving a potential government contract invention,",
+        explanation: "The 45-day letter is triggered by DOE or NASA identifying potential government interest, not by the patent examiner determining a national defense connection. The examiner's role is in prosecution, not in identifying agency contract rights.",
+      },
+      {
+        text: "and the applicant is notified of the government's potential interest.",
+        hasError: false,
+      },
+    ],
+  },
+  {
+    id: "z7-spot-3",
+    zoneSlug: "the-agencies",
+    title: "Statement Requirements and Multiple Inventors Errors",
+    mpepRef: "MPEP 150 / MPEP 151",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under MPEP 151, the statement filed in response to a 45-day letter must include three elements:",
+        hasError: false,
+      },
+      {
+        text: "identification of the government contract, whether the invention was made under the contract, and the rights of the government in the invention.",
+        hasError: false,
+      },
+      {
+        text: "When multiple inventors are named on the application, only the first-named inventor must file a statement on behalf of all inventors.",
+        hasError: true,
+        correctedText: "When multiple inventors are named on the application, each inventor who was involved in the government contract must file a separate statement.",
+        explanation: "Each inventor involved in the government contract must file a separate, individual statement. There is no provision for one inventor to file on behalf of others.",
+      },
+      {
+        text: "If an inventor cannot be reached or refuses to cooperate, a substitute statement may be filed by a party with sufficient knowledge of the circumstances.",
+        hasError: false,
+      },
+      {
+        text: "The statement should address the relationship between each inventor and the government contract.",
+        hasError: false,
+      },
+      {
+        text: "Failure to respond within the deadline results in an automatic transfer of title to the government.",
+        hasError: true,
+        correctedText: "Failure to respond within the deadline may result in the application being regarded as abandoned.",
+        explanation: "The consequence of not responding is that the application may be regarded as abandoned, not an automatic transfer of title to the government. Abandonment and title transfer are very different outcomes.",
+      },
+    ],
+  },
+  {
+    id: "z7-spot-4",
+    zoneSlug: "the-agencies",
+    title: "Government Waiver and Contractor Rights Errors",
+    mpepRef: "MPEP 150 / 42 USC 2182 / 51 USC 20135",
+    instruction: "Read the passage and tap any segments that contain errors.",
+    segments: [
+      {
+        text: "Under both the Atomic Energy Act and the Space Act, contractors may request waivers of the government's rights to inventions made under government contracts.",
+        hasError: false,
+      },
+      {
+        text: "The DOE may claim title to inventions under 42 USC 2182 unless the contractor establishes that it has rights in the invention.",
+        hasError: false,
+      },
+      {
+        text: "NASA automatically receives title to all contractor inventions without exception under 51 USC 20135.",
+        hasError: true,
+        correctedText: "NASA may claim title to contractor inventions under 51 USC 20135, but contractors can request waivers of NASA's rights.",
+        explanation: "NASA does not automatically receive title without exception. Under 51 USC 20135, the Administrator determines whether to acquire title, and contractors can request waivers. The process involves discretion and the possibility of waiver.",
+      },
+      {
+        text: "The contractor must affirmatively request a waiver; it is not granted automatically.",
+        hasError: false,
+      },
+      {
+        text: "Waivers are evaluated based on whether retaining rights serves the public interest.",
+        hasError: false,
+      },
+      {
+        text: "Practitioners should maintain complete records of government contracts and the circumstances under which inventions are made,",
+        hasError: false,
+      },
+      {
+        text: "as this information is essential for preparing the required statement in response to the 45-day letter.",
+        hasError: false,
+      },
+      {
+        text: "In practice, DOE and NASA typically coordinate with the USPTO to identify relevant applications early in the prosecution process, often before the first office action.",
+        hasError: false,
+      },
     ],
   },
 ];

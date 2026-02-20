@@ -2,6 +2,8 @@ import {
   ScenarioQuestion,
   QuickFireQuestion,
   ProceduralCascadeData,
+  MatchingGameData,
+  TimelinePuzzleData,
 } from "@/types";
 
 // ============================================================
@@ -424,6 +426,265 @@ export const ZONE1_CASCADES: ProceduralCascadeData[] = [
         correctIndex: 2,
         explanation:
           "For an unpublished application, the substantive contents remain confidential under 35 USC 122(a) and 37 CFR 1.14(b). However, under 37 CFR 1.14(a)(1)(vi) and 37 CFR 1.14(e), limited status information—specifically whether the application is pending, abandoned, or patented—may be provided to anyone who identifies the application by its application number.",
+      },
+    ],
+  },
+];
+
+// --- MATCHING GAMES (4) ---
+// Term-definition matching exercises for key Zone 1 concepts
+
+export const ZONE1_MATCHING: MatchingGameData[] = [
+  {
+    id: "z1-match-1",
+    conceptId: "conf-basic-confidentiality",
+    zoneSlug: "the-vault",
+    title: "Confidentiality Fundamentals",
+    instruction: "Match each patent law term with its correct definition.",
+    pairs: [
+      {
+        term: "35 USC 122(a)",
+        definition:
+          "Statutory provision requiring patent applications to be kept in confidence by the USPTO",
+      },
+      {
+        term: "18 USC 1905",
+        definition:
+          "Criminal statute penalizing federal employees who disclose confidential patent application information",
+      },
+      {
+        term: "37 CFR 1.14(b)",
+        definition:
+          "Regulation establishing that unpublished pending applications are not available to the public",
+      },
+      {
+        term: "Publication under 35 USC 122(b)",
+        definition:
+          "The event that ends the confidential status of a patent application by making it publicly available",
+      },
+      {
+        term: "Patent grant",
+        definition:
+          "The issuance of a patent, which opens the entire application file wrapper to public inspection",
+      },
+    ],
+  },
+  {
+    id: "z1-match-2",
+    conceptId: "conf-18-month-publication",
+    zoneSlug: "the-vault",
+    title: "Publication Rules and Exceptions",
+    instruction: "Match each patent law term with its correct definition.",
+    pairs: [
+      {
+        term: "18-month publication",
+        definition:
+          "Default publication timing calculated from the earliest filing date for which benefit is sought",
+      },
+      {
+        term: "Non-publication request",
+        definition:
+          "A certification filed at the time of filing that the invention will not be filed in a foreign country requiring 18-month publication",
+      },
+      {
+        term: "Design patent applications",
+        definition:
+          "A category of patent applications exempt from the 18-month publication requirement",
+      },
+      {
+        term: "Provisional applications",
+        definition:
+          "Applications that are never published by the USPTO and automatically expire after 12 months",
+      },
+      {
+        term: "Earliest filing date",
+        definition:
+          "The date from which the 18-month publication period is measured, including any claimed priority date",
+      },
+    ],
+  },
+  {
+    id: "z1-match-3",
+    conceptId: "conf-non-publication-request",
+    zoneSlug: "the-vault",
+    title: "Non-Publication Request Requirements",
+    instruction: "Match each patent law term with its correct definition.",
+    pairs: [
+      {
+        term: "35 USC 122(b)(2)(B)(i)",
+        definition:
+          "Statutory basis for requesting that a patent application not be published",
+      },
+      {
+        term: "45-day notification requirement",
+        definition:
+          "Deadline to notify the USPTO after filing in a foreign country when a non-publication request was previously made",
+      },
+      {
+        term: "Rescission of non-publication request",
+        definition:
+          "Required action when an applicant who made a non-publication request later files a corresponding foreign application",
+      },
+      {
+        term: "Regarded as abandoned",
+        definition:
+          "The consequence of failing to timely notify the USPTO of a foreign filing after making a non-publication request",
+      },
+      {
+        term: "Certification at filing",
+        definition:
+          "The timing requirement for submitting a non-publication request to the USPTO",
+      },
+    ],
+  },
+  {
+    id: "z1-match-4",
+    conceptId: "conf-third-party-access",
+    zoneSlug: "the-vault",
+    title: "Third-Party Access to Patent Files",
+    instruction: "Match each patent law term with its correct definition.",
+    pairs: [
+      {
+        term: "37 CFR 1.14(a)",
+        definition:
+          "Regulation providing that files of patented and published applications are open to public inspection",
+      },
+      {
+        term: "37 CFR 1.14(i)",
+        definition:
+          "Petition-based mechanism for accessing unpublished abandoned applications that are relied upon as references",
+      },
+      {
+        term: "37 CFR 1.14(e)",
+        definition:
+          "Provision allowing any person to obtain status information (pending, abandoned, or patented) for an identified application",
+      },
+      {
+        term: "37 CFR 1.217",
+        definition:
+          "Regulation allowing applicants to petition for redaction of trade secret information from published applications",
+      },
+      {
+        term: "FOIA Exemption 3",
+        definition:
+          "The Freedom of Information Act exemption that protects patent application confidentiality under 35 USC 122",
+      },
+    ],
+  },
+];
+
+// --- TIMELINE PUZZLES (3) ---
+// Chronological ordering exercises for patent procedures
+
+export const ZONE1_TIMELINES: TimelinePuzzleData[] = [
+  {
+    id: "z1-timeline-1",
+    conceptId: "conf-18-month-publication",
+    zoneSlug: "the-vault",
+    title: "Patent Application Confidentiality Lifecycle",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z1-tl1-evt-1",
+        label: "Application filed with the USPTO",
+        description:
+          "The applicant files a non-provisional utility patent application. The application is held in confidence under 35 USC 122(a).",
+      },
+      {
+        id: "z1-tl1-evt-2",
+        label: "Application maintained in confidence",
+        description:
+          "During the period before publication, the USPTO keeps the application confidential. Only the applicant, attorney of record, and authorized persons may access it.",
+      },
+      {
+        id: "z1-tl1-evt-3",
+        label: "Application published at 18 months",
+        description:
+          "The application is published under 35 USC 122(b)(1)(A), promptly after 18 months from the earliest filing date for which benefit is sought.",
+      },
+      {
+        id: "z1-tl1-evt-4",
+        label: "File wrapper open to public inspection",
+        description:
+          "After publication, the application file becomes open to public inspection under 37 CFR 1.11(a). Any member of the public can access the prosecution history.",
+      },
+      {
+        id: "z1-tl1-evt-5",
+        label: "Patent issues and full file permanently public",
+        description:
+          "When the patent is granted, the entire file wrapper including all prosecution documents remains permanently available for public inspection under 37 CFR 1.14(a).",
+      },
+    ],
+  },
+  {
+    id: "z1-timeline-2",
+    conceptId: "conf-non-pub-foreign-filing",
+    zoneSlug: "the-vault",
+    title: "Non-Publication Request with Foreign Filing Complication",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z1-tl2-evt-1",
+        label: "File US application with non-publication request",
+        description:
+          "The applicant files a US utility application accompanied by a non-publication request under 35 USC 122(b)(2)(B)(i), certifying no foreign filing will be made.",
+      },
+      {
+        id: "z1-tl2-evt-2",
+        label: "Business strategy changes; foreign filing decided",
+        description:
+          "The applicant's business needs change and they decide to pursue patent protection abroad by filing a corresponding application in a foreign country.",
+      },
+      {
+        id: "z1-tl2-evt-3",
+        label: "Foreign application filed",
+        description:
+          "The applicant files the corresponding application in a foreign patent office that requires 18-month publication. The 45-day notification clock begins.",
+      },
+      {
+        id: "z1-tl2-evt-4",
+        label: "Notify USPTO and rescind non-publication request within 45 days",
+        description:
+          "The applicant must notify the USPTO of the foreign filing and rescind the non-publication request within 45 days under 35 USC 122(b)(2)(B)(iii). Failure results in abandonment.",
+      },
+      {
+        id: "z1-tl2-evt-5",
+        label: "US application published under normal procedures",
+        description:
+          "After timely notification and rescission, the USPTO publishes the US application following normal publication procedures.",
+      },
+    ],
+  },
+  {
+    id: "z1-timeline-3",
+    conceptId: "conf-abandoned-unpublished-access",
+    zoneSlug: "the-vault",
+    title: "Accessing an Unpublished Abandoned Application",
+    instruction: "Arrange these events in correct chronological order.",
+    events: [
+      {
+        id: "z1-tl3-evt-1",
+        label: "Application filed but never published",
+        description:
+          "An applicant files a patent application that is maintained in confidence under 35 USC 122(a). The application is never published.",
+      },
+      {
+        id: "z1-tl3-evt-2",
+        label: "Application becomes abandoned",
+        description:
+          "The applicant fails to respond to an office action or otherwise abandons the application. The unpublished application remains confidential even after abandonment.",
+      },
+      {
+        id: "z1-tl3-evt-3",
+        label: "Third party identifies need for the abandoned application",
+        description:
+          "A third party discovers that the unpublished abandoned application is relevant as prior art or evidence in another proceeding.",
+      },
+      {
+        id: "z1-tl3-evt-4",
+        label: "Petition filed under 37 CFR 1.14(i)",
+        description:
+          "The third party files a petition identifying the application number and demonstrating that the abandoned application is relied upon as a reference in a specific proceeding.",
       },
     ],
   },
