@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npx turbo build --filter=patent-bar",
+  "outputDirectory": "apps/patent-bar/.next",
+  "framework": "nextjs",
+  "installCommand": "npm install"
+}
