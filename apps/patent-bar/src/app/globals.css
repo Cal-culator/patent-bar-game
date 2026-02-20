@@ -4,42 +4,46 @@
 @source "../../../../packages/engine/src";
 
 @theme inline {
-  /* Duolingo-inspired light theme with yellow primary */
-  --color-background: #FFFFFF;
-  --color-surface: #F7F7F7;
-  --color-surface-hover: #F0F0F0;
-  --color-border: #E5E5E5;
-  --color-border-strong: #D4D4D4;
-  --color-text-primary: #4B4B4B;
-  --color-text-secondary: #777777;
-  --color-text-muted: #AFAFAF;
-  --color-foreground: #4B4B4B;
+  /* Light, clean theme inspired by MPEP Quest */
+  --color-background: #FCFCFC;
+  --color-surface: #F8FAFC;
+  --color-surface-hover: #F1F5F9;
+  --color-border: #E2E8F0;
+  --color-border-strong: #CBD5E1;
+  --color-text-primary: #1E293B;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94A3B8;
+  --color-foreground: #1E293B;
 
-  /* Brand colors */
-  --color-primary: #FFC800;
-  --color-primary-shadow: #E0B000;
-  --color-correct: #58CC02;
-  --color-correct-shadow: #46A302;
-  --color-incorrect: #FF4B4B;
-  --color-incorrect-shadow: #D63F3F;
-  --color-selected: #1CB0F6;
-  --color-selected-shadow: #0891C7;
-  --color-xp: #FF9600;
-  --color-streak: #FF9600;
+  /* Brand colors — purple primary */
+  --color-primary: #7C3AED;
+  --color-primary-light: #EDE9FE;
+  --color-primary-shadow: #6D28D9;
+  --color-correct: #10B981;
+  --color-correct-shadow: #059669;
+  --color-incorrect: #EF4444;
+  --color-incorrect-shadow: #DC2626;
+  --color-selected: #3B82F6;
+  --color-selected-shadow: #2563EB;
+  --color-xp: #F59E0B;
+  --color-streak: #FB923C;
 
   /* Feedback backgrounds */
-  --color-correct-bg: #D7FFB8;
-  --color-incorrect-bg: #FFF0F0;
-  --color-selected-bg: #DDF4FF;
+  --color-correct-bg: #ECFDF5;
+  --color-incorrect-bg: #FEF2F2;
+  --color-selected-bg: #EFF6FF;
 
-  --font-sans: var(--font-nunito), 'Nunito', sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-geist), 'Geist', ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-baloo), 'Baloo 2', ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Scrollbar styling */
@@ -55,10 +59,10 @@ body {
 }
 
 /* Zone accent colors via data attributes */
-[data-zone="the-vault"] { --zone-accent: #1CB0F6; }
-[data-zone="the-reading-room"] { --zone-accent: #CE82FF; }
-[data-zone="the-gatekeepers"] { --zone-accent: #FF9600; }
-[data-zone="the-classified-wing"] { --zone-accent: #FF4B4B; }
-[data-zone="the-sealed-chamber"] { --zone-accent: #FF4B4B; }
-[data-zone="the-border"] { --zone-accent: #58CC02; }
-[data-zone="the-agencies"] { --zone-accent: #1CB0F6; }
+[data-zone="the-vault"] { --zone-accent: #3B82F6; }
+[data-zone="the-reading-room"] { --zone-accent: #8B5CF6; }
+[data-zone="the-gatekeepers"] { --zone-accent: #F59E0B; }
+[data-zone="the-classified-wing"] { --zone-accent: #EF4444; }
+[data-zone="the-sealed-chamber"] { --zone-accent: #DC2626; }
+[data-zone="the-border"] { --zone-accent: #10B981; }
+[data-zone="the-agencies"] { --zone-accent: #0EA5E9; }

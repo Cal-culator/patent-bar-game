@@ -132,7 +132,7 @@ export default function QuickFireRound({
       {/* Progress + running score */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">
             Item {currentIndex + 1} of {questions.length}
           </span>
           <div className="flex items-center gap-3">
@@ -141,7 +141,7 @@ export default function QuickFireRound({
             </span>
             {!answered && (
               <span
-                className="text-xs font-mono font-bold"
+                className="text-sm font-mono font-bold"
                 style={{
                   color:
                     timeLeft <= 3 ? "var(--color-incorrect)" : accentColor,
@@ -153,7 +153,7 @@ export default function QuickFireRound({
             )}
           </div>
         </div>
-        <div className="h-4 bg-[var(--color-border)] rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-[var(--color-primary)] rounded-full"
             animate={{ width: `${progress}%` }}
@@ -184,8 +184,8 @@ export default function QuickFireRound({
           exit={{ opacity: 0, y: -20 }}
         >
           {/* Statement */}
-          <div className="bg-white rounded-2xl p-5 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-6">
-            <p className="text-sm text-[var(--color-text-primary)] leading-relaxed text-center font-bold">
+          <div className="bg-white rounded-2xl p-5 border border-[var(--color-border)] shadow-sm mb-6">
+            <p className="text-base text-[var(--color-text-primary)] leading-relaxed text-center font-bold">
               {question.statement}
             </p>
           </div>
@@ -195,14 +195,14 @@ export default function QuickFireRound({
             <div className="grid grid-cols-2 gap-3 mb-4">
               <button
                 onClick={() => handleAnswer(true)}
-                className="py-4 rounded-xl border-2 border-b-4 border-[var(--color-correct)] border-b-[var(--color-correct-shadow)] text-[var(--color-correct)] font-bold text-lg hover:bg-[var(--color-correct-bg)] transition-colors active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                className="py-4 rounded-xl border-2 border-[var(--color-correct)] text-[var(--color-correct)] font-bold text-lg hover:bg-[var(--color-correct-bg)] transition-colors uppercase tracking-wide"
                 data-testid="true-button"
               >
                 TRUE
               </button>
               <button
                 onClick={() => handleAnswer(false)}
-                className="py-4 rounded-xl border-2 border-b-4 border-[var(--color-incorrect)] border-b-[var(--color-incorrect-shadow)] text-[var(--color-incorrect)] font-bold text-lg hover:bg-[var(--color-incorrect-bg)] transition-colors active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                className="py-4 rounded-xl border-2 border-[var(--color-incorrect)] text-[var(--color-incorrect)] font-bold text-lg hover:bg-[var(--color-incorrect-bg)] transition-colors uppercase tracking-wide"
                 data-testid="false-button"
               >
                 FALSE
@@ -240,7 +240,7 @@ export default function QuickFireRound({
                   {question.explanation}
                 </p>
                 <p
-                  className="text-xs font-mono font-bold mt-1"
+                  className="text-sm font-mono font-bold mt-1"
                   style={{ color: accentColor }}
                 >
                   {question.citationRef}
@@ -249,7 +249,7 @@ export default function QuickFireRound({
 
               <button
                 onClick={handleNext}
-                className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
               >
                 {currentIndex < questions.length - 1
                   ? "Next"

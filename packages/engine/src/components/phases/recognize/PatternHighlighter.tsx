@@ -114,14 +114,14 @@ export default function PatternHighlighter({
       {/* Progress */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">
             Excerpt {currentIndex + 1} of {excerpts.length}
           </span>
-          <span className="text-xs font-mono font-bold" style={{ color: accentColor }}>
+          <span className="text-sm font-mono font-bold" style={{ color: accentColor }}>
             {excerpt.referenceId}
           </span>
         </div>
-        <div className="h-4 bg-[var(--color-border)] rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-[var(--color-primary)] rounded-full"
             animate={{ width: `${progress}%` }}
@@ -138,7 +138,7 @@ export default function PatternHighlighter({
         >
           {/* Title & instruction */}
           <div className="mb-4">
-            <h3 className="font-bold text-sm text-[var(--color-text-primary)]">
+            <h3 className="font-bold text-base text-[var(--color-text-primary)]">
               {excerpt.title}
             </h3>
             <p className="text-xs font-semibold text-[var(--color-text-secondary)]">
@@ -147,7 +147,7 @@ export default function PatternHighlighter({
           </div>
 
           {/* Excerpt text with clickable segments */}
-          <div className="bg-white rounded-2xl p-4 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-4">
+          <div className="bg-white rounded-2xl p-4 border border-[var(--color-border)] shadow-sm mb-4">
             <p className="text-sm leading-relaxed font-semibold">
               {excerpt.segments.map((seg, i) => {
                 const isSelected = selected.has(i);
@@ -204,7 +204,7 @@ export default function PatternHighlighter({
 
           {/* Legend for results */}
           {checked && (
-            <div className="flex gap-4 mb-3 text-[10px] font-bold text-[var(--color-text-muted)]">
+            <div className="flex gap-4 mb-3 text-xs font-bold text-[var(--color-text-muted)]">
               <span className="flex items-center gap-1">
                 <span
                   className="inline-block w-3 h-3 rounded-sm"
@@ -253,10 +253,10 @@ export default function PatternHighlighter({
             <button
               onClick={handleCheck}
               disabled={selected.size === 0}
-              className={`w-full py-3 rounded-xl font-bold text-sm border-2 border-b-4 transition-colors disabled:opacity-40 uppercase tracking-wide active:border-b-2 active:translate-y-[2px] ${
+              className={`w-full py-3 rounded-xl font-bold text-base transition-colors disabled:opacity-40 uppercase tracking-wide shadow-sm hover:shadow-md transition-shadow ${
                 selected.size > 0
-                  ? "bg-[var(--color-primary)] text-white border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)]"
-                  : "bg-[var(--color-surface)] text-[var(--color-text-muted)] border-[var(--color-border)] border-b-[var(--color-border-strong)]"
+                  ? "bg-[var(--color-primary)] text-white"
+                  : "bg-[var(--color-surface)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
               }`}
             >
               Check ({selected.size} selected)
@@ -285,7 +285,7 @@ export default function PatternHighlighter({
 
               <button
                 onClick={handleNext}
-                className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+                className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
               >
                 {currentIndex < excerpts.length - 1
                   ? "Next Excerpt"

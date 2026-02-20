@@ -15,7 +15,7 @@ test-results
 out
 
 # production
-build
+/build
 dist
 
 # misc

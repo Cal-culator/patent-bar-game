@@ -246,7 +246,7 @@ export default function BossBattle({
         </div>
         <button
           onClick={handleStart}
-          className="px-8 py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+          className="px-8 py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
           data-testid="boss-start"
         >
           Begin Battle
@@ -276,7 +276,7 @@ export default function BossBattle({
         </p>
         <button
           onClick={handleRestart}
-          className="px-8 py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+          className="px-8 py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
           data-testid="boss-retry"
         >
           Try Again
@@ -321,22 +321,22 @@ export default function BossBattle({
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3 mb-6">
-          <div className="bg-white rounded-2xl p-3 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] text-center">
-            <p className="text-xs font-bold text-[var(--color-text-muted)]">Accuracy</p>
+          <div className="bg-white rounded-2xl p-3 border border-[var(--color-border)] shadow-sm text-center">
+            <p className="text-sm font-bold text-[var(--color-text-muted)]">Accuracy</p>
             <p className="text-lg font-extrabold text-[var(--color-text-primary)]">{correctCount}/{questions.length}</p>
           </div>
-          <div className="bg-white rounded-2xl p-3 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] text-center">
-            <p className="text-xs font-bold text-[var(--color-text-muted)]">Avg Time</p>
+          <div className="bg-white rounded-2xl p-3 border border-[var(--color-border)] shadow-sm text-center">
+            <p className="text-sm font-bold text-[var(--color-text-muted)]">Avg Time</p>
             <p className="text-lg font-extrabold text-[var(--color-text-primary)]">{avgTime}s</p>
           </div>
-          <div className="bg-white rounded-2xl p-3 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] text-center">
-            <p className="text-xs font-bold text-[var(--color-text-muted)]">Best Streak</p>
+          <div className="bg-white rounded-2xl p-3 border border-[var(--color-border)] shadow-sm text-center">
+            <p className="text-sm font-bold text-[var(--color-text-muted)]">Best Streak</p>
             <p className="text-lg font-extrabold text-[var(--color-text-primary)]">{bestStreak}</p>
           </div>
         </div>
 
         {/* Per-question breakdown */}
-        <div className="bg-white rounded-2xl border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] p-4 mb-6">
+        <div className="bg-white rounded-2xl border border-[var(--color-border)] shadow-sm p-4 mb-6">
           <h3 className="text-sm font-extrabold text-[var(--color-text-primary)] mb-3">Question Breakdown</h3>
           <div className="space-y-2">
             {results.map((r, i) => (
@@ -365,7 +365,7 @@ export default function BossBattle({
         {/* Continue button */}
         <button
           onClick={() => onComplete(scorePercent)}
-          className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+          className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
           data-testid="boss-continue"
         >
           Continue
@@ -400,7 +400,7 @@ export default function BossBattle({
         </span>
 
         {/* Question number */}
-        <span className="text-xs font-bold text-[var(--color-text-muted)]">
+        <span className="text-sm font-bold text-[var(--color-text-muted)]">
           Q{currentIndex + 1}/{questions.length}
         </span>
       </div>
@@ -408,15 +408,15 @@ export default function BossBattle({
       {/* Timer bar */}
       <div className="mb-4" data-testid="boss-timer">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-bold text-[var(--color-text-muted)]">Time</span>
+          <span className="text-sm font-bold text-[var(--color-text-muted)]">Time</span>
           <span
-            className="text-xs font-mono font-bold"
+            className="text-sm font-mono font-bold"
             style={{ color: timerColor }}
           >
             {timeLeft}s
           </span>
         </div>
-        <div className="h-4 bg-[var(--color-border)] rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[var(--color-border)] rounded-full overflow-hidden">
           <motion.div
             className="h-full rounded-full"
             style={{ backgroundColor: timerColor }}
@@ -436,7 +436,7 @@ export default function BossBattle({
           {/* Question type badge */}
           <div className="mb-3 flex items-center gap-2">
             <span
-              className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
+              className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
               style={{
                 backgroundColor:
                   question.questionType === "scenario"
@@ -451,7 +451,7 @@ export default function BossBattle({
               {question.questionType === "scenario" ? "Scenario" : "True / False"}
             </span>
             <span
-              className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
+              className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
               style={{
                 backgroundColor: question.difficulty === 4 ? "rgba(255, 75, 75, 0.15)" : "rgba(255, 150, 0, 0.15)",
                 color: question.difficulty === 4 ? "#FF4B4B" : "#FF9600",
@@ -462,8 +462,8 @@ export default function BossBattle({
           </div>
 
           {/* Stem */}
-          <div className="bg-white rounded-2xl p-4 border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] mb-4">
-            <p className="text-sm text-[var(--color-text-primary)] leading-relaxed font-semibold">
+          <div className="bg-white rounded-2xl p-4 border border-[var(--color-border)] shadow-sm mb-4">
+            <p className="text-base text-[var(--color-text-primary)] leading-relaxed font-semibold">
               {question.stem}
             </p>
           </div>
@@ -476,18 +476,18 @@ export default function BossBattle({
                 const isSelected = selectedAnswer === i;
                 const isCorrectOption = i === shuffledOpts.correctIndex;
 
-                let cardClass = "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border-strong)] hover:bg-[var(--color-surface)] active:border-b-2 active:translate-y-[2px]";
+                let cardClass = "border border-[var(--color-border)] hover:bg-[var(--color-surface)] hover:shadow-sm transition-all";
 
                 if (answered) {
                   if (isCorrectOption) {
                     cardClass =
-                      "border-2 border-b-4 border-[var(--color-correct)] border-b-[var(--color-correct-shadow)] bg-[var(--color-correct-bg)]";
+                      "border-2 border-[var(--color-correct)] bg-[var(--color-correct-bg)]";
                   } else if (isSelected && !isCorrectOption) {
                     cardClass =
-                      "border-2 border-b-4 border-[var(--color-incorrect)] border-b-[var(--color-incorrect-shadow)] bg-[var(--color-incorrect-bg)]";
+                      "border-2 border-[var(--color-incorrect)] bg-[var(--color-incorrect-bg)]";
                   } else {
                     cardClass =
-                      "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border)] opacity-40";
+                      "border border-[var(--color-border)] opacity-40";
                   }
                 }
 
@@ -515,19 +515,19 @@ export default function BossBattle({
                 const isSelected = answered && selectedAnswer === (val ? 1 : 0);
                 const isCorrectOption = val === question.isTrue;
 
-                let cardClass = "border-2 border-b-4 hover:bg-[var(--color-surface)] active:border-b-2 active:translate-y-[2px]";
+                let cardClass = "border-2 hover:bg-[var(--color-surface)] transition-all";
 
                 if (!answered) {
                   cardClass += val
-                    ? " border-[var(--color-correct)] border-b-[var(--color-correct-shadow)]"
-                    : " border-[var(--color-incorrect)] border-b-[var(--color-incorrect-shadow)]";
+                    ? " border-[var(--color-correct)]"
+                    : " border-[var(--color-incorrect)]";
                 } else {
                   if (isCorrectOption) {
-                    cardClass = "border-2 border-b-4 border-[var(--color-correct)] border-b-[var(--color-correct-shadow)] bg-[var(--color-correct-bg)]";
+                    cardClass = "border-2 border-[var(--color-correct)] bg-[var(--color-correct-bg)]";
                   } else if (isSelected && !isCorrectOption) {
-                    cardClass = "border-2 border-b-4 border-[var(--color-incorrect)] border-b-[var(--color-incorrect-shadow)] bg-[var(--color-incorrect-bg)]";
+                    cardClass = "border-2 border-[var(--color-incorrect)] bg-[var(--color-incorrect-bg)]";
                   } else {
-                    cardClass = "border-2 border-b-4 border-[var(--color-border)] border-b-[var(--color-border)] opacity-40";
+                    cardClass = "border border-[var(--color-border)] opacity-40";
                   }
                 }
 
@@ -555,7 +555,7 @@ export default function BossBattle({
                 <p className="text-[var(--color-text-secondary)] text-xs font-semibold">
                   {question.explanation}
                 </p>
-                <p className="text-xs font-mono font-bold mt-1" style={{ color: accentColor }}>
+                <p className="text-sm font-mono font-bold mt-1" style={{ color: accentColor }}>
                   {question.citationRef}
                 </p>
               </div>
@@ -582,7 +582,7 @@ export default function BossBattle({
                   {question.explanation}
                 </p>
                 <p
-                  className="text-xs font-mono font-bold mt-1"
+                  className="text-sm font-mono font-bold mt-1"
                   style={{ color: accentColor }}
                 >
                   {question.citationRef}
@@ -595,7 +595,7 @@ export default function BossBattle({
           {answered && lives > 0 && (
             <button
               onClick={handleNext}
-              className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[var(--color-primary)] border-2 border-b-4 border-[var(--color-primary-shadow)] border-b-[var(--color-primary-shadow)] active:border-b-2 active:translate-y-[2px] uppercase tracking-wide"
+              className="w-full py-3 rounded-xl font-bold text-base text-white bg-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow uppercase tracking-wide"
             >
               {currentIndex < questions.length - 1
                 ? "Next Question"
