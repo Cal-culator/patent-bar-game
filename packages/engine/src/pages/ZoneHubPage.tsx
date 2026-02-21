@@ -93,9 +93,23 @@ export function ZoneHubPage() {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         className="rounded-2xl p-6 md:p-8 mb-8 text-white relative overflow-hidden"
-        style={{ background: `linear-gradient(135deg, ${zone.accentColor}, ${zone.accentColor}CC)` }}
+        style={{
+          background: `
+            radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 40%),
+            linear-gradient(135deg, ${zone.accentColor}, ${zone.accentColor}CC)
+          `,
+        }}
       >
-        <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
+        {/* Dot grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+            backgroundSize: '18px 18px',
+          }}
+        />
+        <div className="absolute top-0 right-0 w-48 h-48 bg-white/[0.06] rounded-full -translate-y-1/2 translate-x-1/3 blur-xl" />
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-14 h-14 rounded-xl bg-white/15 flex items-center justify-center text-3xl">
@@ -122,9 +136,9 @@ export function ZoneHubPage() {
             </span>
           </div>
           <div className="mt-3">
-            <div className="h-2 bg-white/20 rounded-full overflow-hidden max-w-xs">
+            <div className="h-2 bg-white/15 rounded-full overflow-hidden max-w-xs">
               <motion.div
-                className="h-full bg-white rounded-full"
+                className="h-full bg-white/90 rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${zoneProgressPct}%` }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
@@ -214,12 +228,12 @@ function PhaseCard({
 
   return (
     <div
-      className={`rounded-2xl p-5 border transition-all relative overflow-hidden ${
+      className={`rounded-2xl p-5 border transition-all duration-200 relative overflow-hidden ${
         isLocked
           ? "bg-[var(--color-surface)] border-[var(--color-border)] opacity-40 cursor-not-allowed"
           : isCompleted
-            ? "bg-white border-[var(--color-border)] shadow-sm hover:shadow-md cursor-pointer"
-            : "bg-white border-[var(--color-border)] shadow-sm hover:shadow-md cursor-pointer"
+            ? "bg-white border-[var(--color-border)] shadow-sm hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
+            : "bg-white border-[var(--color-border)] shadow-sm hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
       }`}
     >
       {/* Colored left accent for available phase */}

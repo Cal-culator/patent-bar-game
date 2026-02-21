@@ -4,18 +4,18 @@
 @source "../../../../packages/engine/src";
 
 @theme inline {
-  /* Light, clean theme inspired by MPEP Quest */
-  --color-background: #FCFCFC;
-  --color-surface: #F8FAFC;
-  --color-surface-hover: #F1F5F9;
-  --color-border: #E2E8F0;
-  --color-border-strong: #CBD5E1;
-  --color-text-primary: #1E293B;
-  --color-text-secondary: #475569;
-  --color-text-muted: #94A3B8;
-  --color-foreground: #1E293B;
+  /* Violet-kissed neutrals — every gray carries a subtle purple undertone */
+  --color-background: #FAFAFC;
+  --color-surface: #F3F0FA;
+  --color-surface-hover: #EBE7F5;
+  --color-border: #DDD8ED;
+  --color-border-strong: #C4B5FD;
+  --color-text-primary: #1A1235;
+  --color-text-secondary: #3D3358;
+  --color-text-muted: #857DA0;
+  --color-foreground: #1A1235;
 
-  /* Brand colors — purple primary */
+  /* Brand — violet core with warm gold secondary */
   --color-primary: #7C3AED;
   --color-primary-light: #EDE9FE;
   --color-primary-shadow: #6D28D9;
@@ -23,39 +23,61 @@
   --color-correct-shadow: #059669;
   --color-incorrect: #EF4444;
   --color-incorrect-shadow: #DC2626;
-  --color-selected: #3B82F6;
-  --color-selected-shadow: #2563EB;
+  --color-selected: #6366F1;
+  --color-selected-shadow: #4F46E5;
   --color-xp: #F59E0B;
   --color-streak: #FB923C;
 
-  /* Feedback backgrounds */
+  /* Feedback surfaces */
   --color-correct-bg: #ECFDF5;
   --color-incorrect-bg: #FEF2F2;
-  --color-selected-bg: #EFF6FF;
+  --color-selected-bg: #EEF2FF;
 
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--color-background);
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 60%, rgba(124, 58, 237, 0.04) 0%, transparent 100%),
+    radial-gradient(ellipse 50% 70% at 90% 20%, rgba(99, 102, 241, 0.035) 0%, transparent 100%),
+    radial-gradient(ellipse 40% 40% at 50% 95%, rgba(245, 158, 11, 0.02) 0%, transparent 100%),
+    var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-geist), 'Geist', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3 {
   font-family: var(--font-baloo), 'Baloo 2', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
 }
 
-/* Scrollbar styling */
+/* Text selection — brand violet */
+::selection {
+  background: rgba(124, 58, 237, 0.15);
+  color: var(--color-text-primary);
+}
+
+/* Accessible focus ring with subtle glow */
+*:focus-visible {
+  outline: 2px solid rgba(124, 58, 237, 0.5);
+  outline-offset: 2px;
+}
+
+/* Scrollbar — minimal, on-brand */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-surface);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border-strong);
-  border-radius: 3px;
+  background: var(--color-border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
 }
 
 /* Zone accent colors via data attributes */

@@ -23,7 +23,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <StudyGameProvider config={patentBarConfig} content={patentBarContent}>
       <StatsBar />
       <main className="flex-1 pb-16 md:pb-0">{children}</main>
-      <footer className="hidden md:block border-t border-[var(--color-border)] py-4 text-center">
+      <footer className="hidden md:block py-4 text-center">
+        <div className="h-[1px] bg-gradient-to-r from-transparent via-[var(--color-border)] to-transparent mb-4" />
         <p className="text-sm text-[var(--color-text-muted)]">
           &copy; 2026 Patent Bar Game. Built for future patent attorneys.
         </p>
