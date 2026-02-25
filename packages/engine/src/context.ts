@@ -1,12 +1,13 @@
 "use client";
 
-import { createContext, useContext } from "react";
+import React, { createContext, useContext } from "react";
 import type { AppConfig } from "./config";
 import type { ContentRegistry } from "./types";
 
 export interface StudyGameContextValue {
   config: AppConfig;
   content: ContentRegistry;
+  headerActions?: React.ReactNode;
 }
 
 export const StudyGameContext = createContext<StudyGameContextValue | null>(null);
@@ -21,4 +22,9 @@ export function useContent(): ContentRegistry {
   const ctx = useContext(StudyGameContext);
   if (!ctx) throw new Error("useContent must be used within StudyGameProvider");
   return ctx.content;
+}
+
+export function useHeaderActions(): React.ReactNode | undefined {
+  const ctx = useContext(StudyGameContext);
+  return ctx?.headerActions;
 }

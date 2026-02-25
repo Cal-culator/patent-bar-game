@@ -78,6 +78,15 @@ export interface GameState {
   // Spaced repetition
   reviewCards: ReviewCard[];
 
+  // External hydration (for DB sync)
+  hydrateFromExternal: (data: {
+    stats?: Partial<UserStats>;
+    zoneProgress?: ZoneProgress[];
+    absorbProgress?: Record<string, number>;
+    answerHistory?: AnswerRecord[];
+    reviewCards?: ReviewCard[];
+  }) => void;
+
   // Active session
   currentStreak: number;
   streakMultiplier: number;
@@ -250,6 +259,28 @@ export function createGameStore(config: AppConfig, zones: Zone[]) {
         // --- Spaced Repetition ---
         reviewCards: [],
 
+        // --- External Hydration ---
+        hydrateFromExternal: (data) =>
+          set((state) => {
+            const next: Partial<GameState> = {};
+            if (data.stats) {
+              next.stats = { ...state.stats, ...data.stats };
+            }
+            if (data.zoneProgress) {
+              next.zoneProgress = data.zoneProgress;
+            }
+            if (data.absorbProgress) {
+              next.absorbProgress = data.absorbProgress;
+            }
+            if (data.answerHistory) {
+              next.answerHistory = data.answerHistory;
+            }
+            if (data.reviewCards) {
+              next.reviewCards = data.reviewCards;
+            }
+            return next;
+          }),
+
         // --- Session Streak ---
         currentStreak: 0,
         streakMultiplier: 1,
@@ -281,6 +312,22 @@ export function useGameStore<T>(selector: (state: GameState) => T): T {
     throw new Error("Game store not initialized. Wrap your app with StudyGameProvider.");
   }
   return storeInstance(selector);
+}
+
+// Get current state snapshot (non-reactive, for use outside React)
+export function getGameState(): GameState {
+  if (!storeInstance) {
+    throw new Error("Game store not initialized.");
+  }
+  return storeInstance.getState();
+}
+
+// Subscribe to store changes (for use outside React)
+export function subscribeGameStore(listener: (state: GameState) => void): () => void {
+  if (!storeInstance) {
+    throw new Error("Game store not initialized.");
+  }
+  return storeInstance.subscribe(listener);
 }
 
 // Reset for testing

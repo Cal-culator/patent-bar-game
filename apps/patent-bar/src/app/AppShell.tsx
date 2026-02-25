@@ -10,6 +10,9 @@ import {
 } from "@study-game/engine";
 import { patentBarConfig } from "@/content/config";
 import { patentBarContent } from "@/content/registry";
+import { AuthProvider } from "@/lib/auth/AuthContext";
+import { SyncManager } from "@/lib/sync/SyncManager";
+import { AuthButton } from "@/components/AuthButton";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const initialized = useRef(false);
@@ -20,16 +23,23 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <StudyGameProvider config={patentBarConfig} content={patentBarContent}>
-      <StatsBar />
-      <main className="flex-1 pb-16 md:pb-0">{children}</main>
-      <footer className="hidden md:block py-4 text-center">
-        <div className="h-[1px] bg-gradient-to-r from-transparent via-[var(--color-border)] to-transparent mb-4" />
-        <p className="text-sm text-[var(--color-text-muted)]">
-          &copy; 2026 Patent Bar Game. Built for future patent attorneys.
-        </p>
-      </footer>
-      <BottomNav />
-    </StudyGameProvider>
+    <AuthProvider>
+      <StudyGameProvider
+        config={patentBarConfig}
+        content={patentBarContent}
+        headerActions={<AuthButton />}
+      >
+        <SyncManager />
+        <StatsBar />
+        <main className="flex-1 pb-16 md:pb-0">{children}</main>
+        <footer className="hidden md:block py-4 text-center">
+          <div className="h-[1px] bg-gradient-to-r from-transparent via-[var(--color-border)] to-transparent mb-4" />
+          <p className="text-sm text-[var(--color-text-muted)]">
+            &copy; 2026 Patent Bar Game. Built for future patent attorneys.
+          </p>
+        </footer>
+        <BottomNav />
+      </StudyGameProvider>
+    </AuthProvider>
   );
 }

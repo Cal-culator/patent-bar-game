@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useGameStore } from "../../store/gameStore";
+import { useHeaderActions } from "../../context";
 
 export default function StatsBar() {
   const stats = useGameStore((s) => s.stats);
+  const headerActions = useHeaderActions();
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-[var(--color-border)]">
@@ -32,12 +34,14 @@ export default function StatsBar() {
               ⭐ {stats.totalXp} XP
             </span>
           </div>
-          <Link
-            href="/"
-            className="bg-[var(--color-primary)] text-white text-sm font-bold px-5 py-2 rounded-full hover:bg-[var(--color-primary-shadow)] hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-200"
-          >
-            Join the Quest
-          </Link>
+          {headerActions ?? (
+            <Link
+              href="/"
+              className="bg-[var(--color-primary)] text-white text-sm font-bold px-5 py-2 rounded-full hover:bg-[var(--color-primary-shadow)] hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-200"
+            >
+              Join the Quest
+            </Link>
+          )}
         </div>
       </div>
       {/* Gradient accent line */}

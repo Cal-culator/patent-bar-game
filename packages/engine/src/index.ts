@@ -40,11 +40,11 @@ export type { AppConfig } from "./config";
 export { DEFAULT_CONFIG } from "./config";
 
 // Context
-export { useAppConfig, useContent } from "./context";
+export { useAppConfig, useContent, useHeaderActions } from "./context";
 export { StudyGameProvider } from "./provider";
 
 // Store
-export { createGameStore, useGameStore, resetGameStore } from "./store/gameStore";
+export { createGameStore, useGameStore, getGameState, subscribeGameStore, resetGameStore } from "./store/gameStore";
 export type { GameState } from "./store/gameStore";
 
 // Lib
