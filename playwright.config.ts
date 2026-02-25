@@ -10,10 +10,10 @@ export default defineConfig({
     screenshot: "only-on-failure",
   },
   webServer: {
-    command: "npm run dev",
+    command: "npm run dev -- --filter=patent-bar",
     port: 3000,
     reuseExistingServer: true,
-    timeout: 15000,
+    timeout: 30000,
   },
   projects: [
     {
