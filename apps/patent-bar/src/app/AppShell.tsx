@@ -17,6 +17,9 @@ import { AuthButton } from "@/components/AuthButton";
 export function AppShell({ children }: { children: React.ReactNode }) {
   const initialized = useRef(false);
   if (!initialized.current) {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("patent-bar-game-storage");
+    }
     initScoring(patentBarConfig);
     createGameStore(patentBarConfig, patentBarContent.zones);
     initialized.current = true;

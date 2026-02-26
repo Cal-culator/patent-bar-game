@@ -61,7 +61,7 @@ function AuthContextInner({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signOutFn = useCallback(async () => {
-    await signOut({ callbackUrl: "/" });
+    await signOut({ callbackUrl: "/auth/login" });
   }, []);
 
   return (

@@ -3,7 +3,7 @@ import type { AppConfig } from "@study-game/engine";
 export const patentBarConfig: AppConfig = {
   appName: "The Patent Office",
   appSubtitle: "MPEP Chapter 100 — Secrecy & Foreign Filing",
-  storageKey: "patent-bar-game-storage",
+  storageKey: "patent-bar-game-v2",
 
   levelTitles: [
     { title: "Examiner Intern", xp: 0 },

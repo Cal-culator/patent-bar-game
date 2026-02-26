@@ -1,13 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/lib/auth/AuthContext";
 
-export default function LoginPage() {
+function LoginForm() {
   const { signInWithEmail } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -23,7 +25,7 @@ export default function LoginPage() {
       setError(err.message);
       setLoading(false);
     } else {
-      router.push("/");
+      router.push(callbackUrl);
       router.refresh();
     }
   };
@@ -39,7 +41,7 @@ export default function LoginPage() {
             Welcome back
           </h1>
           <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-            Sign in to sync your progress across devices
+            Sign in to continue
           </p>
         </div>
 
@@ -89,11 +91,19 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-[var(--color-text-muted)]">
           Don&apos;t have an account?{" "}
-          <Link href="/auth/signup" className="text-[var(--color-primary)] font-semibold hover:underline">
+          <Link href={`/auth/signup${callbackUrl !== "/" ? `?callbackUrl=${encodeURIComponent(callbackUrl)}` : ""}`} className="text-[var(--color-primary)] font-semibold hover:underline">
             Sign up
           </Link>
         </p>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   );
 }
