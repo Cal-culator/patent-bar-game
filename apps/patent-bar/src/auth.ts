@@ -5,18 +5,16 @@ import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { db } from "./lib/db";
 import { users, accounts, sessions, verificationTokens } from "./lib/db/schema";
+import { authConfig } from "./auth.config";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  ...authConfig,
   adapter: DrizzleAdapter(db, {
     usersTable: users,
     accountsTable: accounts,
     sessionsTable: sessions,
     verificationTokensTable: verificationTokens,
   }),
-  session: { strategy: "jwt" },
-  pages: {
-    signIn: "/auth/login",
-  },
   providers: [
     Credentials({
       credentials: {
@@ -45,9 +43,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    authorized({ auth }) {
-      return !!auth?.user;
-    },
+    ...authConfig.callbacks,
     jwt({ token, user }) {
       if (user) {
         token.id = user.id;
