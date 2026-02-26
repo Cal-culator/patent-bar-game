@@ -59,10 +59,8 @@ export function useSyncManager() {
       if (data.hasData) {
         hydrateFromExternal(data.state);
         lastAnswerCount.current = data.answerCount ?? 0;
-      } else {
-        // First login — migrate current localStorage state to DB
-        await flushToDb();
       }
+      // DB is empty = fresh start. Don't migrate stale localStorage.
       hasMigrated.current = true;
     })();
   }, [user, hydrateFromExternal, flushToDb]);
